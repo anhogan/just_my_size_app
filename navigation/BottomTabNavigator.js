@@ -20,7 +20,7 @@ export default function BottomTabNavigator({ navigation, route }) {
       textAlign: 'center', 
       color: '#6674DE',
       fontWeight: 'bold',
-      fontFamily: 'fredoka-one'
+      fontFamily: 'jua'
     }
   });
 
