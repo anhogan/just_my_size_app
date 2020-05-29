@@ -11,13 +11,13 @@ import SearchScreen from '../screens/SearchScreen';
 import ClosetScreen from '../screens/ClosetScreen';
 
 const BottomTab = createBottomTabNavigator();
-const INITIAL_ROUTE_NAME = 'Home';
+const INITIAL_ROUTE_NAME = 'Closet';
 
 export default function BottomTabNavigator({ navigation, route }) {
   // Set the header title on the parent stack navigator depending on the
   // currently active tab. Learn more in the documentation:
   // https://reactnavigation.org/docs/en/screen-options-resolution.html
-  navigation.setOptions({ headerTitle: getHeaderTitle(route) });
+  navigation.setOptions({ headerTitle: getHeaderTitle(route), headerTitleStyle: {textAlign: 'center'} });
 
   return (
     <BottomTab.Navigator initialRouteName={INITIAL_ROUTE_NAME}>
@@ -76,6 +76,6 @@ function getHeaderTitle(route) {
     case 'Closet':
       return `CLOSET`;
     case 'Search':
-      return `CLOSET`;
+      return `SEARCH CLOSET`;
   }
 }
