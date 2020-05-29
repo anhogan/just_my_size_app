@@ -14,10 +14,15 @@ const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = 'Closet';
 
 export default function BottomTabNavigator({ navigation, route }) {
-  // Set the header title on the parent stack navigator depending on the
-  // currently active tab. Learn more in the documentation:
-  // https://reactnavigation.org/docs/en/screen-options-resolution.html
-  navigation.setOptions({ headerTitle: getHeaderTitle(route), headerTitleStyle: {textAlign: 'center'} });
+  navigation.setOptions({ 
+    headerTitle: getHeaderTitle(route), 
+    headerTitleStyle: {
+      textAlign: 'center', 
+      color: '#6674DE',
+      fontWeight: 'bold',
+      fontFamily: 'fredoka-one'
+    }
+  });
 
   return (
     <BottomTab.Navigator initialRouteName={INITIAL_ROUTE_NAME}>
