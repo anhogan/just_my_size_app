@@ -3,7 +3,7 @@ import * as React from 'react';
 import { Image, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 
-import { MonoText } from '../components/StyledText';
+import { NanumText } from '../components/StyledText';
 
 export default function ProfileScreen() {
   return (
@@ -26,7 +26,7 @@ export default function ProfileScreen() {
           <Text style={styles.getStartedText}>Open up the code for this screen:</Text>
 
           <View style={[styles.codeHighlightContainer, styles.homeScreenFilename]}>
-            <MonoText>screens/HomeScreen.js</MonoText>
+            <NanumText>screens/HomeScreen.js</NanumText>
           </View>
 
           <Text style={styles.getStartedText}>
@@ -45,7 +45,7 @@ export default function ProfileScreen() {
         <Text style={styles.tabBarInfoText}>This is a tab bar. You can edit it in:</Text>
 
         <View style={[styles.codeHighlightContainer, styles.navigationFilename]}>
-          <MonoText style={styles.codeHighlightText}>navigation/BottomTabNavigator.js</MonoText>
+          <NanumText style={styles.codeHighlightText}>navigation/BottomTabNavigator.js</NanumText>
         </View>
       </View>
     </View>
