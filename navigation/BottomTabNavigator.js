@@ -21,6 +21,10 @@ export default function BottomTabNavigator({ navigation, route }) {
       color: '#6674DE',
       fontWeight: 'bold',
       fontFamily: 'jua'
+    },
+    headerStyle: {
+      shadowColor: '#F0895F',
+      shadowOffset: {width: 0, height: 2}
     }
   });
 

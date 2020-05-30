@@ -5,12 +5,12 @@ import { ScrollView } from 'react-native-gesture-handler';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#fff'
   },
   contentContainer: {
     paddingTop: 30,
   },
-  welcomeContainer: {
+  inputContainer: {
     alignItems: 'center',
     marginTop: 10,
     marginBottom: 20,
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
 });
 
 SearchScreen.navigationOptions = {
-  header: 'SEARCH CLOSET',
+  header: null
 };
 
 export default function SearchScreen() {
@@ -43,7 +43,7 @@ export default function SearchScreen() {
   return (
     <View style={styles.container}>
       <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-        <View style={styles.welcomeContainer}>
+        <View style={styles.inputContainer}>
           <TextInput
             style={styles.inputBar}
             placeholder='Search the closet'
@@ -54,6 +54,8 @@ export default function SearchScreen() {
             value={searchTerm}
             onSubmitEditing={() => searchCloset(searchTerm)} />
         </View>
+
+        {/* Map through search results ... if none return error message */}
       </ScrollView>
     </View>
   );
