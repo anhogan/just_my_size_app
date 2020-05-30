@@ -5,7 +5,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff'
+    backgroundColor: '#fff',
   },
   contentContainer: {
     paddingTop: 30,
@@ -19,11 +19,11 @@ const styles = StyleSheet.create({
     width: '80%',
     height: 40,
     borderColor: '#6674DE',
-    borderWidth: 1,
+    borderWidth: 2,
     borderRadius: 5,
     color: '#6674DE',
     paddingLeft: 15,
-    paddingRight: 15
+    paddingRight: 15,
   }
 });
 
@@ -38,7 +38,7 @@ export default function SearchScreen() {
     // Search through user's closet to find the item by store, style, type, or size
     console.log(`Searched closet for ${input}`);
     setSearchTerm('');
-  }
+  };
 
   return (
     <View style={styles.container}>
