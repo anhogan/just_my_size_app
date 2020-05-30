@@ -29,7 +29,14 @@ export default function BottomTabNavigator({ navigation, route }) {
   });
 
   return (
-    <BottomTab.Navigator initialRouteName={INITIAL_ROUTE_NAME}>
+    <BottomTab.Navigator 
+      initialRouteName={INITIAL_ROUTE_NAME}
+      tabBarOptions={{
+        style: {
+          borderTopColor: '#F0895F',
+          borderTopWidth: 2
+        }
+      }} >
       <BottomTab.Screen
         name="Profile"
         component={ProfileScreen}
