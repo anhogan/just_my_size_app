@@ -15,7 +15,8 @@ export default function useCachedResources() {
         // Load fonts
         await Font.loadAsync({
           ...Ionicons.font,
-          'space-mono': require('../assets/fonts/SpaceMono-Regular.ttf'),
+          'jua': require('../assets/fonts/Jua-Regular.ttf'),
+          'nanum-gothic': require('../assets/fonts/NanumGothic-Regular.ttf')
         });
       } catch (e) {
         // We might want to provide this error information to an error reporting service

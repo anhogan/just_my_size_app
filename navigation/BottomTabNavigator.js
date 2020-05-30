@@ -1,35 +1,71 @@
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import * as React from 'react';
 
-import TabBarIcon from '../components/TabBarIcon';
-import HomeScreen from '../screens/HomeScreen';
-import LinksScreen from '../screens/LinksScreen';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { FontAwesome5 } from '@expo/vector-icons';
+
+import Colors from '../constants/Colors';
+
+import ProfileScreen from '../screens/ProfileScreen'
+import SearchScreen from '../screens/SearchScreen';
+import ClosetScreen from '../screens/ClosetScreen';
 
 const BottomTab = createBottomTabNavigator();
-const INITIAL_ROUTE_NAME = 'Home';
+const INITIAL_ROUTE_NAME = 'Closet';
 
 export default function BottomTabNavigator({ navigation, route }) {
-  // Set the header title on the parent stack navigator depending on the
-  // currently active tab. Learn more in the documentation:
-  // https://reactnavigation.org/docs/en/screen-options-resolution.html
-  navigation.setOptions({ headerTitle: getHeaderTitle(route) });
+  navigation.setOptions({ 
+    headerTitle: getHeaderTitle(route), 
+    headerTitleStyle: {
+      textAlign: 'center', 
+      color: '#6674DE',
+      fontWeight: 'bold',
+      fontFamily: 'jua'
+    }
+  });
 
   return (
     <BottomTab.Navigator initialRouteName={INITIAL_ROUTE_NAME}>
       <BottomTab.Screen
-        name="Home"
-        component={HomeScreen}
+        name="Profile"
+        component={ProfileScreen}
         options={{
-          title: 'Get Started',
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-code-working" />,
+          title: '',
+          tabBarIcon: ({ focused }) => 
+            <FontAwesome5 
+              focused={focused} 
+              name="user-circle" 
+              size={30} 
+              style={{ marginBottom: -15 }}
+              color={focused ? Colors.tabIconSelected : Colors.tabIconDefault} />,
         }}
       />
       <BottomTab.Screen
-        name="Links"
-        component={LinksScreen}
+        name="Closet"
+        component={ClosetScreen}
         options={{
-          title: 'Resources',
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-book" />,
+          title: '',
+          tabBarIcon: ({ focused }) => 
+            <MaterialCommunityIcons 
+              focused={focused} 
+              name="hanger" 
+              size={30} 
+              style={{ marginBottom: -15 }}
+              color={focused ? Colors.tabIconSelected : Colors.tabIconDefault} />,
+        }}
+      />
+      <BottomTab.Screen
+        name="Search"
+        component={SearchScreen}
+        options={{
+          title: '',
+          tabBarIcon: ({ focused }) => 
+            <FontAwesome5 
+              focused={focused} 
+              name="search" 
+              size={24} 
+              style={{ marginBottom: -15 }}
+              color={focused ? Colors.tabIconSelected : Colors.tabIconDefault} />,
         }}
       />
     </BottomTab.Navigator>
@@ -40,9 +76,11 @@ function getHeaderTitle(route) {
   const routeName = route.state?.routes[route.state.index]?.name ?? INITIAL_ROUTE_NAME;
 
   switch (routeName) {
-    case 'Home':
-      return 'How to get started';
-    case 'Links':
-      return 'Links to learn more';
+    case 'Profile':
+      return `PROFILE`;
+    case 'Closet':
+      return `CLOSET`;
+    case 'Search':
+      return `SEARCH CLOSET`;
   }
 }
