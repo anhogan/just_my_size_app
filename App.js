@@ -7,7 +7,36 @@ import useCachedResources from './hooks/useCachedResources';
 import BottomTabNavigator from './navigation/BottomTabNavigator';
 import LinkingConfiguration from './navigation/LinkingConfiguration';
 
+import * as firebase from 'firebase';
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
+});
+
 const Stack = createStackNavigator();
+
+const firebaseConfig = {
+  apiKey: "AIzaSyB1nTykFeaLQKcNzKmcHAjbC481aFFQQsw",
+  authDomain: "just-my-size.firebaseapp.com",
+  databaseURL: "https://just-my-size.firebaseio.com",
+  projectId: "just-my-size",
+  storageBucket: "just-my-size.appspot.com",
+  messagingSenderId: "302956079339",
+  appId: "1:302956079339:web:443698bf1a0095d87336ae",
+  measurementId: "G-56PSNW1J1Q"
+};
+
+firebase.initializeApp(firebaseConfig);
+firebase.analytics();
+
+// Reference nested data using .ref().child('TITLE')
+const database = firebase.database();
+
+// Authenticate users for Sign Up (createUserWithEmailandPassword), Login (signInWithEmailandPassword), and Logout (signOut) and manage state changes (onAuthStateChanged)
+const auth = firebase.auth();
 
 export default function App(props) {
   const isLoadingComplete = useCachedResources();
@@ -26,11 +55,4 @@ export default function App(props) {
       </View>
     );
   }
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-});
+};
