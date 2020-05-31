@@ -38,6 +38,8 @@ const database = firebase.database();
 // Authenticate users for Sign Up (createUserWithEmailandPassword), Login (signInWithEmailandPassword), and Logout (signOut) and manage state changes (onAuthStateChanged)
 const auth = firebase.auth();
 
+// Add .on('value', cb) to database reference for realtime updates
+
 export default function App(props) {
   const isLoadingComplete = useCachedResources();
 
