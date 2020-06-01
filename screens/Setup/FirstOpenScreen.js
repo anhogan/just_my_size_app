@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
   signUpText: {
     fontSize: 20,
     textAlign: 'center',
-    color: 'white',
+    color: '#8AE8F9',
     marginTop: 'auto',
     marginBottom: 'auto',
   },
@@ -81,9 +81,9 @@ export default function FirstOpen({ navigation }) {
           <NanumText style={styles.signUpText}>SIGN UP</NanumText>
         </TouchableOpacity>
         <View style={styles.loginContainer}>
-        <TouchableOpacity onPress={logIn} style={styles.logInBtn}>
-          <NanumText style={styles.loginText}>Login</NanumText>
-        </TouchableOpacity>
+          <TouchableOpacity onPress={logIn} style={styles.logInBtn}>
+            <NanumText style={styles.loginText}>Login</NanumText>
+          </TouchableOpacity>
         </View>
       </View>
     </>

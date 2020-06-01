@@ -16,12 +16,12 @@ const styles = StyleSheet.create({
     marginRight: 'auto',
     marginTop: '15%',
   },
-  image: {
-    width: 250,
-    height: 250,
+  subHeaderText: {
+    fontFamily: 'jua',
+    fontSize: 30,
+    color: '#F0895F',
     marginLeft: 'auto',
     marginRight: 'auto',
-    marginBottom: '50%',
   },
   signUpBtn: {
     backgroundColor: '#6674DE',
@@ -71,6 +71,7 @@ export default function SignUp({ navigation }) {
     <>
       <View style={styles.container}>
         <Text style={styles.headerText}>JUST MY SIZE</Text>
+        <Text style={styles.subHeaderText}>SIGN UP</Text>
         <TouchableOpacity onPress={signUp} style={styles.signUpBtn}>
           <NanumText style={styles.signUpText}>Sign Up with Google</NanumText>
         </TouchableOpacity>

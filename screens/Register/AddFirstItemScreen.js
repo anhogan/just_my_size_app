@@ -16,12 +16,12 @@ const styles = StyleSheet.create({
     marginRight: 'auto',
     marginTop: '15%',
   },
-  image: {
-    width: 250,
-    height: 250,
+  subHeaderText: {
+    fontFamily: 'jua',
+    fontSize: 30,
+    color: '#F0895F',
     marginLeft: 'auto',
     marginRight: 'auto',
-    marginBottom: '50%',
   },
   signUpBtn: {
     backgroundColor: '#6674DE',
@@ -75,6 +75,7 @@ export default function AddFirstItem({ navigation }) {
   return (
     <View style={styles.container}>
       <Text style={styles.headerText}>JUST MY SIZE</Text>
+      <Text style={styles.subHeaderText}>WELCOME</Text>
       <TouchableOpacity onPress={next} style={styles.signUpBtn}>
         <NanumText style={styles.signUpText}>Next</NanumText>
       </TouchableOpacity>
