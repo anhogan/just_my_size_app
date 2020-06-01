@@ -1,13 +1,16 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
-import { Platform, StatusBar, StyleSheet, View } from 'react-native';
+import { Platform, StatusBar, StyleSheet, View, ActivityIndicator } from 'react-native';
 
 import useCachedResources from './hooks/useCachedResources';
 import BottomTabNavigator from './navigation/BottomTabNavigator';
 import LinkingConfiguration from './navigation/LinkingConfiguration';
 
+import FirstOpenScreen from './screens/FirstOpenScreen';
+
 import * as firebase from 'firebase';
+import { State } from 'react-native-gesture-handler';
 
 const styles = StyleSheet.create({
   container: {
@@ -17,6 +20,7 @@ const styles = StyleSheet.create({
 });
 
 const Stack = createStackNavigator();
+const AuthContext = React.createContext();
 
 const firebaseConfig = {
   apiKey: "AIzaSyB1nTykFeaLQKcNzKmcHAjbC481aFFQQsw",
@@ -45,20 +49,89 @@ const auth = firebase.auth();
 // Add .on('value', cb) to database reference for realtime updates
 
 export default function App(props) {
+  const [state, dispatch] = React.useReducer(
+    (prevState, action) => {
+      switch (action.type) {
+        case 'LOAD_TOKEN':
+          return {
+            ...prevState,
+            isSignout: false,
+            userToken: action.token,
+          };
+        case 'SIGN_IN':
+          return {
+            ...prevState,
+            isSignout: false,
+            userToken: action.token,
+          };
+        case 'SIGN_OUT':
+          return {
+            ...prevState,
+            isSignout: true,
+            userToken: null,
+          };
+      }
+    },
+    {
+      isSignout: false,
+      userToken: null,
+    }
+  );
+
+  React.useEffect(() => {
+    const bootstrapAsync = async () => {
+      let userToken;
+
+      try {
+        userToken = await AsyncStorage.getItem('userToken');
+      } catch (e) {
+        console.log(e.message);
+      }
+      dispatch({ type: 'LOAD_TOKEN', token: userToken });
+    };
+
+    bootstrapAsync();
+  }, []);
+
+  const authContext = React.useMemo(
+    () => ({
+      logIn: async data => {
+        // Change to Firebase auth token
+        dispatch({ type: 'SIGN_IN', token: 'dummy-auth-token' });
+      },
+      signOut: () => dispatch({ type: 'SIGN_OUT' }),
+      signUp: async data => {
+        // Change to Firebase auth token
+        dispatch({ type: 'SIGN_IN', token: 'dummy-auth-token' });
+      },
+    }),
+    []
+  );
+
   const isLoadingComplete = useCachedResources();
 
   if (!isLoadingComplete) {
     return null;
   } else {
     return (
-      <View style={styles.container}>
-        {Platform.OS === 'ios' && <StatusBar barStyle="dark-content" />}
-        <NavigationContainer linking={LinkingConfiguration}>
-          <Stack.Navigator>
-            <Stack.Screen name="Root" component={BottomTabNavigator} />
-          </Stack.Navigator>
-        </NavigationContainer>
-      </View>
+      <AuthContext.Provider value={authContext}>
+        <View style={styles.container}>
+          {Platform.OS === 'ios' && <StatusBar barStyle="dark-content" />}
+          <NavigationContainer linking={LinkingConfiguration}>
+            <Stack.Navigator>
+              {state.userToken == null ? (
+                <Stack.Screen 
+                  name="First Open" 
+                  component={FirstOpenScreen} />
+              ) : (
+                <Stack.Screen 
+                  name="Root" 
+                  component={BottomTabNavigator} />
+              )}
+            </Stack.Navigator>
+          </NavigationContainer>
+        </View>
+      </AuthContext.Provider>
     );
   }
 };
