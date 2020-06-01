@@ -12,9 +12,9 @@
     "icon": "./assets/images/jms_icon.png",
     "scheme": "myapp",
     "splash": {
-      "image": "./assets/images/jms_splash.png",
+      "image": "./assets/images/jms_icon.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#6674DE"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
