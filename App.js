@@ -1,16 +1,15 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
-import { Platform, StatusBar, StyleSheet, View, ActivityIndicator } from 'react-native';
+import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 
 import useCachedResources from './hooks/useCachedResources';
 import BottomTabNavigator from './navigation/BottomTabNavigator';
 import LinkingConfiguration from './navigation/LinkingConfiguration';
 
-import FirstOpenScreen from './screens/FirstOpenScreen';
+import FirstOpen from './screens/Setup/FirstOpenScreen';
 
 import * as firebase from 'firebase';
-import { State } from 'react-native-gesture-handler';
 
 const styles = StyleSheet.create({
   container: {
@@ -121,8 +120,11 @@ export default function App(props) {
             <Stack.Navigator>
               {state.userToken == null ? (
                 <Stack.Screen 
-                  name="First Open" 
-                  component={FirstOpenScreen} />
+                  name="Initial" 
+                  component={FirstOpen}
+                  options={{
+                    headerTitle: ' '
+                  }} />
               ) : (
                 <Stack.Screen 
                   name="Root" 

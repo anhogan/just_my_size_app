@@ -1,9 +1,7 @@
-import * as WebBrowser from 'expo-web-browser';
 import * as React from 'react';
-import { AsyncStorage, View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
-import { Link } from '@react-navigation/native';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
-import { NanumText } from '../components/StyledText';
+import { NanumText } from '../../components/StyledText';
 
 const styles = StyleSheet.create({
   container: {
@@ -63,28 +61,26 @@ const styles = StyleSheet.create({
   }
 });
 
-export default function FirstOpenScreen() {
-  const signUp = () => {
-    console.log('Sign Up for Just My Size');
+export default function GettingStarted() {
+  const next = () => {
+    console.log('Next setup screen');
   };
 
-  const logIn = () => {
-    console.log('Login to Just My Size');
-  };
+  const skip = () => {
+    console.log('Skipping remainder of setup')
+  }
 
   return (
     <View style={styles.container}>
       <Text style={styles.headerText}>JUST MY SIZE</Text>
-      <Image source={require('../assets/images/jms_icon.png')} style={styles.image} />
-      <TouchableOpacity onPress={signUp} style={styles.signUpBtn}>
-        <NanumText style={styles.signUpText}>SIGN UP</NanumText>
+      <TouchableOpacity onPress={next} style={styles.signUpBtn}>
+        <NanumText style={styles.signUpText}>To My Closet</NanumText>
       </TouchableOpacity>
       <View style={styles.loginContainer}>
-      <TouchableOpacity onPress={logIn} style={styles.logInBtn}>
-        <NanumText style={styles.loginText}>Login</NanumText>
+      <TouchableOpacity onPress={skip} style={styles.logInBtn}>
+        <NanumText style={styles.loginText}>Skip</NanumText>
       </TouchableOpacity>
       </View>
     </View>
   );
 };
-

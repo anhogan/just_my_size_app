@@ -10,7 +10,7 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/jms_icon.png",
-    "scheme": "myapp",
+    "scheme": "justmysize",
     "splash": {
       "image": "./assets/images/jms_icon.png",
       "resizeMode": "contain",
