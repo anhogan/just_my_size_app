@@ -29,8 +29,12 @@ const firebaseConfig = {
   measurementId: "G-56PSNW1J1Q"
 };
 
-firebase.initializeApp(firebaseConfig);
-firebase.analytics();
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+};
+
+// Setup analytics
+// firebase.analytics();
 
 // Reference nested data using .ref().child('TITLE')
 const database = firebase.database();
