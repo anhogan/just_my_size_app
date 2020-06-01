@@ -27,11 +27,11 @@ const styles = StyleSheet.create({
   }
 });
 
-SearchScreen.navigationOptions = {
+Search.navigationOptions = {
   header: null
 };
 
-export default function SearchScreen() {
+export default function Search() {
   const [searchTerm, setSearchTerm] = React.useState('');
 
   const searchCloset = (input) => {

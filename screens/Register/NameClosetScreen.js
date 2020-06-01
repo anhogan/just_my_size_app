@@ -68,7 +68,7 @@ export default function NameCloset({ navigation }) {
   };
 
   const skip = () => {
-    navigation.navigate('Root');
+    navigation.navigate('Root', { screen: 'Closet' });
     console.log('Skipping remainder of setup')
   }
 

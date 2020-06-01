@@ -62,11 +62,6 @@ const styles = StyleSheet.create({
 });
 
 export default function Login({ navigation }) {
-  const googleLogin = () => {
-    navigation.navigate('Root');
-    console.log('Login with Google to Just My Size');
-  };
-
   const logIn = () => {
     navigation.navigate('Root');
     console.log('Login to Just My Size');
@@ -75,7 +70,7 @@ export default function Login({ navigation }) {
   return (
     <View style={styles.container}>
       <Text style={styles.headerText}>JUST MY SIZE</Text>
-      <TouchableOpacity onPress={googleLogin} style={styles.signUpBtn}>
+      <TouchableOpacity onPress={logIn} style={styles.signUpBtn}>
         <NanumText style={styles.signUpText}>Login with Google</NanumText>
       </TouchableOpacity>
       <View style={styles.loginContainer}>

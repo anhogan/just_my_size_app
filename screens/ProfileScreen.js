@@ -5,7 +5,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 
 import { NanumText } from '../components/StyledText';
 
-export default function ProfileScreen() {
+export default function Profile() {
   return (
     <View style={styles.container}>
       <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
@@ -52,7 +52,7 @@ export default function ProfileScreen() {
   );
 }
 
-ProfileScreen.navigationOptions = {
+Profile.navigationOptions = {
   header: null,
 };
 
