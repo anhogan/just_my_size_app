@@ -8,6 +8,11 @@ import BottomTabNavigator from './navigation/BottomTabNavigator';
 import LinkingConfiguration from './navigation/LinkingConfiguration';
 
 import FirstOpen from './screens/Setup/FirstOpenScreen';
+import SignUp from './screens/Setup/SignUpScreen';
+import Login from './screens/Setup/LoginScreen';
+import NameCloset from './screens/Register/NameClosetScreen';
+import AddFirstItem from './screens/Register/AddFirstItemScreen';
+import GettingStarted from './screens/Register/GettingStartedScreen';
 
 import * as firebase from 'firebase';
 
@@ -117,20 +122,24 @@ export default function App(props) {
         <View style={styles.container}>
           {Platform.OS === 'ios' && <StatusBar barStyle="dark-content" />}
           <NavigationContainer linking={LinkingConfiguration}>
-            <Stack.Navigator>
-              {state.userToken == null ? (
-                <Stack.Screen 
-                  name="Initial" 
-                  component={FirstOpen}
-                  options={{
-                    headerTitle: ' '
-                  }} />
-              ) : (
+            {state.userToken == null ? (
+              <Stack.Navigator initialRouteName="Initial">
+                <>
+                  <Stack.Screen name="Initial" component={FirstOpen} options={{ headerTitle: ' ' }} />
+                  <Stack.Screen name="SignUp" component={SignUp} options={{ headerTitle: ' ' }} />
+                  <Stack.Screen name="Login" component={Login} options={{ headerTitle: ' ' }} />
+                  <Stack.Screen name="NameCloset" component={NameCloset} options={{ headerTitle: ' ' }} />
+                  <Stack.Screen name="AddFirstItem" component={AddFirstItem} options={{ headerTitle: ' ' }} />
+                  <Stack.Screen name="GettingStarted" component={GettingStarted} options={{ headerTitle: ' ' }} />
+                </>
+              </Stack.Navigator>
+            ) : (
+              <Stack.Navigator>
                 <Stack.Screen 
                   name="Root" 
                   component={BottomTabNavigator} />
-              )}
-            </Stack.Navigator>
+              </Stack.Navigator>
+            )}
           </NavigationContainer>
         </View>
       </AuthContext.Provider>

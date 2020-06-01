@@ -61,12 +61,14 @@ const styles = StyleSheet.create({
   }
 });
 
-export default function Login() {
+export default function Login({ navigation }) {
   const googleLogin = () => {
+    navigation.navigate('Root');
     console.log('Login with Google to Just My Size');
   };
 
   const logIn = () => {
+    navigation.navigate('Root');
     console.log('Login to Just My Size');
   };
 

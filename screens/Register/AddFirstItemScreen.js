@@ -61,12 +61,14 @@ const styles = StyleSheet.create({
   }
 });
 
-export default function AddFirstItem() {
+export default function AddFirstItem({ navigation }) {
   const next = () => {
+    navigation.navigate('GettingStarted');
     console.log('Next setup screen');
   };
 
   const skip = () => {
+    navigation.navigate('Root');
     console.log('Skipping remainder of setup')
   }
 

@@ -1,11 +1,7 @@
 import * as React from 'react';
 import { AsyncStorage, View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
-import { createStackNavigator } from '@react-navigation/stack';
 
 import { NanumText } from '../../components/StyledText';
-
-import SignUp from './SignUpScreen';
-import Login from './LoginScreen';
 
 const styles = StyleSheet.create({
   container: {
@@ -65,8 +61,6 @@ const styles = StyleSheet.create({
   }
 });
 
-const Stack = createStackNavigator();
-
 export default function FirstOpen({ navigation }) {
   const signUp = () => {
     navigation.navigate('SignUp');
@@ -74,17 +68,12 @@ export default function FirstOpen({ navigation }) {
   };
 
   const logIn = () => {
-    navigation.navigate('LogIn');
+    navigation.navigate('Login');
     console.log('Login to Just My Size');
   };
 
   return (
     <>
-      <Stack.Navigator>
-        <Stack.Screen name="SignUp" component={SignUp} />
-        <Stack.Screen name="Login" component={Login} />
-      </Stack.Navigator>
-
       <View style={styles.container}>
         <Text style={styles.headerText}>JUST MY SIZE</Text>
         <Image source={require('../../assets/images/jms_icon.png')} style={styles.image} />

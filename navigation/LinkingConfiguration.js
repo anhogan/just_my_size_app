@@ -44,7 +44,7 @@ export default {
     Initial: {
       path: 'setup',
       screens: {
-        LogIn: {
+        Login: {
           path: 'login',
           exact: true
         },

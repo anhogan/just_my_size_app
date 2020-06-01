@@ -61,14 +61,11 @@ const styles = StyleSheet.create({
   }
 });
 
-export default function GettingStarted() {
+export default function GettingStarted({ navigation }) {
   const next = () => {
+    navigation.navigate('Root');
     console.log('Next setup screen');
   };
-
-  const skip = () => {
-    console.log('Skipping remainder of setup')
-  }
 
   return (
     <View style={styles.container}>
@@ -77,9 +74,6 @@ export default function GettingStarted() {
         <NanumText style={styles.signUpText}>To My Closet</NanumText>
       </TouchableOpacity>
       <View style={styles.loginContainer}>
-      <TouchableOpacity onPress={skip} style={styles.logInBtn}>
-        <NanumText style={styles.loginText}>Skip</NanumText>
-      </TouchableOpacity>
       </View>
     </View>
   );

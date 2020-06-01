@@ -1,12 +1,7 @@
 import * as React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import { createStackNavigator } from '@react-navigation/stack';
 
 import { NanumText } from '../../components/StyledText';
-
-import NameCloset from '../Register/NameClosetScreen';
-import AddFirstItem from '../Register/AddFirstItemScreen';
-import GettingStarted from '../Register/GettingStartedScreen';
 
 const styles = StyleSheet.create({
   container: {
@@ -66,25 +61,19 @@ const styles = StyleSheet.create({
   }
 });
 
-const Stack = createStackNavigator();
-
 export default function SignUp({ navigation }) {
   const googleSignUp = () => {
+    navigation.navigate('NameCloset');
     console.log('Sign Up with Google for Just My Size');
   };
 
   const signUp = () => {
+    navigation.navigate('NameCloset');
     console.log('Sign Up for Just My Size');
   };
 
   return (
     <>
-      <Stack.Navigator>
-        <Stack.Screen name="NameCloset" component={NameCloset} />
-        <Stack.Screen name="AddFirstItem" component={AddFirstItem} />
-        <Stack.Screen name="GettingStarted" component={GettingStarted} />
-      </Stack.Navigator>
-
       <View style={styles.container}>
         <Text style={styles.headerText}>JUST MY SIZE</Text>
         <TouchableOpacity onPress={googleSignUp} style={styles.signUpBtn}>
