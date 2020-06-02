@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
   },
   icon: {
     color: "#6674DE",
-    fontSize: 24,
+    fontSize: 28,
     marginTop: 'auto',
     marginBottom: 'auto',
   }
@@ -127,7 +127,7 @@ export default function Login({ navigation }) {
         'Invalid Credentials',
         'The email and / or password entered do not match a current account.',
         [
-          { text: 'Try Again', onPress: () => console.log('Trying again') }
+          { text: 'Return to Login' }
         ]
       )
     } else {
@@ -161,8 +161,10 @@ export default function Login({ navigation }) {
           style={styles.inputBar}
           placeholder='Enter your email address'
           textContentType='emailAddress'
+          autoCapitalize='none'
           clearButtonMode='while-editing'
           selectionColor='#6674DE'
+          returnKeyType='next'
           onChangeText={text => setEmail(text)}
           value={email} />
         <NanumText style={styles.inputPassword}>PASSWORD</NanumText>
@@ -173,6 +175,7 @@ export default function Login({ navigation }) {
           secureTextEntry={true}
           clearButtonMode='while-editing'
           selectionColor='#6674DE'
+          returnKeyType='done'
           onChangeText={text => setPassword(text)}
           value={password} />
       </View>

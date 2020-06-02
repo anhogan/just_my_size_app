@@ -6,12 +6,13 @@ import { NanumText } from '../../components/StyledText';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#6674DE',
+    paddingTop: '15%'
   },
   headerText: {
     fontFamily: 'jua',
     fontSize: 50,
-    color: '#6674DE',
+    color: 'white',
     marginLeft: 'auto',
     marginRight: 'auto',
     marginTop: '15%',

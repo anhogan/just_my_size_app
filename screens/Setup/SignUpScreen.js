@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
   },
   icon: {
     color: "#6674DE",
-    fontSize: 24,
+    fontSize: 28,
     marginTop: 'auto',
     marginBottom: 'auto',
   }
@@ -133,7 +133,7 @@ export default function SignUp({ navigation }) {
         'Invalid Credentials',
         'Please enter a valid email address and confirm that both passwords match exactly.',
         [
-          { text: 'Try Again', onPress: () => console.log('Trying again') }
+          { text: 'Return to Sign Up' }
         ]
       )
     } else {
@@ -162,8 +162,10 @@ export default function SignUp({ navigation }) {
             style={styles.inputBar}
             placeholder='Enter your email address'
             textContentType='emailAddress'
+            autoCapitalize='none'
             clearButtonMode='while-editing'
             selectionColor='#6674DE'
+            returnKeyType='next'
             onChangeText={text => setEmail(text)}
             value={email} />
           <NanumText style={styles.inputPassword}>PASSWORD</NanumText>
@@ -174,6 +176,7 @@ export default function SignUp({ navigation }) {
             secureTextEntry={true}
             clearButtonMode='while-editing'
             selectionColor='#6674DE'
+            returnKeyType='next'
             onChangeText={text => setPassword(text)}
             value={password} />
           <NanumText style={styles.inputConfirmPassword}>CONFIRM PASSWORD</NanumText>
@@ -184,6 +187,7 @@ export default function SignUp({ navigation }) {
             secureTextEntry={true}
             clearButtonMode='while-editing'
             selectionColor='#6674DE'
+            returnKeyType='done'
             onChangeText={text => setConfirmPassword(text)}
             value={confirmPassword} />
         </View>
