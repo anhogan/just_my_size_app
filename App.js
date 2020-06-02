@@ -53,7 +53,7 @@ const auth = firebase.auth();
 
 function SetupStack() {
   return (
-    <Stack.Navigator initialRouteName="Initial">
+    <Stack.Navigator initialRouteName="Initial" headerMode='none'>
       <Stack.Screen name="Initial" component={FirstOpen} options={{ headerTitle: ' ' }} />
       <Stack.Screen name="SignUp" component={SignUp} options={{ headerTitle: ' ' }} />
       <Stack.Screen name="Login" component={Login} options={{ headerTitle: ' ' }} />

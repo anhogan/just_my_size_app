@@ -6,12 +6,13 @@ import { NanumText } from '../../components/StyledText';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#6674DE',
+    paddingTop: '15%'
   },
   headerText: {
     fontFamily: 'jua',
     fontSize: 50,
-    color: '#6674DE',
+    color: 'white',
     marginLeft: 'auto',
     marginRight: 'auto',
     marginTop: '15%',
@@ -24,7 +25,7 @@ const styles = StyleSheet.create({
     marginBottom: '50%',
   },
   signUpBtn: {
-    backgroundColor: '#6674DE',
+    backgroundColor: '#8AE8F9',
     width: '30%',
     height: '5%',
     marginLeft: 'auto',
@@ -34,7 +35,7 @@ const styles = StyleSheet.create({
   signUpText: {
     fontSize: 20,
     textAlign: 'center',
-    color: '#8AE8F9',
+    color: '#6674DE',
     marginTop: 'auto',
     marginBottom: 'auto',
   },
@@ -42,7 +43,7 @@ const styles = StyleSheet.create({
     marginTop: '5%',
   },
   logInBtn: {
-    backgroundColor: 'white',
+    backgroundColor: '#6674DE',
     width: '30%',
     height: '5%',
     marginLeft: 'auto',
@@ -54,7 +55,7 @@ const styles = StyleSheet.create({
   },
   loginText: {
     fontSize: 18,
-    color: '#6674DE',
+    color: 'white',
     textDecorationLine: 'underline',
     marginLeft: 'auto',
     marginRight: 'auto',

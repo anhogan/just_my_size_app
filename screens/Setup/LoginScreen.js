@@ -7,12 +7,13 @@ import { FontAwesome5 } from '@expo/vector-icons';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#6674DE',
+    paddingTop: '15%'
   },
   headerText: {
     fontFamily: 'jua',
     fontSize: 50,
-    color: '#6674DE',
+    color: 'white',
     marginLeft: 'auto',
     marginRight: 'auto',
     marginTop: '15%',
@@ -33,19 +34,22 @@ const styles = StyleSheet.create({
   inputEmail: {
     marginTop: '10%',
     marginBottom: '2%',
-    marginRight: '52.5%'
+    marginRight: '52.5%',
+    color: 'white',
   },
   inputPassword: {
     marginTop: '10%',
     marginBottom: '2%',
-    marginRight: '60%'
+    marginRight: '60%',
+    color: 'white',
   },
   inputBar: {
     width: '80%',
     height: 40,
-    borderColor: '#6674DE',
+    borderColor: 'white',
     borderWidth: 2,
     borderRadius: 5,
+    backgroundColor: 'white',
     color: '#6674DE',
     paddingLeft: 15,
     paddingRight: 15,
@@ -56,7 +60,7 @@ const styles = StyleSheet.create({
     marginTop: '2%'
   },
   btn: {
-    backgroundColor: '#8AE8F9',
+    backgroundColor: '#F0895F',
     width: '80%',
     height: '5%',
     marginLeft: 'auto',
@@ -67,7 +71,7 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
   googleBtn: {
-    backgroundColor: '#6674DE',
+    backgroundColor: '#8AE8F9',
     width: '80%',
     height: '5%',
     marginLeft: 'auto',
@@ -78,7 +82,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-evenly'
   },
   resetBtn: {
-    backgroundColor: 'white',
+    backgroundColor: '#6674DE',
     width: '30%',
     height: '5%',
     marginLeft: 'auto',
@@ -90,19 +94,19 @@ const styles = StyleSheet.create({
   },
   btnText: {
     fontSize: 20,
-    color: '#6674DE',
+    color: 'white',
     marginTop: 'auto',
     marginBottom: 'auto',
   },
   googleBtnText: {
     fontSize: 20,
-    color: '#8AE8F9',
+    color: '#6674DE',
     marginTop: 'auto',
     marginBottom: 'auto',
   },
   resetText: {
     fontSize: 16,
-    color: '#6674DE',
+    color: 'white',
     textDecorationLine: 'underline',
     marginLeft: 'auto',
     marginRight: 'auto',
@@ -111,7 +115,7 @@ const styles = StyleSheet.create({
     marginTop: '10%',
   },
   icon: {
-    color: "white",
+    color: "#6674DE",
     fontSize: 24,
     marginTop: 'auto',
     marginBottom: 'auto',
