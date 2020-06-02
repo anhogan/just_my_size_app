@@ -65,12 +65,10 @@ const styles = StyleSheet.create({
 export default function FirstOpen({ navigation }) {
   const signUp = () => {
     navigation.navigate('SignUp');
-    console.log('Sign Up for Just My Size');
   };
 
   const logIn = () => {
     navigation.navigate('Login');
-    console.log('Login to Just My Size');
   };
 
   return (

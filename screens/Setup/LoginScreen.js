@@ -54,11 +54,6 @@ const styles = StyleSheet.create({
     paddingLeft: 15,
     paddingRight: 15,
   },
-  errorText: {
-    color: 'red',
-    fontSize: 14,
-    marginTop: '2%'
-  },
   btn: {
     backgroundColor: '#F0895F',
     width: '80%',
@@ -136,11 +131,17 @@ export default function Login({ navigation }) {
         ]
       )
     } else {
+      // Add Firebase Authentication
+      // Set user token and move into root stack (without back option)
       navigation.navigate('Root');
     };
 
     setEmail('');
     setPassword('');
+  };
+
+  const createAccount = () => {
+    navigation.navigate('SignUp');
   };
 
   const resetPassword = () => {
@@ -185,6 +186,9 @@ export default function Login({ navigation }) {
         <NanumText style={styles.googleBtnText}>Login with Google</NanumText>
       </TouchableOpacity>
       <View style={styles.spacer}></View>
+      <TouchableOpacity onPress={createAccount} style={styles.resetBtn}>
+        <NanumText style={styles.resetText}>Create Account</NanumText>
+      </TouchableOpacity>
       <TouchableOpacity onPress={resetPassword} style={styles.resetBtn}>
         <NanumText style={styles.resetText}>Reset Password</NanumText>
       </TouchableOpacity>
