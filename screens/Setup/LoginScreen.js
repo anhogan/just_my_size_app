@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#6674DE',
-    paddingTop: '15%'
+    paddingTop: '15%',
   },
   headerText: {
     fontFamily: 'jua',
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: "center"
+    justifyContent: "center",
   },
   googleBtn: {
     backgroundColor: '#8AE8F9',
@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-evenly'
+    justifyContent: 'space-evenly',
   },
   resetBtn: {
     backgroundColor: '#6674DE',
@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
     fontSize: 28,
     marginTop: 'auto',
     marginBottom: 'auto',
-  }
+  },
 });
 
 export default function Login({ navigation }) {

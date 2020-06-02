@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#6674DE',
-    paddingTop: '15%'
+    paddingTop: '15%',
   },
   headerText: {
     fontFamily: 'jua',
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     textDecorationLine: 'underline',
     marginLeft: 'auto',
     marginRight: 'auto',
-  }
+  },
 });
 
 export default function FirstOpen({ navigation }) {
