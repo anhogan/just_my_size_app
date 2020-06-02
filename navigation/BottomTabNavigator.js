@@ -6,9 +6,9 @@ import { FontAwesome5 } from '@expo/vector-icons';
 
 import Colors from '../constants/Colors';
 
-import ProfileScreen from '../screens/ProfileScreen'
-import SearchScreen from '../screens/SearchScreen';
-import ClosetScreen from '../screens/ClosetScreen';
+import Profile from '../screens/ProfileScreen'
+import Search from '../screens/SearchScreen';
+import Closet from '../screens/ClosetScreen';
 
 const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = 'Closet';
@@ -39,7 +39,7 @@ export default function BottomTabNavigator({ navigation, route }) {
       }} >
       <BottomTab.Screen
         name="Profile"
-        component={ProfileScreen}
+        component={Profile}
         options={{
           title: '',
           tabBarIcon: ({ focused }) => 
@@ -53,7 +53,7 @@ export default function BottomTabNavigator({ navigation, route }) {
       />
       <BottomTab.Screen
         name="Closet"
-        component={ClosetScreen}
+        component={Closet}
         options={{
           title: '',
           tabBarIcon: ({ focused }) => 
@@ -67,7 +67,7 @@ export default function BottomTabNavigator({ navigation, route }) {
       />
       <BottomTab.Screen
         name="Search"
-        component={SearchScreen}
+        component={Search}
         options={{
           title: '',
           tabBarIcon: ({ focused }) => 

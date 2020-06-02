@@ -5,7 +5,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 
 import { NanumText } from '../components/StyledText';
 
-export default function ClosetScreen() {
+export default function Closet() {
   return (
     <View style={styles.container}>
       <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
@@ -52,7 +52,7 @@ export default function ClosetScreen() {
   );
 }
 
-ClosetScreen.navigationOptions = {
+Closet.navigationOptions = {
   header: null,
 };
 

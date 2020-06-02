@@ -31,13 +31,12 @@ Search.navigationOptions = {
   header: null
 };
 
-export default function Search() {
-  const [searchTerm, setSearchTerm] = React.useState('');
+export default function ResetPassword() {
+  const [newPassword, setNewPassword] = React.useState('');
+  const [passwordMatch, setPasswordMatch] = React.useState('');
 
-  const searchCloset = (input) => {
-    // Search through user's closet to find the item by store, style, type, or size
-    console.log(`Searched closet for ${input}`);
-    setSearchTerm('');
+  const resetPassword = () => {
+    console.log('Successfully reset password');
   };
 
   return (
@@ -54,8 +53,6 @@ export default function Search() {
             value={searchTerm}
             onSubmitEditing={() => searchCloset(searchTerm)} />
         </View>
-
-        {/* Map through search results ... if none return error message */}
       </ScrollView>
     </View>
   );
