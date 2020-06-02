@@ -1,7 +1,7 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
-import { Platform, StatusBar, StyleSheet, View } from 'react-native';
+import { Platform, StatusBar, StyleSheet, View, Alert } from 'react-native';
 
 import useCachedResources from './hooks/useCachedResources';
 import BottomTabNavigator from './navigation/BottomTabNavigator';
@@ -48,6 +48,33 @@ const database = firebase.database();
 
 // Authenticate users for Sign Up (createUserWithEmailandPassword), Login (signInWithEmailandPassword), and Logout (signOut) and manage state changes (onAuthStateChanged)
 const auth = firebase.auth();
+// Move to login and signup screens
+// auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+//   .then(() => {
+//     return firebase.auth().signInWithEmailAndPassword(email, password).catch(err => {
+//       Alert.alert(
+//         'Invalid Credentials',
+//         'The email and / or password entered do not match a current account.',
+//         [
+//           { text: 'Return to Login' }
+//         ]
+//       );
+//       console.log(err.code, err.message);
+//     });
+//     return firebase.auth().createUserWithEmailAndPassword(email, password).catch(err => {
+//       Alert.alert(
+//         'Invalid Credentials',
+//         'Please enter a valid email address and confirm that both passwords match exactly.',
+//         [
+//           { text: 'Return to Login' }
+//         ]
+//       )
+//       console.log(err.code, err.message);
+//     });
+//   })
+//   .catch(err => {
+//     console.log(err.code, err.message)
+//   });
 
 // Add .on('value', cb) to database reference for realtime updates
 
@@ -66,7 +93,15 @@ function SetupStack() {
 
 export default function App(props) {
   const isLoadingComplete = useCachedResources();
-  const [userToken, setUserToken] = React.useState(null)
+  const [userToken, setUserToken] = React.useState(null);
+
+  auth.onAuthStateChanged(function(user) {
+    if (user) {
+      setUserToken(true);
+    } else {
+      setUserToken(null);
+    }
+  });
 
   if (!isLoadingComplete) {
     return null;
@@ -84,6 +119,7 @@ export default function App(props) {
                   options={
                     { headerTitle: ' ', headerStyle: { height: 0 } }
                   } />
+                {/* Remove this when authentication is working -> have skip change Auth state and return user */}
                 <Stack.Screen name="Root" component={BottomTabNavigator} />
               </>
             ) : (

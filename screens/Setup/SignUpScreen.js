@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, Tooltip } from 'react-native';
 
 import { NanumText } from '../../components/StyledText';
 import { FontAwesome5 } from '@expo/vector-icons';
@@ -151,6 +151,7 @@ export default function SignUp({ navigation }) {
     navigation.navigate('Login');
   };
 
+  // Tooltips for password length?
   return (
     <>
       <View style={styles.container}>
@@ -171,7 +172,7 @@ export default function SignUp({ navigation }) {
           <NanumText style={styles.inputPassword}>PASSWORD</NanumText>
           <TextInput
             style={styles.inputBar}
-            placeholder='Enter your password'
+            placeholder='Enter your password (Min. 6 characters)'
             textContentType='password'
             secureTextEntry={true}
             clearButtonMode='while-editing'
