@@ -40,12 +40,9 @@ if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 };
 
-// Setup analytics
-// firebase.analytics();
-
+// const analytics = firebase.analytics();
 // Reference nested data using .ref().child('TITLE')
 const database = firebase.database();
-
 const auth = firebase.auth();
 
 // Add .on('value', cb) to database reference for realtime updates

@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function NameCloset({ navigation, setNewUser }) {
+export default function NameCloset({ navigation }) {
   const [name, setName] = React.useState('');
 
   const next = () => {
@@ -126,8 +126,6 @@ export default function NameCloset({ navigation, setNewUser }) {
   };
 
   const skip = () => {
-    // Authenticate user with Firebase to "restart" the app ... take back button away by launching Root stack
-    setNewUser(false);
     navigation.navigate('Root');
   }
 

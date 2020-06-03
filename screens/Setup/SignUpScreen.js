@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function SignUp({ navigation, newUser }) {
+export default function SignUp({ navigation }) {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [confirmPassword, setConfirmPassword] = React.useState('');
@@ -138,7 +138,6 @@ export default function SignUp({ navigation, newUser }) {
           setEmail('');
           setPassword('');
           setConfirmPassword('');
-          newUser = true;
 
           return firebase.auth().createUserWithEmailAndPassword(email, password).catch(err => {
             Alert.alert(
