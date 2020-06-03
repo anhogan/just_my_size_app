@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as firebase from 'firebase';
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
@@ -85,13 +86,25 @@ export default function BottomTabNavigator({ navigation, route }) {
 
 function getHeaderTitle(route) {
   const routeName = route.state?.routes[route.state.index]?.name ?? INITIAL_ROUTE_NAME;
+  const user = firebase.auth().currentUser;
 
-  switch (routeName) {
-    case 'Profile':
-      return `PROFILE`;
-    case 'Closet':
-      return `CLOSET`;
-    case 'Search':
-      return `SEARCH CLOSET`;
+  if (user.displayName !== null) {
+    switch (routeName) {
+      case 'Profile':
+        return `${user.displayName.toUpperCase()}'S PROFILE`;
+      case 'Closet':
+        return `${user.displayName.toUpperCase()}'S CLOSET`;
+      case 'Search':
+        return `SEARCH CLOSET`;
+    }
+  } else {
+    switch (routeName) {
+      case 'Profile':
+        return `PROFILE`;
+      case 'Closet':
+        return `CLOSET`;
+      case 'Search':
+        return `SEARCH CLOSET`;
+    }
   }
 }
