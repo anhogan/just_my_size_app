@@ -140,14 +140,15 @@ export default function SignUp({ navigation }) {
           setConfirmPassword('');
 
           return firebase.auth().createUserWithEmailAndPassword(email, password).catch(err => {
-            Alert.alert(
-              'Invalid Credentials',
-              'Please enter a valid email address and confirm that both passwords match exactly.',
-              [
-                { text: 'Return to Sign Up' }
-              ]
-            )
-            console.log(err.code, err.message);
+            if (err.code.includes('email-already-in-use')) {
+              Alert.alert(
+                'Invalid Email Address',
+                'Email address already in use - please enter a unique one.',
+                [
+                  { text: 'Return to Sign Up' }
+                ]
+              )
+            };
           });
         })
         .catch(err => {

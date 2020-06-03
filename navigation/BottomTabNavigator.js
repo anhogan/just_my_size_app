@@ -91,9 +91,9 @@ function getHeaderTitle(route) {
   if (user.displayName !== null) {
     switch (routeName) {
       case 'Profile':
-        return `${user.displayName}'S PROFILE`;
+        return `${user.displayName.toUpperCase()}'S PROFILE`;
       case 'Closet':
-        return `${user.displayName}'S CLOSET`;
+        return `${user.displayName.toUpperCase()}'S CLOSET`;
       case 'Search':
         return `SEARCH CLOSET`;
     }
