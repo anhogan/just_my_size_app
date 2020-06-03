@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function AddFirstItem({ navigation }) {
+export default function AddFirstItem({ navigation, setNewUser }) {
   const [store, setStore] = React.useState('');
   const [type, setType] = React.useState('');
   const [style, setStyle] = React.useState('');
@@ -126,6 +126,7 @@ export default function AddFirstItem({ navigation }) {
   };
 
   const skip = () => {
+    setNewUser(false);
     navigation.navigate('Root');
   }
 

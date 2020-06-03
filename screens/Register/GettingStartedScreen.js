@@ -94,10 +94,10 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function GettingStarted({ navigation }) {
+export default function GettingStarted({ navigation, setNewUser }) {
   const next = () => {
+    setNewUser(false);
     navigation.navigate('Root');
-    console.log('Next setup screen');
   };
 
   return (

@@ -4,6 +4,8 @@ import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, Tooltip } f
 import { NanumText } from '../../components/StyledText';
 import { FontAwesome5 } from '@expo/vector-icons';
 
+import * as firebase from 'firebase';
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -122,13 +124,37 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function SignUp({ navigation }) {
+export default function SignUp({ navigation, newUser }) {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [confirmPassword, setConfirmPassword] = React.useState('');
 
   const signUp = () => {
-    if (email.length < 1 || !email.includes('@') || password.length < 1 || password !== confirmPassword) {
+    const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+    if (emailRegex.test(email) && password === confirmPassword) {
+      firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+        .then(() => {
+          setEmail('');
+          setPassword('');
+          setConfirmPassword('');
+          newUser = true;
+
+          return firebase.auth().createUserWithEmailAndPassword(email, password).catch(err => {
+            Alert.alert(
+              'Invalid Credentials',
+              'Please enter a valid email address and confirm that both passwords match exactly.',
+              [
+                { text: 'Return to Sign Up' }
+              ]
+            )
+            console.log(err.code, err.message);
+          });
+        })
+        .catch(err => {
+          console.log(err.code, err.message)
+        });
+    } else {
       Alert.alert(
         'Invalid Credentials',
         'Please enter a valid email address and confirm that both passwords match exactly.',
@@ -136,22 +162,13 @@ export default function SignUp({ navigation }) {
           { text: 'Return to Sign Up' }
         ]
       )
-    } else {
-      // Add Firebase Authentication
-      // Set user token and move into a new sign up stack
-      navigation.navigate('NameCloset');
-    };
-
-    setEmail('');
-    setPassword('');
-    setConfirmPassword('');
+    }
   };
 
   const login = () => {
     navigation.navigate('Login');
   };
 
-  // Tooltips for password length?
   return (
     <>
       <View style={styles.container}>
