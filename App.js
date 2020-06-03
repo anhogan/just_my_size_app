@@ -1,7 +1,7 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
-import { Platform, StatusBar, StyleSheet, View } from 'react-native';
+import { Platform, StatusBar, StyleSheet, View, Alert } from 'react-native';
 
 import useCachedResources from './hooks/useCachedResources';
 import BottomTabNavigator from './navigation/BottomTabNavigator';
@@ -40,23 +40,26 @@ if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 };
 
-// Setup analytics
-// firebase.analytics();
-
+// const analytics = firebase.analytics();
 // Reference nested data using .ref().child('TITLE')
 const database = firebase.database();
-
-// Authenticate users for Sign Up (createUserWithEmailandPassword), Login (signInWithEmailandPassword), and Logout (signOut) and manage state changes (onAuthStateChanged)
 const auth = firebase.auth();
 
 // Add .on('value', cb) to database reference for realtime updates
 
-function SetupStack() {
+function SignInStack() {
   return (
     <Stack.Navigator initialRouteName="Initial" headerMode='none'>
       <Stack.Screen name="Initial" component={FirstOpen} options={{ headerTitle: ' ' }} />
       <Stack.Screen name="SignUp" component={SignUp} options={{ headerTitle: ' ' }} />
       <Stack.Screen name="Login" component={Login} options={{ headerTitle: ' ' }} />
+    </Stack.Navigator>
+  );
+};
+
+function SetupStack() {
+  return (
+    <Stack.Navigator initialRouteName="NameCloset" headerMode='none'>
       <Stack.Screen name="NameCloset" component={NameCloset} options={{ headerTitle: ' ' }} />
       <Stack.Screen name="AddFirstItem" component={AddFirstItem} options={{ headerTitle: ' ' }} />
       <Stack.Screen name="GettingStarted" component={GettingStarted} options={{ headerTitle: ' ' }} />
@@ -66,7 +69,16 @@ function SetupStack() {
 
 export default function App(props) {
   const isLoadingComplete = useCachedResources();
-  const [userToken, setUserToken] = React.useState(null)
+  const [userToken, setUserToken] = React.useState(null);
+  const newUser = false;
+
+  auth.onAuthStateChanged(function(user) {
+    if (user) {
+      setUserToken(true);
+    } else {
+      setUserToken(null);
+    }
+  });
 
   if (!isLoadingComplete) {
     return null;
@@ -77,10 +89,19 @@ export default function App(props) {
         <NavigationContainer linking={LinkingConfiguration}>
           <Stack.Navigator initialRouteName="SetupStack">
             {userToken == null ? (
+              <Stack.Screen 
+                name="SetupStack" 
+                component={SignInStack}
+                initialParams={{newUser: false}} 
+                options={
+                  { headerTitle: ' ', headerStyle: { height: 0 } }
+                } />
+            ) : newUser ? (
               <>
                 <Stack.Screen 
                   name="SetupStack" 
-                  component={SetupStack} 
+                  component={SetupStack}
+                  initialParams={{newUser: true}} 
                   options={
                     { headerTitle: ' ', headerStyle: { height: 0 } }
                   } />

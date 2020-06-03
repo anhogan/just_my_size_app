@@ -97,7 +97,6 @@ const styles = StyleSheet.create({
 export default function GettingStarted({ navigation }) {
   const next = () => {
     navigation.navigate('Root');
-    console.log('Next setup screen');
   };
 
   return (

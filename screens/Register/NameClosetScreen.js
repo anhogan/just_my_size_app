@@ -126,7 +126,6 @@ export default function NameCloset({ navigation }) {
   };
 
   const skip = () => {
-    // Authenticate user with Firebase to "restart" the app ... take back button away by launching Root stack
     navigation.navigate('Root');
   }
 

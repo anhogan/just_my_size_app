@@ -1,8 +1,10 @@
 import * as React from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, Tooltip } from 'react-native';
 
 import { NanumText } from '../../components/StyledText';
 import { FontAwesome5 } from '@expo/vector-icons';
+
+import * as firebase from 'firebase';
 
 const styles = StyleSheet.create({
   container: {
@@ -128,7 +130,30 @@ export default function SignUp({ navigation }) {
   const [confirmPassword, setConfirmPassword] = React.useState('');
 
   const signUp = () => {
-    if (email.length < 1 || !email.includes('@') || password.length < 1 || password !== confirmPassword) {
+    const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+    if (emailRegex.test(email) && password === confirmPassword) {
+      firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+        .then(() => {
+          setEmail('');
+          setPassword('');
+          setConfirmPassword('');
+
+          return firebase.auth().createUserWithEmailAndPassword(email, password).catch(err => {
+            Alert.alert(
+              'Invalid Credentials',
+              'Please enter a valid email address and confirm that both passwords match exactly.',
+              [
+                { text: 'Return to Sign Up' }
+              ]
+            )
+            console.log(err.code, err.message);
+          });
+        })
+        .catch(err => {
+          console.log(err.code, err.message)
+        });
+    } else {
       Alert.alert(
         'Invalid Credentials',
         'Please enter a valid email address and confirm that both passwords match exactly.',
@@ -136,15 +161,7 @@ export default function SignUp({ navigation }) {
           { text: 'Return to Sign Up' }
         ]
       )
-    } else {
-      // Add Firebase Authentication
-      // Set user token and move into a new sign up stack
-      navigation.navigate('NameCloset');
-    };
-
-    setEmail('');
-    setPassword('');
-    setConfirmPassword('');
+    }
   };
 
   const login = () => {
@@ -171,7 +188,7 @@ export default function SignUp({ navigation }) {
           <NanumText style={styles.inputPassword}>PASSWORD</NanumText>
           <TextInput
             style={styles.inputBar}
-            placeholder='Enter your password'
+            placeholder='Enter your password (Min. 6 characters)'
             textContentType='password'
             secureTextEntry={true}
             clearButtonMode='while-editing'
