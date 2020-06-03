@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, Tooltip } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 
 import { NanumText } from '../../components/StyledText';
 import { FontAwesome5 } from '@expo/vector-icons';
@@ -143,7 +143,7 @@ export default function SignUp({ navigation }) {
             if (err.code.includes('email-already-in-use')) {
               Alert.alert(
                 'Invalid Email Address',
-                'Email address already in use - please enter a unique one.',
+                'Email address already in use',
                 [
                   { text: 'Return to Sign Up' }
                 ]
@@ -157,7 +157,7 @@ export default function SignUp({ navigation }) {
     } else {
       Alert.alert(
         'Invalid Credentials',
-        'Please enter a valid email address and confirm that both passwords match exactly.',
+        'Please enter a valid email address and confirm that both passwords match exactly',
         [
           { text: 'Return to Sign Up' }
         ]

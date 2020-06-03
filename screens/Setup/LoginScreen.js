@@ -132,7 +132,7 @@ export default function Login({ navigation }) {
         return firebase.auth().signInWithEmailAndPassword(email, password).catch(err => {
           Alert.alert(
             'Invalid Credentials',
-            'The email and / or password entered do not match a current account.',
+            'The email and / or password entered do not match a current account',
             [
               { text: 'Return to Login' }
             ]

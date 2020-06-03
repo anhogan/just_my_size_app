@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as firebase from 'firebase';
 
-import { StyleSheet, TextInput, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, TextInput, TouchableOpacity, View, Alert } from 'react-native';
 
 import { NanumText } from '../components/StyledText';
 
@@ -164,16 +164,26 @@ export default function Profile() {
                 }, 2000);
               })
           })
-          .catch(() => {
-            setTimeOutMessage(true);
-            setTimeout(() => {
-              setTimeOutMessage(false);
-            }, 4000);
+          .catch(err => {
+            if (err.code.includes('email-already-in-use')) {
+              Alert.alert(
+                'Invalid Email Address',
+                'Email address already in use',
+                [
+                  { text: 'Return to Profile' }
+                ]
+              )
+            } else {
+              setTimeOutMessage(true);
+              setTimeout(() => {
+                setTimeOutMessage(false);
+              }, 4000);
+            };
           });
       } else {
         Alert.alert(
           'Invalid Email',
-          'Please enter a valid email address.',
+          'Please enter a valid email address',
           [
             { text: 'Return to Profile' }
           ]
