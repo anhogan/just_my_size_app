@@ -89,14 +89,28 @@ function getHeaderTitle(route) {
   const user = firebase.auth().currentUser;
 
   if (user.displayName !== null) {
-    switch (routeName) {
-      case 'Profile':
-        return `${user.displayName.toUpperCase()}'S PROFILE`;
-      case 'Closet':
-        return `${user.displayName.toUpperCase()}'S CLOSET`;
-      case 'Search':
-        return `SEARCH CLOSET`;
-    }
+    let nameLen = user.displayName.split(" ");
+
+    if (nameLen.length > 1) {
+      let userName = nameLen[0] + ' ' + nameLen[1];
+      switch (routeName) {
+        case 'Profile':
+          return `${userName.toUpperCase()}'S PROFILE`;
+        case 'Closet':
+          return `${userName.toUpperCase()}'S CLOSET`;
+        case 'Search':
+          return `SEARCH CLOSET`;
+      }
+    } else {
+      switch (routeName) {
+        case 'Profile':
+          return `${user.displayName.toUpperCase()}'S PROFILE`;
+        case 'Closet':
+          return `${user.displayName.toUpperCase()}'S CLOSET`;
+        case 'Search':
+          return `SEARCH CLOSET`;
+      };
+    };
   } else {
     switch (routeName) {
       case 'Profile':
