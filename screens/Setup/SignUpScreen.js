@@ -72,17 +72,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: "center",
   },
-  googleBtn: {
-    backgroundColor: '#8AE8F9',
-    width: '80%',
-    height: '5%',
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    borderRadius: 5,
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-evenly',
-  },
   loginBtn: {
     backgroundColor: '#6674DE',
     width: '30%',
@@ -100,12 +89,6 @@ const styles = StyleSheet.create({
     marginTop: 'auto',
     marginBottom: 'auto',
   },
-  googleBtnText: {
-    fontSize: 20,
-    color: '#6674DE',
-    marginTop: 'auto',
-    marginBottom: 'auto',
-  },
   loginText: {
     fontSize: 16,
     color: 'white',
@@ -115,12 +98,6 @@ const styles = StyleSheet.create({
   },
   spacer: {
     marginTop: '10%',
-  },
-  icon: {
-    color: "#6674DE",
-    fontSize: 28,
-    marginTop: 'auto',
-    marginBottom: 'auto',
   },
 });
 
@@ -212,11 +189,6 @@ export default function SignUp({ navigation }) {
         <View style={styles.spacer}></View>
         <TouchableOpacity onPress={signUp} style={styles.btn}>
           <NanumText style={styles.btnText}>Sign Up</NanumText>
-        </TouchableOpacity>
-        <View style={styles.spacer}></View>
-        <TouchableOpacity onPress={signUp} style={styles.googleBtn}>
-          <NanumText style={styles.googleBtnText}><FontAwesome5 name="google" style={styles.icon} /></NanumText>
-          <NanumText style={styles.googleBtnText}>Sign Up with Google</NanumText>
         </TouchableOpacity>
         <View style={styles.spacer}></View>
         <TouchableOpacity onPress={login} style={styles.loginBtn}>

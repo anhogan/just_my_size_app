@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: "center",
   },
-  googleBtn: {
+  signUpBtn: {
     backgroundColor: '#8AE8F9',
     width: '80%',
     height: '5%',
@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
     marginTop: 'auto',
     marginBottom: 'auto',
   },
-  googleBtnText: {
+  signUpBtnText: {
     fontSize: 20,
     color: '#6674DE',
     marginTop: 'auto',
@@ -110,12 +110,6 @@ const styles = StyleSheet.create({
   },
   spacer: {
     marginTop: '10%',
-  },
-  icon: {
-    color: "#6674DE",
-    fontSize: 28,
-    marginTop: 'auto',
-    marginBottom: 'auto',
   },
 });
 
@@ -186,14 +180,10 @@ export default function Login({ navigation }) {
         <NanumText style={styles.btnText}>Login</NanumText>
       </TouchableOpacity>
       <View style={styles.spacer}></View>
-      <TouchableOpacity onPress={logIn} style={styles.googleBtn}>
-        <NanumText style={styles.googleBtnText}><FontAwesome5 name="google" style={styles.icon} /></NanumText>
-        <NanumText style={styles.googleBtnText}>Login with Google</NanumText>
+      <TouchableOpacity onPress={createAccount} style={styles.signUpBtn}>
+        <NanumText style={styles.signUpBtnText}>Create Account</NanumText>
       </TouchableOpacity>
       <View style={styles.spacer}></View>
-      <TouchableOpacity onPress={createAccount} style={styles.resetBtn}>
-        <NanumText style={styles.resetText}>Create Account</NanumText>
-      </TouchableOpacity>
       <TouchableOpacity onPress={resetPassword} style={styles.resetBtn}>
         <NanumText style={styles.resetText}>Reset Password</NanumText>
       </TouchableOpacity>
