@@ -69,16 +69,23 @@ function SetupStack() {
   );
 };
 
-export default function App(props) {
+export default function App() {
   const isLoadingComplete = useCachedResources();
   const [userToken, setUserToken] = React.useState(null);
-  const newUser = false;
+  const [newUser, setNewUser] = React.useState(false);
 
   auth.onAuthStateChanged(function(user) {
     if (user) {
-      setUserToken(true);
+      if (user.metadata.creationTime === user.metadata.lastSignInTime) {
+        setNewUser(true);
+        setUserToken(true);
+      } else {
+        setNewUser(false);
+        setUserToken(true);
+      };
     } else {
       setUserToken(null);
+      setNewUser(false);
     }
   });
 
@@ -94,7 +101,6 @@ export default function App(props) {
               <Stack.Screen 
                 name="SetupStack" 
                 component={SignInStack}
-                initialParams={{newUser: false}} 
                 options={
                   { headerTitle: ' ', headerStyle: { height: 0 } }
                 } />
@@ -103,7 +109,6 @@ export default function App(props) {
                 <Stack.Screen 
                   name="SetupStack" 
                   component={SetupStack}
-                  initialParams={{newUser: true}} 
                   options={
                     { headerTitle: ' ', headerStyle: { height: 0 } }
                   } />

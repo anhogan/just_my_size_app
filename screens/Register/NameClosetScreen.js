@@ -1,4 +1,6 @@
 import * as React from 'react';
+import * as firebase from 'firebase';
+
 import { View, Text, TouchableOpacity, StyleSheet, TextInput } from 'react-native';
 
 import { NanumText } from '../../components/StyledText';
@@ -116,13 +118,34 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-evenly',
   },
+  failureMessage:{
+    position: 'absolute', 
+    backgroundColor: 'crimson', 
+    width: '100%', 
+    justifyContent: 'center', 
+    alignItems: 'center',           
+    height: 60, 
+    top: 35,
+  },
 });
 
 export default function NameCloset({ navigation }) {
+  const user = firebase.auth().currentUser;
+
   const [name, setName] = React.useState('');
+  const [failureMessage, setFailureMessage] = React.useState(false);
 
   const next = () => {
-    navigation.navigate('AddFirstItem');
+    user.updateProfile({ displayName: name })
+    .then(() => {
+      navigation.navigate('AddFirstItem');
+    })
+    .catch(() => {
+      setFailureMessage(true);
+      setTimeout(() => {
+        setFailureMessage(false);
+      }, 2000);
+    })
   };
 
   const skip = () => {
@@ -161,6 +184,11 @@ export default function NameCloset({ navigation }) {
         <FontAwesome name="circle" size={20} color="#F0895F" />
         <FontAwesome name="circle" size={20} color="#F0895F" />
       </View>
+      {failureMessage ? (
+        <View style={styles.failureMessage}>
+          <NanumText style={{color:'white'}}>Unable to name your closet - please try again</NanumText>
+        </View>
+      ) : null}
     </View>
   );
 };
