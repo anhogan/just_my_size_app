@@ -2,7 +2,6 @@ import * as React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, TextInput, Alert } from 'react-native';
 
 import { NanumText } from '../../components/StyledText';
-import { FontAwesome5 } from '@expo/vector-icons';
 
 import * as firebase from 'firebase';
 
@@ -39,12 +38,6 @@ const styles = StyleSheet.create({
     marginRight: '52.5%',
     color: 'white',
   },
-  inputPassword: {
-    marginTop: '10%',
-    marginBottom: '2%',
-    marginRight: '60%',
-    color: 'white',
-  },
   inputBar: {
     width: '80%',
     height: 40,
@@ -67,17 +60,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: "center",
   },
-  googleBtn: {
-    backgroundColor: '#8AE8F9',
-    width: '80%',
-    height: '5%',
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    borderRadius: 5,
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-evenly',
-  },
   resetBtn: {
     backgroundColor: '#6674DE',
     width: '30%',
@@ -95,12 +77,6 @@ const styles = StyleSheet.create({
     marginTop: 'auto',
     marginBottom: 'auto',
   },
-  googleBtnText: {
-    fontSize: 20,
-    color: '#6674DE',
-    marginTop: 'auto',
-    marginBottom: 'auto',
-  },
   resetText: {
     fontSize: 16,
     color: 'white',
@@ -111,46 +87,59 @@ const styles = StyleSheet.create({
   spacer: {
     marginTop: '10%',
   },
-  icon: {
-    color: "#6674DE",
-    fontSize: 28,
-    marginTop: 'auto',
-    marginBottom: 'auto',
+  successMessage:{
+    position:'absolute', 
+    backgroundColor:'#8AE8F9', 
+    width:'100%', 
+    justifyContent:'center', 
+    alignItems:'center',           
+    height:60, 
+    top:35,
+  },
+  failureMessage:{
+    position:'absolute', 
+    backgroundColor:'crimson', 
+    width:'100%', 
+    justifyContent:'center', 
+    alignItems:'center',           
+    height:60, 
+    top:35,
   },
 });
 
-export default function Login({ navigation }) {
+export default function ResetPassword({ navigation }) {
   const [email, setEmail] = React.useState('');
-  const [password, setPassword] = React.useState('');
+  const [successEmailMessage, setSuccessEmailMessage] = React.useState(false);
+  const [failureEmailMessage, setFailureEmailMessage] = React.useState(false);
 
   const logIn = () => {
-    firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
-      .then(() => {
-        setEmail('');
-        setPassword('');
-
-        return firebase.auth().signInWithEmailAndPassword(email, password).catch(err => {
-          Alert.alert(
-            'Invalid Credentials',
-            'The email and / or password entered do not match a current account',
-            [
-              { text: 'Return to Login' }
-            ]
-          );
-          console.log(err.code, err.message);
-        });
-      })
-      .catch(err => {
-        console.log(err.code, err.message)
-      });
-  };
-
-  const createAccount = () => {
-    navigation.navigate('SignUp');
+    navigation.navigate('Login');
   };
 
   const resetPassword = () => {
-    navigation.navigate('ResetPassword');
+    if (email === '') {
+      Alert.alert(
+        'Invalid Email',
+        'Please enter the email address associated with your account',
+        [
+          { text: 'Return to Reset Password' }
+        ]
+      );
+    } else {
+      firebase.auth().sendPasswordResetEmail(email)
+      .then(() => {
+        setSuccessEmailMessage(true);
+        setTimeout(() => {
+          setSuccessEmailMessage(false);
+        }, 2000);
+      })
+      .catch(() => {
+        setFailureEmailMessage(true);
+        setTimeout(() => {
+          setFailureEmailMessage(false);
+        }, 2000);
+      })
+    }
   };
 
   return (
@@ -169,34 +158,25 @@ export default function Login({ navigation }) {
           returnKeyType='next'
           onChangeText={text => setEmail(text)}
           value={email} />
-        <NanumText style={styles.inputPassword}>PASSWORD</NanumText>
-        <TextInput
-          style={styles.inputBar}
-          placeholder='Enter your password'
-          textContentType='password'
-          secureTextEntry={true}
-          clearButtonMode='while-editing'
-          selectionColor='#6674DE'
-          returnKeyType='done'
-          onChangeText={text => setPassword(text)}
-          value={password} />
       </View>
       <View style={styles.spacer}></View>
-      <TouchableOpacity onPress={logIn} style={styles.btn}>
-        <NanumText style={styles.btnText}>Login</NanumText>
+      <TouchableOpacity onPress={resetPassword} style={styles.btn}>
+        <NanumText style={styles.btnText}>Reset Password</NanumText>
       </TouchableOpacity>
       <View style={styles.spacer}></View>
-      <TouchableOpacity onPress={logIn} style={styles.googleBtn}>
-        <NanumText style={styles.googleBtnText}><FontAwesome5 name="google" style={styles.icon} /></NanumText>
-        <NanumText style={styles.googleBtnText}>Login with Google</NanumText>
+      <TouchableOpacity onPress={logIn} style={styles.resetBtn}>
+        <NanumText style={styles.resetText}>Back to Login</NanumText>
       </TouchableOpacity>
-      <View style={styles.spacer}></View>
-      <TouchableOpacity onPress={createAccount} style={styles.resetBtn}>
-        <NanumText style={styles.resetText}>Create Account</NanumText>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={resetPassword} style={styles.resetBtn}>
-        <NanumText style={styles.resetText}>Reset Password</NanumText>
-      </TouchableOpacity>
+      {successEmailMessage ? (
+        <View style={styles.successMessage}>
+          <NanumText style={{color:'#6674DE'}}>Password reset email sent to {email}!</NanumText>
+        </View>
+      ) : null}
+      {failureEmailMessage ? (
+        <View style={styles.failureMessage}>
+          <NanumText style={{color:'white'}}>No account matching {email} - please enter a valid email address</NanumText>
+        </View>
+      ) : null}
     </View>
   );
 };

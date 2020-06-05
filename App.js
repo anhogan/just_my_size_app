@@ -10,6 +10,7 @@ import LinkingConfiguration from './navigation/LinkingConfiguration';
 import FirstOpen from './screens/Setup/FirstOpenScreen';
 import SignUp from './screens/Setup/SignUpScreen';
 import Login from './screens/Setup/LoginScreen';
+import ResetPassword from './screens/Setup/ResetPasswordScreen';
 import NameCloset from './screens/Register/NameClosetScreen';
 import AddFirstItem from './screens/Register/AddFirstItemScreen';
 import GettingStarted from './screens/Register/GettingStartedScreen';
@@ -53,6 +54,7 @@ function SignInStack() {
       <Stack.Screen name="Initial" component={FirstOpen} options={{ headerTitle: ' ' }} />
       <Stack.Screen name="SignUp" component={SignUp} options={{ headerTitle: ' ' }} />
       <Stack.Screen name="Login" component={Login} options={{ headerTitle: ' ' }} />
+      <Stack.Screen name="ResetPassword" component={ResetPassword} options={{ headerTitle: ' ' }} />
     </Stack.Navigator>
   );
 };
