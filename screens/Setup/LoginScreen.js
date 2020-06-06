@@ -2,7 +2,6 @@ import * as React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, TextInput, Alert } from 'react-native';
 
 import { NanumText } from '../../components/StyledText';
-import { FontAwesome5 } from '@expo/vector-icons';
 
 import * as firebase from 'firebase';
 

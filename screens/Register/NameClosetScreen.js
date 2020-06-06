@@ -3,6 +3,7 @@ import * as firebase from 'firebase';
 
 import { View, Text, TouchableOpacity, StyleSheet, TextInput } from 'react-native';
 
+import { UserConsumer } from '../../contexts/UserContext';
 import { NanumText } from '../../components/StyledText';
 import { FontAwesome } from '@expo/vector-icons';
 
@@ -148,47 +149,47 @@ export default function NameCloset({ navigation }) {
     })
   };
 
-  const skip = () => {
-    navigation.navigate('Root');
-  }
-
   return (
-    <View style={styles.container}>
-      <Text style={styles.headerText}>JUST MY SIZE</Text>
-      <Text style={styles.subHeaderText}>WELCOME</Text>
-      <NanumText style={styles.perfectText}>The perfect fit every time</NanumText>
-      <NanumText style={styles.setupText}>Let's setup your closet!</NanumText>
-      <View style={styles.inputContainer}>
-        <TextInput
-          style={styles.inputBar}
-          placeholder='Your first name'
-          clearButtonMode='while-editing'
-          selectionColor='#6674DE'
-          returnKeyType='next'
-          onChangeText={text => setName(text)}
-          value={name} />
-        <Text style={styles.endText}> ' s</Text>
-      </View>
-      <Text style={styles.closetText}>Closet</Text>
-      <View style={styles.spacer}></View>
-      <TouchableOpacity onPress={next} style={styles.btn}>
-          <NanumText style={styles.btnText}>Next</NanumText>
-      </TouchableOpacity>
-      <View style={styles.spacer}></View>
-      <TouchableOpacity onPress={skip} style={styles.skipBtn}>
-        <NanumText style={styles.skipBtnText}>Skip</NanumText>
-      </TouchableOpacity>
-      <View style={styles.spacer}></View>
-      <View style={styles.progressContainer}>
-        <FontAwesome name="circle" size={20} color="white" />
-        <FontAwesome name="circle" size={20} color="#F0895F" />
-        <FontAwesome name="circle" size={20} color="#F0895F" />
-      </View>
-      {failureMessage ? (
-        <View style={styles.failureMessage}>
-          <NanumText style={{color:'white'}}>Unable to name your closet - please try again</NanumText>
+    <UserConsumer>
+      {context => (
+        <View style={styles.container}>
+          <Text style={styles.headerText}>JUST MY SIZE</Text>
+          <Text style={styles.subHeaderText}>WELCOME</Text>
+          <NanumText style={styles.perfectText}>The perfect fit every time</NanumText>
+          <NanumText style={styles.setupText}>Let's setup your closet!</NanumText>
+          <View style={styles.inputContainer}>
+            <TextInput
+              style={styles.inputBar}
+              placeholder='Your first name'
+              clearButtonMode='while-editing'
+              selectionColor='#6674DE'
+              returnKeyType='next'
+              onChangeText={text => setName(text)}
+              value={name} />
+            <Text style={styles.endText}> ' s</Text>
+          </View>
+          <Text style={styles.closetText}>Closet</Text>
+          <View style={styles.spacer}></View>
+          <TouchableOpacity onPress={next} style={styles.btn}>
+              <NanumText style={styles.btnText}>Next</NanumText>
+          </TouchableOpacity>
+          <View style={styles.spacer}></View>
+          <TouchableOpacity onPress={() => context.toggleNewUser} style={styles.skipBtn}>
+            <NanumText style={styles.skipBtnText}>Skip</NanumText>
+          </TouchableOpacity>
+          <View style={styles.spacer}></View>
+          <View style={styles.progressContainer}>
+            <FontAwesome name="circle" size={20} color="white" />
+            <FontAwesome name="circle" size={20} color="#F0895F" />
+            <FontAwesome name="circle" size={20} color="#F0895F" />
+          </View>
+          {failureMessage ? (
+            <View style={styles.failureMessage}>
+              <NanumText style={{color:'white'}}>Unable to name your closet - please try again</NanumText>
+            </View>
+          ) : null}
         </View>
-      ) : null}
-    </View>
+      )}
+    </UserConsumer>
   );
 };

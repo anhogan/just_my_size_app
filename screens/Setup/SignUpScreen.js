@@ -1,10 +1,10 @@
 import * as React from 'react';
+import * as firebase from 'firebase';
+
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 
+import { UserConsumer } from '../../contexts/UserContext';
 import { NanumText } from '../../components/StyledText';
-import { FontAwesome5 } from '@expo/vector-icons';
-
-import * as firebase from 'firebase';
 
 const styles = StyleSheet.create({
   container: {
@@ -115,6 +115,7 @@ export default function SignUp({ navigation }) {
           setEmail('');
           setPassword('');
           setConfirmPassword('');
+          toggleNewUser();
 
           return firebase.auth().createUserWithEmailAndPassword(email, password).catch(err => {
             if (err.code.includes('email-already-in-use')) {
@@ -147,54 +148,56 @@ export default function SignUp({ navigation }) {
   };
 
   return (
-    <>
-      <View style={styles.container}>
-        <Text style={styles.headerText}>JUST MY SIZE</Text>
-        <Text style={styles.subHeaderText}>SIGN UP</Text>
-        <View style={styles.inputContainer}>
-          <NanumText style={styles.inputEmail}>EMAIL ADDRESS</NanumText>
-          <TextInput
-            style={styles.inputBar}
-            placeholder='Enter your email address'
-            textContentType='emailAddress'
-            autoCapitalize='none'
-            clearButtonMode='while-editing'
-            selectionColor='#6674DE'
-            returnKeyType='next'
-            onChangeText={text => setEmail(text)}
-            value={email} />
-          <NanumText style={styles.inputPassword}>PASSWORD</NanumText>
-          <TextInput
-            style={styles.inputBar}
-            placeholder='Enter your password (Min. 6 characters)'
-            textContentType='password'
-            secureTextEntry={true}
-            clearButtonMode='while-editing'
-            selectionColor='#6674DE'
-            returnKeyType='next'
-            onChangeText={text => setPassword(text)}
-            value={password} />
-          <NanumText style={styles.inputConfirmPassword}>CONFIRM PASSWORD</NanumText>
-          <TextInput
-            style={styles.inputBar}
-            placeholder='Enter your password'
-            textContentType='password'
-            secureTextEntry={true}
-            clearButtonMode='while-editing'
-            selectionColor='#6674DE'
-            returnKeyType='done'
-            onChangeText={text => setConfirmPassword(text)}
-            value={confirmPassword} />
+    <UserConsumer>
+      {context => (
+        <View style={styles.container}>
+          <Text style={styles.headerText}>JUST MY SIZE</Text>
+          <Text style={styles.subHeaderText}>SIGN UP</Text>
+          <View style={styles.inputContainer}>
+            <NanumText style={styles.inputEmail}>EMAIL ADDRESS</NanumText>
+            <TextInput
+              style={styles.inputBar}
+              placeholder='Enter your email address'
+              textContentType='emailAddress'
+              autoCapitalize='none'
+              clearButtonMode='while-editing'
+              selectionColor='#6674DE'
+              returnKeyType='next'
+              onChangeText={text => setEmail(text)}
+              value={email} />
+            <NanumText style={styles.inputPassword}>PASSWORD</NanumText>
+            <TextInput
+              style={styles.inputBar}
+              placeholder='Enter your password (Min. 6 characters)'
+              textContentType='password'
+              secureTextEntry={true}
+              clearButtonMode='while-editing'
+              selectionColor='#6674DE'
+              returnKeyType='next'
+              onChangeText={text => setPassword(text)}
+              value={password} />
+            <NanumText style={styles.inputConfirmPassword}>CONFIRM PASSWORD</NanumText>
+            <TextInput
+              style={styles.inputBar}
+              placeholder='Enter your password'
+              textContentType='password'
+              secureTextEntry={true}
+              clearButtonMode='while-editing'
+              selectionColor='#6674DE'
+              returnKeyType='done'
+              onChangeText={text => setConfirmPassword(text)}
+              value={confirmPassword} />
+          </View>
+          <View style={styles.spacer}></View>
+          <TouchableOpacity onPress={signUp} style={styles.btn}>
+            <NanumText style={styles.btnText}>Sign Up</NanumText>
+          </TouchableOpacity>
+          <View style={styles.spacer}></View>
+          <TouchableOpacity onPress={login} style={styles.loginBtn}>
+            <NanumText style={styles.loginText}>Login</NanumText>
+          </TouchableOpacity>
         </View>
-        <View style={styles.spacer}></View>
-        <TouchableOpacity onPress={signUp} style={styles.btn}>
-          <NanumText style={styles.btnText}>Sign Up</NanumText>
-        </TouchableOpacity>
-        <View style={styles.spacer}></View>
-        <TouchableOpacity onPress={login} style={styles.loginBtn}>
-          <NanumText style={styles.loginText}>Login</NanumText>
-        </TouchableOpacity>
-      </View>
-    </>
+      )}
+    </UserConsumer>
   );
 };

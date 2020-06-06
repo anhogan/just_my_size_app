@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, TextInput } from 'react-native';
 
+import { UserConsumer } from '../../contexts/UserContext';
 import { NanumText } from '../../components/StyledText';
 import { FontAwesome } from '@expo/vector-icons';
 
@@ -125,68 +126,68 @@ export default function AddFirstItem({ navigation }) {
     navigation.navigate('GettingStarted');
   };
 
-  const skip = () => {
-    navigation.navigate('Root');
-  }
-
   return (
-    <View style={styles.container}>
-      <Text style={styles.headerText}>JUST MY SIZE</Text>
-      <Text style={styles.subHeaderText}>WELCOME</Text>
-      <NanumText style={styles.perfectText}>The perfect fit every time</NanumText>
-      <NanumText style={styles.setupText}>Add your first item!</NanumText>
-      <View style={styles.inputContainer}>
-          <NanumText style={styles.inputFive}>STORE</NanumText>
-          <TextInput
-            style={styles.inputBar}
-            placeholder='Enter the store name'
-            clearButtonMode='while-editing'
-            selectionColor='#6674DE'
-            returnKeyType='next'
-            onChangeText={text => setStore(text)}
-            value={store} />
-          <NanumText style={styles.inputFive}>TYPE</NanumText>
-          <TextInput
-            style={styles.inputBar}
-            placeholder='Jeans, Sneakers, etc.'
-            clearButtonMode='while-editing'
-            selectionColor='#6674DE'
-            returnKeyType='next'
-            onChangeText={text => setType(text)}
-            value={type} />
-          <NanumText style={styles.inputFive}>STYLE</NanumText>
-          <TextInput
-            style={styles.inputBar}
-            placeholder='High-Waisted Jeggings, AirMax, etc.'
-            clearButtonMode='while-editing'
-            selectionColor='#6674DE'
-            returnKeyType='next'
-            onChangeText={text => setStyle(text)}
-            value={style} />
-          <NanumText style={styles.inputFour}>SIZE</NanumText>
-          <TextInput
-            style={styles.inputBar}
-            placeholder='Enter your size'
-            clearButtonMode='while-editing'
-            selectionColor='#6674DE'
-            returnKeyType='done'
-            onChangeText={text => setSize(text)}
-            value={size} />
+    <UserConsumer>
+      {context => (
+        <View style={styles.container}>
+          <Text style={styles.headerText}>JUST MY SIZE</Text>
+          <Text style={styles.subHeaderText}>WELCOME</Text>
+          <NanumText style={styles.perfectText}>The perfect fit every time</NanumText>
+          <NanumText style={styles.setupText}>Add your first item!</NanumText>
+          <View style={styles.inputContainer}>
+              <NanumText style={styles.inputFive}>STORE</NanumText>
+              <TextInput
+                style={styles.inputBar}
+                placeholder='Enter the store name'
+                clearButtonMode='while-editing'
+                selectionColor='#6674DE'
+                returnKeyType='next'
+                onChangeText={text => setStore(text)}
+                value={store} />
+              <NanumText style={styles.inputFive}>TYPE</NanumText>
+              <TextInput
+                style={styles.inputBar}
+                placeholder='Jeans, Sneakers, etc.'
+                clearButtonMode='while-editing'
+                selectionColor='#6674DE'
+                returnKeyType='next'
+                onChangeText={text => setType(text)}
+                value={type} />
+              <NanumText style={styles.inputFive}>STYLE</NanumText>
+              <TextInput
+                style={styles.inputBar}
+                placeholder='High-Waisted Jeggings, AirMax, etc.'
+                clearButtonMode='while-editing'
+                selectionColor='#6674DE'
+                returnKeyType='next'
+                onChangeText={text => setStyle(text)}
+                value={style} />
+              <NanumText style={styles.inputFour}>SIZE</NanumText>
+              <TextInput
+                style={styles.inputBar}
+                placeholder='Enter your size'
+                clearButtonMode='while-editing'
+                selectionColor='#6674DE'
+                returnKeyType='done'
+                onChangeText={text => setSize(text)}
+                value={size} />
+            </View>
+          <View style={styles.spacer}></View>
+          <TouchableOpacity onPress={next} style={styles.btn}>
+              <NanumText style={styles.btnText}>Next</NanumText>
+          </TouchableOpacity>
+          <View style={styles.spacer}></View>
+          <TouchableOpacity onPress={() => context.toggleNewUser} style={styles.skipBtn}>
+            <NanumText style={styles.skipBtnText}>Skip</NanumText>
+          </TouchableOpacity>
+          <View style={styles.spacer}></View>
+          <View style={styles.progressContainer}>
+            <FontAwesome name="circle" size={20} color="#F0895F" />
+            <FontAwesome name="circle" size={20} color="white" />
+            <FontAwesome name="circle" size={20} color="#F0895F" />
+          </View>
         </View>
-      <View style={styles.spacer}></View>
-      <TouchableOpacity onPress={next} style={styles.btn}>
-          <NanumText style={styles.btnText}>Next</NanumText>
-      </TouchableOpacity>
-      <View style={styles.spacer}></View>
-      <TouchableOpacity onPress={skip} style={styles.skipBtn}>
-        <NanumText style={styles.skipBtnText}>Skip</NanumText>
-      </TouchableOpacity>
-      <View style={styles.spacer}></View>
-      <View style={styles.progressContainer}>
-        <FontAwesome name="circle" size={20} color="#F0895F" />
-        <FontAwesome name="circle" size={20} color="white" />
-        <FontAwesome name="circle" size={20} color="#F0895F" />
-      </View>
-    </View>
+      )}
+    </UserConsumer>
   );
 };
