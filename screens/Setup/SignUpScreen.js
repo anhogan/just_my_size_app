@@ -127,7 +127,16 @@ export default function SignUp({ navigation }) {
               name: " ",
               newUser: true,
               plan: 'Free',
-              uid: user.uid
+              uid: user.uid,
+              closet: [
+                {
+                  id: 0,
+                  store: 'Just My Size',
+                  type: 'App',
+                  style: 'Yours',
+                  size: 'The perfect one'
+                },
+              ]
             });
           })
           .catch(err => {
