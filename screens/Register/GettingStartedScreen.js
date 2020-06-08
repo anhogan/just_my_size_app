@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
+import { UserConsumer } from '../../contexts/UserContext';
 import { NanumText } from '../../components/StyledText';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
@@ -94,11 +95,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function GettingStarted({ navigation }) {
-  const next = () => {
-    navigation.navigate('Root');
-  };
-
+export default function GettingStarted() {
   return (
     <View style={styles.container}>
       <Text style={styles.headerText}>JUST MY SIZE</Text>
@@ -123,7 +120,7 @@ export default function GettingStarted({ navigation }) {
         <NanumText style={styles.tipText}>Search to easily find closet items</NanumText>
       </View>
       <View style={styles.spacer}></View>
-      <TouchableOpacity onPress={next} style={styles.closetBtn}>
+      <TouchableOpacity onPress={() => console.log('Finished setup')} style={styles.closetBtn}>
         <NanumText style={styles.closetText}>To My Closet</NanumText>
       </TouchableOpacity>
       <View style={styles.spacer}></View>

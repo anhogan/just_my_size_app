@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, TextInput } from 'react-native';
 
+import { UserConsumer } from '../../contexts/UserContext';
 import { NanumText } from '../../components/StyledText';
 import { FontAwesome } from '@expo/vector-icons';
 
@@ -125,10 +126,6 @@ export default function AddFirstItem({ navigation }) {
     navigation.navigate('GettingStarted');
   };
 
-  const skip = () => {
-    navigation.navigate('Root');
-  }
-
   return (
     <View style={styles.container}>
       <Text style={styles.headerText}>JUST MY SIZE</Text>
@@ -178,7 +175,7 @@ export default function AddFirstItem({ navigation }) {
           <NanumText style={styles.btnText}>Next</NanumText>
       </TouchableOpacity>
       <View style={styles.spacer}></View>
-      <TouchableOpacity onPress={skip} style={styles.skipBtn}>
+      <TouchableOpacity onPress={() => console.log('Skipped')} style={styles.skipBtn}>
         <NanumText style={styles.skipBtnText}>Skip</NanumText>
       </TouchableOpacity>
       <View style={styles.spacer}></View>

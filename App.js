@@ -1,20 +1,22 @@
+import * as React from 'react';
+import * as firebase from 'firebase';
+
+import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import * as React from 'react';
-import { Platform, StatusBar, StyleSheet, View, Alert } from 'react-native';
 
 import useCachedResources from './hooks/useCachedResources';
+import { UserProvider, UserConsumer } from './contexts/UserContext';
 import BottomTabNavigator from './navigation/BottomTabNavigator';
 import LinkingConfiguration from './navigation/LinkingConfiguration';
 
 import FirstOpen from './screens/Setup/FirstOpenScreen';
 import SignUp from './screens/Setup/SignUpScreen';
 import Login from './screens/Setup/LoginScreen';
+import ResetPassword from './screens/Setup/ResetPasswordScreen';
 import NameCloset from './screens/Register/NameClosetScreen';
 import AddFirstItem from './screens/Register/AddFirstItemScreen';
 import GettingStarted from './screens/Register/GettingStartedScreen';
-
-import * as firebase from 'firebase';
 
 const styles = StyleSheet.create({
   container: {
@@ -53,6 +55,7 @@ function SignInStack() {
       <Stack.Screen name="Initial" component={FirstOpen} options={{ headerTitle: ' ' }} />
       <Stack.Screen name="SignUp" component={SignUp} options={{ headerTitle: ' ' }} />
       <Stack.Screen name="Login" component={Login} options={{ headerTitle: ' ' }} />
+      <Stack.Screen name="ResetPassword" component={ResetPassword} options={{ headerTitle: ' ' }} />
     </Stack.Navigator>
   );
 };
@@ -67,10 +70,14 @@ function SetupStack() {
   );
 };
 
-export default function App(props) {
+export default function App() {
   const isLoadingComplete = useCachedResources();
   const [userToken, setUserToken] = React.useState(null);
-  const newUser = false;
+  const [newUser, setNewUser] = React.useState(false);
+
+  const toggleNewUser = () => {
+    newUser ? setNewUser(false) : setNewUser(true);
+  };
 
   auth.onAuthStateChanged(function(user) {
     if (user) {
@@ -87,25 +94,18 @@ export default function App(props) {
       <View style={styles.container}>
         {Platform.OS === 'ios' && <StatusBar barStyle="dark-content" />}
         <NavigationContainer linking={LinkingConfiguration}>
-          <Stack.Navigator initialRouteName="SetupStack">
+          <Stack.Navigator>
             {userToken == null ? (
               <Stack.Screen 
                 name="SetupStack" 
-                component={SignInStack}
-                initialParams={{newUser: false}} 
-                options={
-                  { headerTitle: ' ', headerStyle: { height: 0 } }
-                } />
+                component={SignInStack} 
+                options={{ headerTitle: ' ', headerStyle: { height: 0 } }} />
             ) : newUser ? (
               <>
                 <Stack.Screen 
                   name="SetupStack" 
-                  component={SetupStack}
-                  initialParams={{newUser: true}} 
-                  options={
-                    { headerTitle: ' ', headerStyle: { height: 0 } }
-                  } />
-                <Stack.Screen name="Root" component={BottomTabNavigator} />
+                  component={SetupStack} 
+                  options={{ headerTitle: ' ', headerStyle: { height: 0 } }} />
               </>
             ) : (
               <Stack.Screen name="Root" component={BottomTabNavigator} />

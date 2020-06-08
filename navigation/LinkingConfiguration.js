@@ -9,16 +9,6 @@ export default {
         Profile: {
           path: 'user/:id',
           exact: true,
-          screens: {
-            ChangePassword: {
-              path: 'changepassword',
-              exact: true
-            },
-            ChangePlan: {
-              path: 'changeplan',
-              exact: true
-            }
-          }
         },
         Closet: {
           path: 'user/:id/closet',
