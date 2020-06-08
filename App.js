@@ -49,26 +49,26 @@ const auth = firebase.auth();
 
 // Add .on('value', cb) to database reference for realtime updates
 
-// function SignInStack() {
-//   return (
-//     <Stack.Navigator initialRouteName="Initial" headerMode='none'>
-//       <Stack.Screen name="Initial" component={FirstOpen} options={{ headerTitle: ' ' }} />
-//       <Stack.Screen name="SignUp" component={SignUp} options={{ headerTitle: ' ' }} />
-//       <Stack.Screen name="Login" component={Login} options={{ headerTitle: ' ' }} />
-//       <Stack.Screen name="ResetPassword" component={ResetPassword} options={{ headerTitle: ' ' }} />
-//     </Stack.Navigator>
-//   );
-// };
+function SignInStack() {
+  return (
+    <Stack.Navigator initialRouteName="Initial" headerMode='none'>
+      <Stack.Screen name="Initial" component={FirstOpen} options={{ headerTitle: ' ' }} />
+      <Stack.Screen name="SignUp" component={SignUp} options={{ headerTitle: ' ' }} />
+      <Stack.Screen name="Login" component={Login} options={{ headerTitle: ' ' }} />
+      <Stack.Screen name="ResetPassword" component={ResetPassword} options={{ headerTitle: ' ' }} />
+    </Stack.Navigator>
+  );
+};
 
-// function SetupStack() {
-//   return (
-//     <Stack.Navigator initialRouteName="NameCloset" headerMode='none'>
-//       <Stack.Screen name="NameCloset" component={NameCloset} options={{ headerTitle: ' ' }} />
-//       <Stack.Screen name="AddFirstItem" component={AddFirstItem} options={{ headerTitle: ' ' }} />
-//       <Stack.Screen name="GettingStarted" component={GettingStarted} options={{ headerTitle: ' ' }} />
-//     </Stack.Navigator>
-//   );
-// };
+function SetupStack() {
+  return (
+    <Stack.Navigator initialRouteName="NameCloset" headerMode='none'>
+      <Stack.Screen name="NameCloset" component={NameCloset} options={{ headerTitle: ' ' }} />
+      <Stack.Screen name="AddFirstItem" component={AddFirstItem} options={{ headerTitle: ' ' }} />
+      <Stack.Screen name="GettingStarted" component={GettingStarted} options={{ headerTitle: ' ' }} />
+    </Stack.Navigator>
+  );
+};
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
@@ -77,35 +77,6 @@ export default function App() {
 
   const toggleNewUser = () => {
     newUser ? setNewUser(false) : setNewUser(true);
-  };
-
-  const SignInStack = () => {
-    return (
-      <Stack.Navigator initialRouteName="Initial" headerMode='none'>
-        <Stack.Screen name="Initial" component={FirstOpen} options={{ headerTitle: ' ' }} />
-        <Stack.Screen name="SignUp" options={{ headerTitle: ' ' }}>
-          {props => <SignUp {...props} toggleNewUser={toggleNewUser} />}
-        </Stack.Screen>
-        <Stack.Screen name="Login" component={Login} options={{ headerTitle: ' ' }} />
-        <Stack.Screen name="ResetPassword" component={ResetPassword} options={{ headerTitle: ' ' }} />
-      </Stack.Navigator>
-    );
-  };
-  
-  const SetupStack = () => {
-    return (
-      <Stack.Navigator initialRouteName="NameCloset" headerMode='none'>
-        <Stack.Screen name="NameCloset" options={{ headerTitle: ' ' }}>
-          {props => <NameCloset {...props} toggleNewUser={toggleNewUser} />}
-        </Stack.Screen>
-        <Stack.Screen name="AddFirstItem" options={{ headerTitle: ' ' }}>
-          {props => <AddFirstItem {...props} toggleNewUser={toggleNewUser} />}
-        </Stack.Screen>
-        <Stack.Screen name="GettingStarted" options={{ headerTitle: ' ' }}>
-          {props => <GettingStarted {...props} toggleNewUser={toggleNewUser} />}
-        </Stack.Screen>
-      </Stack.Navigator>
-    );
   };
 
   auth.onAuthStateChanged(function(user) {

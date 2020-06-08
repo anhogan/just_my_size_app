@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function SignUp({ navigation, toggleNewUser }) {
+export default function SignUp({ navigation }) {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [confirmPassword, setConfirmPassword] = React.useState('');
@@ -115,7 +115,6 @@ export default function SignUp({ navigation, toggleNewUser }) {
           setEmail('');
           setPassword('');
           setConfirmPassword('');
-          toggleNewUser;
 
           return firebase.auth().createUserWithEmailAndPassword(email, password).catch(err => {
             if (err.code.includes('email-already-in-use')) {

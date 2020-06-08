@@ -175,7 +175,7 @@ export default function AddFirstItem({ navigation }) {
           <NanumText style={styles.btnText}>Next</NanumText>
       </TouchableOpacity>
       <View style={styles.spacer}></View>
-      <TouchableOpacity onPress={() => toggleNewUser} style={styles.skipBtn}>
+      <TouchableOpacity onPress={() => console.log('Skipped')} style={styles.skipBtn}>
         <NanumText style={styles.skipBtnText}>Skip</NanumText>
       </TouchableOpacity>
       <View style={styles.spacer}></View>

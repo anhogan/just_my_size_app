@@ -120,7 +120,7 @@ export default function GettingStarted() {
         <NanumText style={styles.tipText}>Search to easily find closet items</NanumText>
       </View>
       <View style={styles.spacer}></View>
-      <TouchableOpacity onPress={() => toggleNewUser} style={styles.closetBtn}>
+      <TouchableOpacity onPress={() => console.log('Finished setup')} style={styles.closetBtn}>
         <NanumText style={styles.closetText}>To My Closet</NanumText>
       </TouchableOpacity>
       <View style={styles.spacer}></View>
