@@ -117,7 +117,9 @@ const styles = StyleSheet.create({
 });
 
 export default function Profile() {
+  const database = firebase.database();
   const user = firebase.auth().currentUser;
+  const id = user.uid;
 
   const [name, setName] = React.useState(user.displayName);
   const [emailAddress, setEmailAddress] = React.useState(user.email);
@@ -152,6 +154,13 @@ export default function Profile() {
           .then(() => {
             user.updateProfile({ displayName: name })
               .then(() => {
+                database.ref('users/' + id).set({
+                  email: emailAddress,
+                  name: name,
+                  newUser: false,
+                  plan: 'Free',
+                  uid: id
+                });
                 setSuccessMessage(true);
                 setTimeout(() => {
                   setSuccessMessage(false);
@@ -193,6 +202,13 @@ export default function Profile() {
       user.updateProfile({
         displayName: name
       }).then(() => {
+        database.ref('users/' + id).set({
+          email: emailAddress,
+          name: name,
+          newUser: false,
+          plan: 'Free',
+          uid: id
+        });
         setSuccessMessage(true);
         setTimeout(() => {
           setSuccessMessage(false);
