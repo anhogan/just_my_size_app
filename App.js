@@ -78,6 +78,7 @@ export default function App() {
   auth.onAuthStateChanged(function(user) {
     if (user) {
       // Get UID from user and grab newUser data from there?
+      console.log('User data:', user);
       setUserToken(true);
     } else {
       setUserToken(null);
