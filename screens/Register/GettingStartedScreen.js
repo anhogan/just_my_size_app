@@ -1,4 +1,6 @@
 import * as React from 'react';
+import * as firebase from 'firebase';
+
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
 import { UserConsumer } from '../../contexts/UserContext';
@@ -96,6 +98,15 @@ const styles = StyleSheet.create({
 });
 
 export default function GettingStarted() {
+  const database = firebase.database();
+  const user = firebase.auth().currentUser;
+
+  const finish = () => {
+    database.ref('users/' + user.uid).set({
+      newUser: false
+    });
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.headerText}>JUST MY SIZE</Text>
@@ -120,7 +131,7 @@ export default function GettingStarted() {
         <NanumText style={styles.tipText}>Search to easily find closet items</NanumText>
       </View>
       <View style={styles.spacer}></View>
-      <TouchableOpacity onPress={() => console.log('Finished setup')} style={styles.closetBtn}>
+      <TouchableOpacity onPress={finish} style={styles.closetBtn}>
         <NanumText style={styles.closetText}>To My Closet</NanumText>
       </TouchableOpacity>
       <View style={styles.spacer}></View>

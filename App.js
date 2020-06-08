@@ -73,10 +73,6 @@ export default function App() {
   const [userId, setUserId] = React.useState(null);
   const [newUser, setNewUser] = React.useState(false);
 
-  const toggleNewUser = () => {
-    newUser ? setNewUser(false) : setNewUser(true);
-  };
-
   auth.onAuthStateChanged(function(user) {
     if (user) {
       setUserToken(true);

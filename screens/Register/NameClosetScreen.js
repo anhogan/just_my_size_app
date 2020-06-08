@@ -131,6 +131,7 @@ const styles = StyleSheet.create({
 });
 
 export default function NameCloset({ navigation }) {
+  const database = firebase.database();
   const user = firebase.auth().currentUser;
 
   const [name, setName] = React.useState('');
@@ -139,6 +140,9 @@ export default function NameCloset({ navigation }) {
   const next = () => {
     user.updateProfile({ displayName: name })
     .then(() => {
+      database.ref('users/' + user.uid).set({
+        name: name
+      });
       navigation.navigate('AddFirstItem');
     })
     .catch(() => {
@@ -147,6 +151,12 @@ export default function NameCloset({ navigation }) {
         setFailureMessage(false);
       }, 2000);
     })
+  };
+
+  const skip = () => {
+    database.ref('users/' + user.uid).set({
+      newUser: false
+    });
   };
 
   return (
@@ -172,7 +182,7 @@ export default function NameCloset({ navigation }) {
           <NanumText style={styles.btnText}>Next</NanumText>
       </TouchableOpacity>
       <View style={styles.spacer}></View>
-      <TouchableOpacity onPress={() => console.log('Skipped')} style={styles.skipBtn}>
+      <TouchableOpacity onPress={skip} style={styles.skipBtn}>
         <NanumText style={styles.skipBtnText}>Skip</NanumText>
       </TouchableOpacity>
       <View style={styles.spacer}></View>
