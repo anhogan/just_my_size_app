@@ -207,7 +207,7 @@ export default function Profile() {
           name: name,
           newUser: false,
           plan: 'Free',
-          uid: id,
+          uid: id
         });
         setSuccessMessage(true);
         setTimeout(() => {

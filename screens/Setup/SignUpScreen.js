@@ -102,6 +102,8 @@ const styles = StyleSheet.create({
 });
 
 export default function SignUp({ navigation }) {
+  const database = firebase.database();
+
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [confirmPassword, setConfirmPassword] = React.useState('');
@@ -116,7 +118,19 @@ export default function SignUp({ navigation }) {
           setPassword('');
           setConfirmPassword('');
 
-          return firebase.auth().createUserWithEmailAndPassword(email, password).catch(err => {
+          return firebase.auth().createUserWithEmailAndPassword(email, password)
+          .then(() => {
+            const user = firebase.auth().currentUser;
+
+            database.ref('users/' + user.uid).set({
+              email: email,
+              name: " ",
+              newUser: true,
+              plan: 'Free',
+              uid: user.uid
+            });
+          })
+          .catch(err => {
             if (err.code.includes('email-already-in-use')) {
               Alert.alert(
                 'Invalid Email Address',
