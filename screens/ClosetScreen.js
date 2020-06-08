@@ -22,12 +22,10 @@ export default function Closet() {
 
   const [closet, setCloset] = React.useState([]);
 
-  React.useEffect(() => {
-    const closetItemRef = database.ref('users/' + user.uid + '/closet');
-    closetItemRef.on('value', function(snapshot) {
-      setCloset(snapshot.val());
-    });
-  }, []);
+  const closetItemRef = database.ref('users/' + user.uid + '/closet');
+  closetItemRef.once('value', function(snapshot) {
+    setCloset(snapshot.val());
+  });
 
   return (
     <View style={styles.container}>
