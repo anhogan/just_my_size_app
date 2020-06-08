@@ -12,6 +12,8 @@ The two apps are independent of one another - due to how Expo and Firebase inter
 ---
 App designed to expand on the functionality of the integration and provide users with more options from a mobile device. Offering quick and convenient access to sizing information when shopping on a mobile device or in person.
 
+Design Files: https://whimsical.com/7THNtddra7DnXcGqWDZKt5
+
 ### Work on this Repo
 Prior to working on this repo, your local environment must be setup for React Native development. You will need the following programs:
 - Watchman
