@@ -1,38 +1,32 @@
 import * as React from 'react';
 
-export const UserContext = React.createContext();
+const inititalState = {
+  newUser: false
+}
+
+export const UserContext = React.createContext(inititalState);
 
 export const UserConsumer = UserContext.Consumer;
 
-// Does this have to be a class component? Rendering as a function returns a blank screen
-// Not sure what to substitute for this.props.children for a function?
-// Currently, this renders a can't find variable: toggleNewUser error on SignUp Screen ... probably for all but that one was up before I changed it
-const initialState = {
-  newUser: false
-};
+export const UserProvider = UserContext.Provider;
 
-export class UserProvider extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = initialState;
-  };
+// export const UserProvider = (Component) => {
+//   const [newUser, setNewUser] = React.useState(false);
 
-  toggleNewUser = () => {
-    this.state.newUser ? this.setState({ newUser: false }) : this.setState({ newUser: true })
-  };
+//   const toggleNewUser = () => {
+//     newUser ? setNewUser(false) : setNewUser(true);
+//   };
 
-  // const [newUser, setNewUser] = React.useState(false);
+//   return (
+//     <UserContext.Provider value={toggleNewUser}>
+//       {/* What goes here? {this.props.children} for a class component? */}
+//       {<Component />}
+//     </UserContext.Provider>
+//   );
+// };
 
-  // const toggleNewUser = () => {
-  //   newUser ? setNewUser(false) : setNewUser(true);
-  // };
-
-  render() {
-    return (
-      <UserContext.Provider value={{ toggleNewUser: toggleNewUser }}>
-        {/* What goes here? {this.props.children} for a class component? */}
-        {this.props.children}
-      </UserContext.Provider>
-    )
-  }
-}
+export const withFirebaseHOC = Component => props => (
+  <UserConsumer>
+    {state => <Component {...props} newUser={state} />}
+  </UserConsumer>
+);
