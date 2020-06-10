@@ -43,6 +43,7 @@ if (!firebase.apps.length) {
 };
 
 // const analytics = firebase.analytics();
+const database = firebase.database();
 const auth = firebase.auth();
 
 function SignInStack() {
@@ -69,19 +70,22 @@ function SetupStack() {
 export default function App() {
   const isLoadingComplete = useCachedResources();
   const [userToken, setUserToken] = React.useState(null);
-  const [newUser, setNewUser] = React.useState(false);
-
-  const toggleNewUser = () => {
-    newUser ? setNewUser(false) : setNewUser(true);
-  };
+  const [userId, setUserId] = React.useState(null);
+  const [newUser, setNewUser] = React.useState(true);
 
   auth.onAuthStateChanged(function(user) {
     if (user) {
-      // Get UID from user and grab newUser data from there?
-      console.log('User data:', user);
       setUserToken(true);
+      setUserId(user.uid);
     } else {
       setUserToken(null);
+      setUserId(null);
+    }
+  });
+
+  database.ref('users/' + userId + '/newUser').on('child_changed', function(snapshot) {
+    if (snapshot.val()) {
+      setNewUser(snapshot.val(). newUser)
     }
   });
 

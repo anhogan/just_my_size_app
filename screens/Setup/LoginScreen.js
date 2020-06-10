@@ -130,7 +130,6 @@ export default function Login({ navigation }) {
               { text: 'Return to Login' }
             ]
           );
-          console.log(err.code, err.message);
         });
       })
       .catch(err => {

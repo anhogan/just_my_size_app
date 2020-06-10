@@ -1,4 +1,6 @@
 import * as React from 'react';
+import * as firebase from 'firebase';
+
 import { View, Text, TouchableOpacity, StyleSheet, TextInput } from 'react-native';
 
 import { UserConsumer } from '../../contexts/UserContext';
@@ -117,6 +119,9 @@ const styles = StyleSheet.create({
 });
 
 export default function AddFirstItem({ navigation }) {
+  const database = firebase.database();
+  const user = firebase.auth().currentUser;
+
   const [store, setStore] = React.useState('');
   const [type, setType] = React.useState('');
   const [style, setStyle] = React.useState('');
@@ -124,6 +129,12 @@ export default function AddFirstItem({ navigation }) {
 
   const next = () => {
     navigation.navigate('GettingStarted');
+  };
+
+  const skip = () => {
+    database.ref('users/' + user.uid).update({
+      newUser: false
+    });
   };
 
   return (
@@ -175,7 +186,7 @@ export default function AddFirstItem({ navigation }) {
           <NanumText style={styles.btnText}>Next</NanumText>
       </TouchableOpacity>
       <View style={styles.spacer}></View>
-      <TouchableOpacity onPress={() => console.log('Skipped')} style={styles.skipBtn}>
+      <TouchableOpacity onPress={skip} style={styles.skipBtn}>
         <NanumText style={styles.skipBtnText}>Skip</NanumText>
       </TouchableOpacity>
       <View style={styles.spacer}></View>

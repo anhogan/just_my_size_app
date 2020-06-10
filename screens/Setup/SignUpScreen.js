@@ -130,11 +130,17 @@ export default function SignUp({ navigation }) {
               uid: user.uid,
               closet: [
                 {
-                  id: 0,
-                  store: 'Just My Size',
-                  type: 'App',
-                  style: 'Yours',
-                  size: 'The perfect one'
+                  id: 1,
+                  name: " ",
+                  items: [
+                    {
+                      id: 0,
+                      store: 'Just My Size',
+                      type: 'App',
+                      style: 'Yours',
+                      size: 'The perfect one'
+                    },
+                  ]
                 },
               ]
             });

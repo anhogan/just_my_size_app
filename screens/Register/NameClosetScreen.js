@@ -124,13 +124,15 @@ const styles = StyleSheet.create({
     backgroundColor: 'crimson', 
     width: '100%', 
     justifyContent: 'center', 
-    alignItems: 'center',           
+    alignItems: 'center',
+    padding: 2,           
     height: 60, 
     top: 35,
   },
 });
 
 export default function NameCloset({ navigation }) {
+  const database = firebase.database();
   const user = firebase.auth().currentUser;
 
   const [name, setName] = React.useState('');
@@ -139,6 +141,14 @@ export default function NameCloset({ navigation }) {
   const next = () => {
     user.updateProfile({ displayName: name })
     .then(() => {
+      database.ref('users/' + user.uid).update({
+        name: name
+      });
+
+      database.ref('users/' + user.uid + '/closet/0').update({
+        name: name
+      });
+
       navigation.navigate('AddFirstItem');
     })
     .catch(() => {
@@ -147,6 +157,12 @@ export default function NameCloset({ navigation }) {
         setFailureMessage(false);
       }, 2000);
     })
+  };
+
+  const skip = () => {
+    database.ref('users/' + user.uid).update({
+      newUser: false
+    });
   };
 
   return (
@@ -172,7 +188,7 @@ export default function NameCloset({ navigation }) {
           <NanumText style={styles.btnText}>Next</NanumText>
       </TouchableOpacity>
       <View style={styles.spacer}></View>
-      <TouchableOpacity onPress={() => console.log('Skipped')} style={styles.skipBtn}>
+      <TouchableOpacity onPress={skip} style={styles.skipBtn}>
         <NanumText style={styles.skipBtnText}>Skip</NanumText>
       </TouchableOpacity>
       <View style={styles.spacer}></View>
@@ -183,7 +199,7 @@ export default function NameCloset({ navigation }) {
       </View>
       {failureMessage ? (
         <View style={styles.failureMessage}>
-          <NanumText style={{color:'white'}}>Unable to name your closet - please try again</NanumText>
+          <NanumText style={{ color:'white' }}>Unable to name your closet. Please try again</NanumText>
         </View>
       ) : null}
     </View>

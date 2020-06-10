@@ -101,7 +101,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#8AE8F9', 
     width: '100%', 
     justifyContent: 'center', 
-    alignItems: 'center',           
+    alignItems: 'center',  
+    padding: 2,         
     height: 40, 
     top: 0,
   },
@@ -110,7 +111,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'crimson', 
     width: '100%', 
     justifyContent: 'center', 
-    alignItems: 'center',           
+    alignItems: 'center',
+    padding: 2,           
     height: 40, 
     top: 0,
   },
@@ -119,7 +121,6 @@ const styles = StyleSheet.create({
 export default function Profile() {
   const database = firebase.database();
   const user = firebase.auth().currentUser;
-  const id = user.uid;
 
   const [name, setName] = React.useState(user.displayName);
   const [emailAddress, setEmailAddress] = React.useState(user.email);
@@ -154,13 +155,18 @@ export default function Profile() {
           .then(() => {
             user.updateProfile({ displayName: name })
               .then(() => {
-                database.ref('users/' + id).set({
+                database.ref('users/' + user.uid).update({
                   email: emailAddress,
                   name: name,
                   newUser: false,
                   plan: 'Free',
                   uid: id
                 });
+
+                database.ref('users/' + user.uid + '/closet/0').update({
+                  name: name
+                });
+
                 setSuccessMessage(true);
                 setTimeout(() => {
                   setSuccessMessage(false);
@@ -202,13 +208,18 @@ export default function Profile() {
       user.updateProfile({
         displayName: name
       }).then(() => {
-        database.ref('users/' + id).set({
+        database.ref('users/' + user.uid).update({
           email: emailAddress,
           name: name,
           newUser: false,
           plan: 'Free',
           uid: id
         });
+
+        database.ref('users/' + user.uid + '/closet/0').update({
+          name: name
+        });
+
         setSuccessMessage(true);
         setTimeout(() => {
           setSuccessMessage(false);
@@ -275,27 +286,27 @@ export default function Profile() {
       </TouchableOpacity>
       {successMessage ? (
         <View style={styles.successMessage}>
-          <NanumText style={{color:'#6674DE'}}>Successfully updated profile!</NanumText>
+          <NanumText style={{ color:'#6674DE' }}>Successfully updated profile!</NanumText>
         </View>
       ) : null}
       {failureMessage ? (
         <View style={styles.failureMessage}>
-          <NanumText style={{color:'white'}}>Unable to update profile</NanumText>
+          <NanumText style={{ color:'white' }}>Unable to update profile</NanumText>
         </View>
       ) : null}
       {successEmailMessage ? (
         <View style={styles.successMessage}>
-          <NanumText style={{color:'#6674DE'}}>Password reset email sent to {user.email}!</NanumText>
+          <NanumText style={{ color:'#6674DE' }}>Password reset email sent to {user.email}!</NanumText>
         </View>
       ) : null}
       {failureEmailMessage ? (
         <View style={styles.failureMessage}>
-          <NanumText style={{color:'white'}}>There was an error sending the email. Please try again</NanumText>
+          <NanumText style={{ color:'white' }}>There was an error sending the email. Please try again</NanumText>
         </View>
       ) : null}
       {timeoutMessage ? (
         <View style={styles.failureMessage}>
-          <NanumText style={{color:'white'}}>To change your email address, please logout and log back in to verify this is your account</NanumText>
+          <NanumText style={{ color:'white' }}>To change your email address, please logout and log back in to verify this is your account</NanumText>
         </View>
       ) : null}
     </View>

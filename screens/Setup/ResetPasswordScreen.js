@@ -1,9 +1,9 @@
 import * as React from 'react';
+import * as firebase from 'firebase';
+
 import { View, Text, TouchableOpacity, StyleSheet, TextInput, Alert } from 'react-native';
 
 import { NanumText } from '../../components/StyledText';
-
-import * as firebase from 'firebase';
 
 const styles = StyleSheet.create({
   container: {
@@ -92,7 +92,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#8AE8F9', 
     width: '100%', 
     justifyContent: 'center', 
-    alignItems: 'center',           
+    alignItems: 'center',
+    padding: 2,          
     height: 60, 
     top: 35,
   },
@@ -101,7 +102,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'crimson', 
     width: '100%', 
     justifyContent: 'center', 
-    alignItems: 'center',           
+    alignItems: 'center',
+    padding: 2,         
     height: 60, 
     top: 35,
   },
@@ -137,7 +139,7 @@ export default function ResetPassword({ navigation }) {
         setFailureEmailMessage(true);
         setTimeout(() => {
           setFailureEmailMessage(false);
-        }, 2000);
+        }, 5000);
       })
     }
   };
@@ -169,12 +171,12 @@ export default function ResetPassword({ navigation }) {
       </TouchableOpacity>
       {successEmailMessage ? (
         <View style={styles.successMessage}>
-          <NanumText style={{color:'#6674DE'}}>Password reset email sent to {email}!</NanumText>
+          <NanumText style={{ color:'#6674DE' }}>Password reset email sent to {email}!</NanumText>
         </View>
       ) : null}
       {failureEmailMessage ? (
         <View style={styles.failureMessage}>
-          <NanumText style={{color:'white'}}>No account matching {email} - please enter a valid email address</NanumText>
+          <NanumText style={{ color:'white' }}>No account matching {email}. Please enter a valid email address</NanumText>
         </View>
       ) : null}
     </View>
