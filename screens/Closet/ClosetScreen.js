@@ -4,7 +4,7 @@ import * as firebase from 'firebase';
 import { Image, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 
-import { NanumText } from '../components/StyledText';
+import { NanumText } from '../../components/StyledText';
 
 const styles = StyleSheet.create({
   container: {

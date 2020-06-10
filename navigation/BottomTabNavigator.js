@@ -9,7 +9,8 @@ import Colors from '../constants/Colors';
 
 import Profile from '../screens/ProfileScreen'
 import Search from '../screens/SearchScreen';
-import Closet from '../screens/ClosetScreen';
+import Closet from '../screens/Closet/ClosetScreen';
+import ClosetNavigator from '../screens/ClosetNavigator';
 
 const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = 'Closet';
@@ -54,7 +55,7 @@ export default function BottomTabNavigator({ navigation, route }) {
       />
       <BottomTab.Screen
         name="Closet"
-        component={Closet}
+        component={ClosetNavigator}
         options={{
           title: '',
           tabBarIcon: ({ focused }) => 
