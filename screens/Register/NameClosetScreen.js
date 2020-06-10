@@ -124,7 +124,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'crimson', 
     width: '100%', 
     justifyContent: 'center', 
-    alignItems: 'center',           
+    alignItems: 'center',
+    padding: 2,           
     height: 60, 
     top: 35,
   },
@@ -147,7 +148,7 @@ export default function NameCloset({ navigation }) {
       database.ref('users/' + user.uid + '/closet/0').update({
         name: name
       });
-      
+
       navigation.navigate('AddFirstItem');
     })
     .catch(() => {
@@ -198,7 +199,7 @@ export default function NameCloset({ navigation }) {
       </View>
       {failureMessage ? (
         <View style={styles.failureMessage}>
-          <NanumText style={{color:'white'}}>Unable to name your closet - please try again</NanumText>
+          <NanumText style={{ color:'white' }}>Unable to name your closet. Please try again</NanumText>
         </View>
       ) : null}
     </View>
