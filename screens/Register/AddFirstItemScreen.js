@@ -1,4 +1,6 @@
 import * as React from 'react';
+import * as firebase from 'firebase';
+
 import { View, Text, TouchableOpacity, StyleSheet, TextInput } from 'react-native';
 
 import { UserConsumer } from '../../contexts/UserContext';
@@ -130,7 +132,7 @@ export default function AddFirstItem({ navigation }) {
   };
 
   const skip = () => {
-    database.ref('users/' + user.uid).set({
+    database.ref('users/' + user.uid).update({
       newUser: false
     });
   };

@@ -154,12 +154,18 @@ export default function Profile() {
           .then(() => {
             user.updateProfile({ displayName: name })
               .then(() => {
-                database.ref('users/' + id).set({
+                database.ref('users/' + id).update({
                   email: emailAddress,
                   name: name,
                   newUser: false,
                   plan: 'Free',
-                  uid: id
+                  uid: id,
+                  closet: [
+                    {
+                      id: 1,
+                      name: name
+                    }
+                  ]
                 });
                 setSuccessMessage(true);
                 setTimeout(() => {
@@ -202,12 +208,18 @@ export default function Profile() {
       user.updateProfile({
         displayName: name
       }).then(() => {
-        database.ref('users/' + id).set({
+        database.ref('users/' + id).update({
           email: emailAddress,
           name: name,
           newUser: false,
           plan: 'Free',
-          uid: id
+          uid: id,
+          closet: [
+            {
+              id: 1,
+              name: name
+            }
+          ]
         });
         setSuccessMessage(true);
         setTimeout(() => {

@@ -22,17 +22,19 @@ export default function Closet() {
 
   const [closet, setCloset] = React.useState([]);
 
-  if (user) {
-    const closetItemRef = database.ref('users/' + user.uid + '/closet');
-    closetItemRef.once('value', function(snapshot) {
-      setCloset(snapshot.val());
-    });
-  };
+  React.useEffect(() => {
+    if (user) {
+      const closetItemRef = database.ref('users/' + user.uid + '/closet');
+      closetItemRef.once('value', function(snapshot) {
+        setCloset(snapshot.val());
+      });
+    };
+  }, []);
 
   return (
     <View style={styles.container}>
       <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-        {closet.length > 1 ? (
+        {closet !== null && closet.length > 1 ? (
           <NanumText>There are closet items</NanumText>
         ) : (
           <NanumText>There are no items in your closet. Add your first one by clicking the '+' button!</NanumText>

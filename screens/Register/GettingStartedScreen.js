@@ -102,7 +102,7 @@ export default function GettingStarted() {
   const user = firebase.auth().currentUser;
 
   const finish = () => {
-    database.ref('users/' + user.uid).set({
+    database.ref('users/' + user.uid).update({
       newUser: false
     });
   };

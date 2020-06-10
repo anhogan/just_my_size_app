@@ -140,8 +140,14 @@ export default function NameCloset({ navigation }) {
   const next = () => {
     user.updateProfile({ displayName: name })
     .then(() => {
-      database.ref('users/' + user.uid).set({
-        name: name
+      database.ref('users/' + user.uid).update({
+        name: name,
+        closet: [
+          {
+            id: 1,
+            name: name
+          }
+        ]
       });
       navigation.navigate('AddFirstItem');
     })
@@ -154,7 +160,7 @@ export default function NameCloset({ navigation }) {
   };
 
   const skip = () => {
-    database.ref('users/' + user.uid).set({
+    database.ref('users/' + user.uid).update({
       newUser: false
     });
   };
