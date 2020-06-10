@@ -6,7 +6,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import useCachedResources from './hooks/useCachedResources';
-import { UserProvider, UserConsumer } from './contexts/UserContext';
 import BottomTabNavigator from './navigation/BottomTabNavigator';
 import LinkingConfiguration from './navigation/LinkingConfiguration';
 
@@ -85,7 +84,7 @@ export default function App() {
 
   database.ref('users/' + userId + '/newUser').on('child_changed', function(snapshot) {
     if (snapshot.val()) {
-      setNewUser(snapshot.val(). newUser)
+      setNewUser(snapshot.val().newUser)
     }
   });
 
