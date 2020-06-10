@@ -86,8 +86,9 @@ export default function App() {
   React.useEffect(() => {
     const userRef = database.ref('users/' + userId);
     userRef.once('value', function(snapshot) {
-      console.log(snapshot.val())
-      setNewUser(snapshot.val().newUser)
+      if (snapshot.val()) {
+        setNewUser(snapshot.val().newUser)
+      }
     });
   }, []);
 
