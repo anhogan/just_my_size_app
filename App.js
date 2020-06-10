@@ -71,7 +71,7 @@ export default function App() {
   const isLoadingComplete = useCachedResources();
   const [userToken, setUserToken] = React.useState(null);
   const [userId, setUserId] = React.useState(null);
-  const [newUser, setNewUser] = React.useState(false);
+  const [newUser, setNewUser] = React.useState(true);
 
   auth.onAuthStateChanged(function(user) {
     if (user) {
@@ -83,7 +83,7 @@ export default function App() {
     }
   });
 
-  database.ref('users/' + userId).once('value', function(snapshot) {
+  database.ref('users/' + userId + '/newUser').on('child_changed', function(snapshot) {
     if (snapshot.val()) {
       setNewUser(snapshot.val(). newUser)
     }

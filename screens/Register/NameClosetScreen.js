@@ -141,14 +141,13 @@ export default function NameCloset({ navigation }) {
     user.updateProfile({ displayName: name })
     .then(() => {
       database.ref('users/' + user.uid).update({
-        name: name,
-        closet: [
-          {
-            id: 1,
-            name: name
-          }
-        ]
+        name: name
       });
+
+      database.ref('users/' + user.uid + '/closet/0').update({
+        name: name
+      });
+      
       navigation.navigate('AddFirstItem');
     })
     .catch(() => {
