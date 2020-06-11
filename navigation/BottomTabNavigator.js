@@ -83,18 +83,20 @@ export default function BottomTabNavigator({ navigation, route }) {
       />
     </BottomTab.Navigator>
   );
-}
+};
 
 function getHeaderTitle(route) {
-  const routeName = route.state?.routes[route.state.index]?.name ?? INITIAL_ROUTE_NAME;
+  const routeName = route.state ? route.state.routes[route.state.index].name : route.params?.screen || INITIAL_ROUTE_NAME;
   const user = firebase.auth().currentUser;
   const [data, setData] = React.useState(null);
 
-  firebase.database().ref('users/' + user.uid).once('value', function(snapshot) {
-    if (snapshot.val()) {
-      setData(snapshot.val())
-    };
-  });
+  if (user) {
+    firebase.database().ref('users/' + user.uid).once('value', function(snapshot) {
+      if (snapshot.val()) {
+        setData(snapshot.val())
+      };
+    });
+  };
 
   if (data !== null) {
     let nameLen = data.name.split(" ");
@@ -157,6 +159,68 @@ function getHeaderTitle(route) {
         return `ADD A CLOSET`;
       case 'UpdateCloset':
         return `UPDATE CLOSET`;
-    }
-  }
-}
+    };
+  };
+};
+
+// route.state > route.state.routes[1].state.routeNames
+// Object {
+//   "history": Array [
+//     Object {
+//       "key": "Closet-7KRGGtlXn-jI4YLXNCHNe",
+//       "type": "route",
+//     },
+//   ],
+//   "index": 1,
+//   "key": "tab-Q-mt3t8CjW-_yEGM8LE7Z",
+//   "routeNames": Array [
+//     "Profile",
+//     "Closet",
+//     "Search",
+//   ],
+//   "routes": Array [
+//     Object {
+//       "key": "Profile-3oqXOTQanrKOBiP3QB85t",
+//       "name": "Profile",
+//       "params": undefined,
+//     },
+//     Object {
+//       "key": "Closet-7KRGGtlXn-jI4YLXNCHNe",
+//       "name": "Closet",
+//       "params": undefined,
+//       "state": Object {
+//         "index": 1,
+//         "key": "stack-O8qnzt37I6A7gCcZTCDBy",
+//         "routeNames": Array [
+//           "Closet",
+//           "AddItem",
+//           "ScanBarcode",
+//           "UpdateItem",
+//           "AddCloset",
+//           "UpdateCloset",
+//         ],
+//         "routes": Array [
+//           Object {
+//             "key": "Closet-Ih-RNWi28cmtZI4p-U4YA",
+//             "name": "Closet",
+//             "params": undefined,
+//           },
+//           Object {
+//             "key": "AddItem-bjFWrtK8_nNm18TK2DoRp",
+//             "name": "AddItem",
+//             "params": undefined,
+//           },
+//         ],
+//         "stale": false,
+//         "type": "stack",
+//       },
+//     },
+//     Object {
+//       "key": "Search-VqU0OZxVGrY1ELDsst2yC",
+//       "name": "Search",
+//       "params": undefined,
+//     },
+//   ],
+//   "stale": false,
+//   "type": "tab",
+// }

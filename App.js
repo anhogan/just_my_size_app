@@ -70,7 +70,7 @@ export default function App() {
   const isLoadingComplete = useCachedResources();
   const [userToken, setUserToken] = React.useState(null);
   const [userId, setUserId] = React.useState(null);
-  const [newUser, setNewUser] = React.useState(null);
+  const [newUser, setNewUser] = React.useState(false);
 
   auth.onAuthStateChanged(function(user) {
     if (user) {
