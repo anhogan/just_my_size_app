@@ -88,9 +88,16 @@ export default function BottomTabNavigator({ navigation, route }) {
 function getHeaderTitle(route) {
   const routeName = route.state?.routes[route.state.index]?.name ?? INITIAL_ROUTE_NAME;
   const user = firebase.auth().currentUser;
+  const [data, setData] = React.useState(null);
+
+  firebase.database().ref('users/' + user.uid).once('value', function(snapshot) {
+    if (snapshot.val()) {
+      setData(snapshot.val())
+    };
+  });
 
   if (user.displayName !== null) {
-    let nameLen = user.displayName.split(" ");
+    let nameLen = data.name.split(" ");
 
     if (nameLen.length > 1) {
       let userName = nameLen[0] + ' ' + nameLen[1];
@@ -101,15 +108,35 @@ function getHeaderTitle(route) {
           return `${userName.toUpperCase()}'S CLOSET`;
         case 'Search':
           return `SEARCH CLOSET`;
+        case 'AddItem':
+          return `ADD ITEM TO ${userName.toUpperCase()}'S CLOSET`;
+        case 'ScanBarcode':
+          return `ADD ITEM TO ${userName.toUpperCase()}'S CLOSET`;
+        case 'UpdateItem':
+          return `UPDATE ITEM IN ${userName.toUpperCase()}'S CLOSET`;
+        case 'AddCloset':
+          return `ADD A CLOSET`;
+        case 'UpdateCloset':
+          return `UPDATE ${userName.toUpperCase()}'S CLOSET`;
       }
     } else {
       switch (routeName) {
         case 'Profile':
-          return `${user.displayName.toUpperCase()}'S PROFILE`;
+          return `${data.name.toUpperCase()}'S PROFILE`;
         case 'Closet':
-          return `${user.displayName.toUpperCase()}'S CLOSET`;
+          return `${data.name.toUpperCase()}'S CLOSET`;
         case 'Search':
           return `SEARCH CLOSET`;
+        case 'AddItem':
+          return `ADD ITEM TO ${data.name.toUpperCase()}'S CLOSET`;
+        case 'ScanBarcode':
+          return `ADD ITEM TO ${data.name.toUpperCase()}'S CLOSET`;
+        case 'UpdateItem':
+          return `UPDATE ITEM IN ${data.name.toUpperCase()}'S CLOSET`;
+        case 'AddCloset':
+          return `ADD A CLOSET`;
+        case 'UpdateCloset':
+          return `UPDATE ${data.name.toUpperCase()}'S CLOSET`;
       };
     };
   } else {
@@ -120,6 +147,16 @@ function getHeaderTitle(route) {
         return `CLOSET`;
       case 'Search':
         return `SEARCH CLOSET`;
+      case 'AddItem':
+        return `ADD ITEM TO CLOSET`;
+      case 'ScanBarcode':
+        return `ADD ITEM TO CLOSET`;
+      case 'UpdateItem':
+        return `UPDATE ITEM IN CLOSET`;
+      case 'AddCloset':
+        return `ADD A CLOSET`;
+      case 'UpdateCloset':
+        return `UPDATE CLOSET`;
     }
   }
 }
