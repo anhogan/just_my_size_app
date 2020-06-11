@@ -96,7 +96,7 @@ function getHeaderTitle(route) {
     };
   });
 
-  if (user.displayName !== null) {
+  if (data !== null) {
     let nameLen = data.name.split(" ");
 
     if (nameLen.length > 1) {
