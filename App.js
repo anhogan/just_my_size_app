@@ -76,11 +76,11 @@ export default function App() {
     if (user) {
       setUserToken(true);
       setUserId(user.uid);
-      database.ref('users/' + user.uid + '/newUser').once('value', function(snapshot) {
-        if (snapshot.val()) {
-          setNewUser(snapshot.val())
-        }
-      });
+      // database.ref('users/' + user.uid + '/newUser').once('value', function(snapshot) {
+      //   if (snapshot.val()) {
+      //     setNewUser(snapshot.val())
+      //   }
+      // });
     } else {
       setUserToken(null);
       setUserId(null);
