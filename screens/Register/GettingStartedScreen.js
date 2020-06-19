@@ -3,7 +3,6 @@ import * as firebase from 'firebase';
 
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
-import { UserConsumer } from '../../contexts/UserContext';
 import { NanumText } from '../../components/StyledText';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';

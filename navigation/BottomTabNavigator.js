@@ -9,7 +9,8 @@ import Colors from '../constants/Colors';
 
 import Profile from '../screens/ProfileScreen'
 import Search from '../screens/SearchScreen';
-import Closet from '../screens/ClosetScreen';
+import Closet from '../screens/Closet/ClosetScreen';
+import ClosetNavigator from '../screens/ClosetNavigator';
 
 const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = 'Closet';
@@ -54,7 +55,7 @@ export default function BottomTabNavigator({ navigation, route }) {
       />
       <BottomTab.Screen
         name="Closet"
-        component={Closet}
+        component={ClosetNavigator}
         options={{
           title: '',
           tabBarIcon: ({ focused }) => 
@@ -82,14 +83,23 @@ export default function BottomTabNavigator({ navigation, route }) {
       />
     </BottomTab.Navigator>
   );
-}
+};
 
 function getHeaderTitle(route) {
-  const routeName = route.state?.routes[route.state.index]?.name ?? INITIAL_ROUTE_NAME;
+  const routeName = route.state ? route.state.routes[route.state.index].name : route.params?.screen || INITIAL_ROUTE_NAME;
   const user = firebase.auth().currentUser;
+  const [data, setData] = React.useState(null);
 
-  if (user.displayName !== null) {
-    let nameLen = user.displayName.split(" ");
+  if (user) {
+    firebase.database().ref('users/' + user.uid).once('value', function(snapshot) {
+      if (snapshot.val()) {
+        setData(snapshot.val())
+      };
+    });
+  };
+
+  if (data !== null) {
+    let nameLen = data.name.split(" ");
 
     if (nameLen.length > 1) {
       let userName = nameLen[0] + ' ' + nameLen[1];
@@ -100,15 +110,35 @@ function getHeaderTitle(route) {
           return `${userName.toUpperCase()}'S CLOSET`;
         case 'Search':
           return `SEARCH CLOSET`;
+        case 'AddItem':
+          return `ADD ITEM TO ${userName.toUpperCase()}'S CLOSET`;
+        case 'ScanBarcode':
+          return `ADD ITEM TO ${userName.toUpperCase()}'S CLOSET`;
+        case 'UpdateItem':
+          return `UPDATE ITEM IN ${userName.toUpperCase()}'S CLOSET`;
+        case 'AddCloset':
+          return `ADD A CLOSET`;
+        case 'UpdateCloset':
+          return `UPDATE ${userName.toUpperCase()}'S CLOSET`;
       }
     } else {
       switch (routeName) {
         case 'Profile':
-          return `${user.displayName.toUpperCase()}'S PROFILE`;
+          return `${data.name.toUpperCase()}'S PROFILE`;
         case 'Closet':
-          return `${user.displayName.toUpperCase()}'S CLOSET`;
+          return `${data.name.toUpperCase()}'S CLOSET`;
         case 'Search':
           return `SEARCH CLOSET`;
+        case 'AddItem':
+          return `ADD ITEM TO ${data.name.toUpperCase()}'S CLOSET`;
+        case 'ScanBarcode':
+          return `ADD ITEM TO ${data.name.toUpperCase()}'S CLOSET`;
+        case 'UpdateItem':
+          return `UPDATE ITEM IN ${data.name.toUpperCase()}'S CLOSET`;
+        case 'AddCloset':
+          return `ADD A CLOSET`;
+        case 'UpdateCloset':
+          return `UPDATE ${data.name.toUpperCase()}'S CLOSET`;
       };
     };
   } else {
@@ -119,6 +149,78 @@ function getHeaderTitle(route) {
         return `CLOSET`;
       case 'Search':
         return `SEARCH CLOSET`;
-    }
-  }
-}
+      case 'AddItem':
+        return `ADD ITEM TO CLOSET`;
+      case 'ScanBarcode':
+        return `ADD ITEM TO CLOSET`;
+      case 'UpdateItem':
+        return `UPDATE ITEM IN CLOSET`;
+      case 'AddCloset':
+        return `ADD A CLOSET`;
+      case 'UpdateCloset':
+        return `UPDATE CLOSET`;
+    };
+  };
+};
+
+// route.state > route.state.routes[1].state.routeNames
+// Object {
+//   "history": Array [
+//     Object {
+//       "key": "Closet-7KRGGtlXn-jI4YLXNCHNe",
+//       "type": "route",
+//     },
+//   ],
+//   "index": 1,
+//   "key": "tab-Q-mt3t8CjW-_yEGM8LE7Z",
+//   "routeNames": Array [
+//     "Profile",
+//     "Closet",
+//     "Search",
+//   ],
+//   "routes": Array [
+//     Object {
+//       "key": "Profile-3oqXOTQanrKOBiP3QB85t",
+//       "name": "Profile",
+//       "params": undefined,
+//     },
+//     Object {
+//       "key": "Closet-7KRGGtlXn-jI4YLXNCHNe",
+//       "name": "Closet",
+//       "params": undefined,
+//       "state": Object {
+//         "index": 1,
+//         "key": "stack-O8qnzt37I6A7gCcZTCDBy",
+//         "routeNames": Array [
+//           "Closet",
+//           "AddItem",
+//           "ScanBarcode",
+//           "UpdateItem",
+//           "AddCloset",
+//           "UpdateCloset",
+//         ],
+//         "routes": Array [
+//           Object {
+//             "key": "Closet-Ih-RNWi28cmtZI4p-U4YA",
+//             "name": "Closet",
+//             "params": undefined,
+//           },
+//           Object {
+//             "key": "AddItem-bjFWrtK8_nNm18TK2DoRp",
+//             "name": "AddItem",
+//             "params": undefined,
+//           },
+//         ],
+//         "stale": false,
+//         "type": "stack",
+//       },
+//     },
+//     Object {
+//       "key": "Search-VqU0OZxVGrY1ELDsst2yC",
+//       "name": "Search",
+//       "params": undefined,
+//     },
+//   ],
+//   "stale": false,
+//   "type": "tab",
+// }

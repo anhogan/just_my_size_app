@@ -6,7 +6,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import useCachedResources from './hooks/useCachedResources';
-import { UserProvider, UserConsumer } from './contexts/UserContext';
 import BottomTabNavigator from './navigation/BottomTabNavigator';
 import LinkingConfiguration from './navigation/LinkingConfiguration';
 
@@ -71,23 +70,29 @@ export default function App() {
   const isLoadingComplete = useCachedResources();
   const [userToken, setUserToken] = React.useState(null);
   const [userId, setUserId] = React.useState(null);
-  const [newUser, setNewUser] = React.useState(true);
+  const [newUser, setNewUser] = React.useState(false);
 
   auth.onAuthStateChanged(function(user) {
     if (user) {
       setUserToken(true);
       setUserId(user.uid);
+      // database.ref('users/' + user.uid + '/newUser').once('value', function(snapshot) {
+      //   if (snapshot.val()) {
+      //     setNewUser(snapshot.val())
+      //   }
+      // });
     } else {
       setUserToken(null);
       setUserId(null);
     }
   });
 
-  database.ref('users/' + userId + '/newUser').on('child_changed', function(snapshot) {
-    if (snapshot.val()) {
-      setNewUser(snapshot.val(). newUser)
-    }
-  });
+  // database.ref('users/' + userId + '/newUser').on('value', function(snapshot) {
+  //   console.log('Changed status', snapshot.val())
+  //   if (snapshot.val()) {
+  //     setNewUser(snapshot.val())
+  //   }
+  // });
 
   if (!isLoadingComplete) {
     return null;
