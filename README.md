@@ -6,13 +6,21 @@ The Google Chrome extension can be added to your browser using this link: https:
 
 The repository for the developer version and source code can be found here: https://github.com/anhogan/just-my-size
 
-The two apps are independent of one another - due to how Expo and Firebase interact, there is not a built in way to set up user authentication through a Google account. Expo works off the Firebase JS SDK which requires an http, or https, address to authenticate with Google. A refactor into React Native, or into Swift and Katlin may be necessary to integrate the extension with the app.
+The two apps are independent of one another - due to how Expo and Firebase interact, there is not a built in way to set up user authentication through a Google account. Expo works off the Firebase JS SDK which requires an http, or https, address to authenticate with Google. A refactor into React Native, or into Swift and Katlin, may be necessary to integrate the extension with the app.
 
-## React Native App
+## Expo App
 ---
 App designed to expand on the functionality of the integration and provide users with more options from a mobile device. Offering quick and convenient access to sizing information when shopping on a mobile device or in person.
 
+Built with React Native via Expo
+
 Design Files: https://whimsical.com/7THNtddra7DnXcGqWDZKt5
+
+## Status
+The app is currently in development mode and not live in either the App Store or Google Play Store. Closet Screen CRUD, Closet Screen UI, and adding security to the Firebase Realtime Database are the remaining functionality issues until first version is released.
+
+## Known Issues
+All known issues, or currently in progress features, can be found under the issues tab.
 
 ### Work on this Repo
 Prior to working on this repo, your local environment must be setup for React Native development. You will need the following programs:
