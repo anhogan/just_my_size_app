@@ -1,19 +1,10 @@
 import * as React from 'react';
 import * as firebase from 'firebase';
 
-import { Image, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Image, Platform, Text, TouchableOpacity, View } from 'react-native';
 
+import { styles } from '../../../assets/styles/ScanBarcodeScreenStyles';
 import { NanumText } from '../../components/StyledText';
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-  contentContainer: {
-    paddingTop: 30,
-  },
-});
 
 // TODO: Part of Scan Barcode enhancement
 export default function ScanBarcode() {

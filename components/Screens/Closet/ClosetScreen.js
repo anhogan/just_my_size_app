@@ -1,31 +1,14 @@
 import * as React from 'react';
 import * as firebase from 'firebase';
 
-import { Image, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Image, Platform, Text, TouchableOpacity, View } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 import ActionButton from 'react-native-action-button';
 import { ScrollView } from 'react-native-gesture-handler';
 
+import { styles } from '../../../assets/styles/ClosetScreenStyles';
 import { NanumText } from '../../StyledText';
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-  contentContainer: {
-    paddingTop: 30,
-  },
-  actionButton:{
-    top: '1875%',
-  },
-  actionButtonIcon: {
-    fontSize: 20,
-    height: 22,
-    color: 'white',
-  },
-});
 
 export default function Closet({ navigation }) {
   const database = firebase.database();
