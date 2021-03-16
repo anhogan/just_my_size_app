@@ -49,7 +49,7 @@ export default function Login({ navigation }) {
         <NanumText style={styles.btnText}>Login</NanumText>
       </TouchableOpacity>
       <View style={styles.spacer}></View>
-      <TouchableOpacity onPress={createAccount} style={styles.signUpBtn}>
+      <TouchableOpacity onPress={logIn} style={styles.signUpBtn}>
         <NanumText style={styles.signUpBtnText}>Create Account</NanumText>
       </TouchableOpacity>
       <View style={styles.spacer}></View>

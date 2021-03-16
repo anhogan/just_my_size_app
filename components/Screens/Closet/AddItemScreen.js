@@ -4,7 +4,7 @@ import * as firebase from 'firebase';
 import { Image, Platform, Text, TouchableOpacity, View } from 'react-native';
 
 import { styles } from '../../../assets/styles/AddItemScreenStyles';
-import { NanumText } from '../../components/StyledText';
+import { NanumText } from '../../../components/StyledText';
 
 export default function AddItem() {
   const database = firebase.database();

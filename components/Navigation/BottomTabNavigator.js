@@ -9,7 +9,7 @@ import Colors from '../../constants/Colors';
 
 import Profile from '../Screens/ProfileScreen'
 import Search from '../Screens/SearchScreen';
-import ClosetNavigator from '../Screens/ClosetNavigator';
+import ClosetNavigator from './ClosetNavigator';
 
 const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = 'Closet';

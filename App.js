@@ -12,8 +12,7 @@ import LinkingConfiguration from './components/Navigation/LinkingConfiguration';
 import SignInStack from './components/Navigation/Stacks/SignInStack';
 import NewUserRegistrationStack from './components/Navigation/Stacks/NewUserRegistrationStack';
 
-import { API_KEY, AUTH_DOMAIN, DATABASE_URL, PROJECT_ID, STORAGE_BUCKET, MESSAGING_SENDER_ID, APP_ID, MEASUREMENT_ID } from 'react-native-dotenv'
-import SignInStack from './components/screens/Setup/SignInStack';
+import Constants from 'expo-constants';
 
 const styles = StyleSheet.create({
   container: {
@@ -24,22 +23,24 @@ const styles = StyleSheet.create({
 
 const Stack = createStackNavigator();
 
+console.log(Constants.manifest.extra.databaseURL)
+
 const firebaseConfig = {
-  apiKey: API_KEY,
-  authDomain: AUTH_DOMAIN,
-  databaseURL: DATABASE_URL,
-  projectId: PROJECT_ID,
-  storageBucket: STORAGE_BUCKET,
-  messagingSenderId: MESSAGING_SENDER_ID,
-  appId: APP_ID,
-  measurementId: MEASUREMENT_ID
+  apiKey: Constants.manifest.extra.apiKey,
+  authDomain: Constants.manifest.extra.authDomain,
+  databaseURL: Constants.manifest.extra.databaseURL,
+  projectId: Constants.manifest.extra.projectId,
+  storageBucket: Constants.manifest.extra.storageBucket,
+  messagingSenderId: Constants.manifest.extra.messagingSenderId,
+  appId: Constants.manifest.extra.appId,
+  measurementId: Constants.manifest.extra.measurementId
 };
 
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 };
 
-const analytics = firebase.analytics();
+// const analytics = firebase.analytics();
 const database = firebase.database();
 const auth = firebase.auth();
 

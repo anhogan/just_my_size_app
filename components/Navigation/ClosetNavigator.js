@@ -2,12 +2,12 @@ import * as React from 'react';
 
 import { createStackNavigator } from '@react-navigation/stack';
 
-import Closet from './Closet/ClosetScreen';
-import AddItem from './Closet/AddItemScreen';
-import ScanBarcode from './Closet/ScanBarcodeScreen';
-import UpdateItem from './Closet/UpdateItemScreen';
-import AddCloset from './Closet/AddClosetScreen';
-import UpdateCloset from './Closet/UpdateClosetScreen';
+import Closet from '../Screens/Closet/ClosetScreen';
+import AddItem from '../Screens/Closet/AddItemScreen';
+import ScanBarcode from '../Screens/Closet/ScanBarcodeScreen';
+import UpdateItem from '../Screens/Closet/UpdateItemScreen';
+import AddCloset from '../Screens/Closet/AddClosetScreen';
+import UpdateCloset from '../Screens/Closet/UpdateClosetScreen';
 
 const Stack = createStackNavigator();
 

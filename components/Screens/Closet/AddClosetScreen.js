@@ -4,7 +4,7 @@ import * as firebase from 'firebase';
 import { Image, Platform, Text, TouchableOpacity, View } from 'react-native';
 
 import { styles } from '../../../assets/styles/AddClosetScreenStyles';
-import { NanumText } from '../../components/StyledText';
+import { NanumText } from '../../../components/StyledText';
 
 // TODO: Part of Stylist enhancement
 export default function AddCloset() {

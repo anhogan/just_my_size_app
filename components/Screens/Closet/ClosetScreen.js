@@ -8,7 +8,7 @@ import ActionButton from 'react-native-action-button';
 import { ScrollView } from 'react-native-gesture-handler';
 
 import { styles } from '../../../assets/styles/ClosetScreenStyles';
-import { NanumText } from '../../StyledText';
+import { NanumText } from '../../../components/StyledText';
 
 export default function Closet({ navigation }) {
   const database = firebase.database();

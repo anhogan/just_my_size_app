@@ -4,7 +4,7 @@ import * as firebase from 'firebase';
 import { Image, Platform, Text, TouchableOpacity, View } from 'react-native';
 
 import { styles } from '../../../assets/styles/ScanBarcodeScreenStyles';
-import { NanumText } from '../../components/StyledText';
+import { NanumText } from '../../../components/StyledText';
 
 // TODO: Part of Scan Barcode enhancement
 export default function ScanBarcode() {

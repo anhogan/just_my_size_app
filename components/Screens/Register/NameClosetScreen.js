@@ -4,7 +4,7 @@ import * as firebase from 'firebase';
 import { View, Text, TouchableOpacity, TextInput } from 'react-native';
 
 import { styles } from '../../../assets/styles/NameClosetScreenStyles';
-import { NanumText } from '../../StyledText';
+import { NanumText } from '../../../components/StyledText';
 import { FontAwesome } from '@expo/vector-icons';
 
 export default function NameCloset({ navigation }) {

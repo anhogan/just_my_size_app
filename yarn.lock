@@ -3087,7 +3087,7 @@ domexception@^1.0.1:
   dependencies:
     webidl-conversions "^4.0.2"
 
-dotenv@^8.0.0:
+dotenv@^8.2.0:
   version "8.2.0"
   resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-8.2.0.tgz#97e619259ada750eea3e4ea3e26bceea5424b16a"
   integrity sha512-8sJ78ElpbDJBHNeBzUbUVLsqKdccaa/BXF1uPTw3GrvQTBgrQrtObr2mUrE38vzYd8cEv+m/JBfDLioYcfXoaw==
@@ -6453,13 +6453,6 @@ react-native-action-button@^2.8.5:
   integrity sha512-BvGZpzuGeuFR2Y6j93+vKiSqDhsF87VHvNXFs/qEYKfzT4b1ASAT/GQbgS6gNt4jRJCUnJWYrIwlBzRjesZQmQ==
   dependencies:
     prop-types "^15.5.10"
-
-react-native-dotenv@^2.5.3:
-  version "2.5.3"
-  resolved "https://registry.yarnpkg.com/react-native-dotenv/-/react-native-dotenv-2.5.3.tgz#ec70186d2b1491b0519647c53bf91f34395377a3"
-  integrity sha512-Fibw5q6vy91aRwol7yO6U9Om+EyE7Vs4pO70AYGRkDuMkaQ4EIyYw9mmiPcKo6VFCwlpE8y1AZImxoKREFASXA==
-  dependencies:
-    dotenv "^8.0.0"
 
 react-native-gesture-handler@~1.6.0:
   version "1.6.1"

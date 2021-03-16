@@ -4,7 +4,7 @@ import * as firebase from 'firebase';
 import { View, Text, TouchableOpacity } from 'react-native';
 
 import { styles } from '../../../assets/styles/GettingStartedScreenStyles';
-import { NanumText } from '../../StyledText';
+import { NanumText } from '../../../components/StyledText';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 
