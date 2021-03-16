@@ -5,12 +5,11 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 
-import Colors from '../constants/Colors';
+import Colors from '../../constants/Colors';
 
-import Profile from '../screens/ProfileScreen'
-import Search from '../screens/SearchScreen';
-import Closet from '../screens/Closet/ClosetScreen';
-import ClosetNavigator from '../screens/ClosetNavigator';
+import Profile from '../Screens/ProfileScreen'
+import Search from '../Screens/SearchScreen';
+import ClosetNavigator from '../Screens/ClosetNavigator';
 
 const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = 'Closet';
@@ -162,65 +161,3 @@ function getHeaderTitle(route) {
     };
   };
 };
-
-// route.state > route.state.routes[1].state.routeNames
-// Object {
-//   "history": Array [
-//     Object {
-//       "key": "Closet-7KRGGtlXn-jI4YLXNCHNe",
-//       "type": "route",
-//     },
-//   ],
-//   "index": 1,
-//   "key": "tab-Q-mt3t8CjW-_yEGM8LE7Z",
-//   "routeNames": Array [
-//     "Profile",
-//     "Closet",
-//     "Search",
-//   ],
-//   "routes": Array [
-//     Object {
-//       "key": "Profile-3oqXOTQanrKOBiP3QB85t",
-//       "name": "Profile",
-//       "params": undefined,
-//     },
-//     Object {
-//       "key": "Closet-7KRGGtlXn-jI4YLXNCHNe",
-//       "name": "Closet",
-//       "params": undefined,
-//       "state": Object {
-//         "index": 1,
-//         "key": "stack-O8qnzt37I6A7gCcZTCDBy",
-//         "routeNames": Array [
-//           "Closet",
-//           "AddItem",
-//           "ScanBarcode",
-//           "UpdateItem",
-//           "AddCloset",
-//           "UpdateCloset",
-//         ],
-//         "routes": Array [
-//           Object {
-//             "key": "Closet-Ih-RNWi28cmtZI4p-U4YA",
-//             "name": "Closet",
-//             "params": undefined,
-//           },
-//           Object {
-//             "key": "AddItem-bjFWrtK8_nNm18TK2DoRp",
-//             "name": "AddItem",
-//             "params": undefined,
-//           },
-//         ],
-//         "stale": false,
-//         "type": "stack",
-//       },
-//     },
-//     Object {
-//       "key": "Search-VqU0OZxVGrY1ELDsst2yC",
-//       "name": "Search",
-//       "params": undefined,
-//     },
-//   ],
-//   "stale": false,
-//   "type": "tab",
-// }

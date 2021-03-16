@@ -15,6 +15,7 @@ const styles = StyleSheet.create({
   },
 });
 
+// TODO: Part of Stylist enhancement
 export default function AddCloset() {
   const database = firebase.database();
   const user = firebase.auth().currentUser;

@@ -3,7 +3,7 @@ import * as firebase from 'firebase';
 
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 
-import { NanumText } from '../../components/StyledText';
+import { NanumText } from '../StyledText';
 
 const styles = StyleSheet.create({
   container: {

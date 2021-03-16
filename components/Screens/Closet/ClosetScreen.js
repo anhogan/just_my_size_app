@@ -7,7 +7,7 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import ActionButton from 'react-native-action-button';
 import { ScrollView } from 'react-native-gesture-handler';
 
-import { NanumText } from '../../components/StyledText';
+import { NanumText } from '../../StyledText';
 
 const styles = StyleSheet.create({
   container: {

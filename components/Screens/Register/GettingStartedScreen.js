@@ -3,7 +3,7 @@ import * as firebase from 'firebase';
 
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
-import { NanumText } from '../../components/StyledText';
+import { NanumText } from '../../StyledText';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 

@@ -3,7 +3,7 @@ import * as firebase from 'firebase';
 
 import { View, Text, TouchableOpacity, StyleSheet, TextInput } from 'react-native';
 
-import { NanumText } from '../../components/StyledText';
+import { NanumText } from '../../StyledText';
 import { FontAwesome } from '@expo/vector-icons';
 
 const styles = StyleSheet.create({

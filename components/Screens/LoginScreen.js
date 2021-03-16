@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, TextInput, Alert } from 'react-native';
 
-import { NanumText } from '../../components/StyledText';
+import { NanumText } from '../StyledText';
 
 import * as firebase from 'firebase';
 

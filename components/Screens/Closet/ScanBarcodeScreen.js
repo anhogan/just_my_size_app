@@ -15,6 +15,7 @@ const styles = StyleSheet.create({
   },
 });
 
+// TODO: Part of Scan Barcode enhancement
 export default function ScanBarcode() {
   const database = firebase.database();
   const user = firebase.auth().currentUser;

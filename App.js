@@ -6,13 +6,13 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import useCachedResources from './hooks/useCachedResources';
-import BottomTabNavigator from './navigation/BottomTabNavigator';
-import LinkingConfiguration from './navigation/LinkingConfiguration';
+import BottomTabNavigator from './components/Navigation/BottomTabNavigator';
+import LinkingConfiguration from './components/Navigation/LinkingConfiguration';
 
-import NewUserRegistrationStack from './screens/Register/NewUserRegistrationStack';
+import NewUserRegistrationStack from './components/screens/Register/NewUserRegistrationStack';
 
 import { API_KEY, AUTH_DOMAIN, DATABASE_URL, PROJECT_ID, STORAGE_BUCKET, MESSAGING_SENDER_ID, APP_ID, MEASUREMENT_ID } from 'react-native-dotenv'
-import SignInStack from './screens/Setup/SignInStack';
+import SignInStack from './components/screens/Setup/SignInStack';
 
 const styles = StyleSheet.create({
   container: {

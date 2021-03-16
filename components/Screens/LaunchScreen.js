@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { AsyncStorage, View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
 
-import { NanumText } from '../../components/StyledText';
+import { NanumText } from '../StyledText';
 
 const styles = StyleSheet.create({
   container: {
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function FirstOpen({ navigation }) {
+export default function Launch({ navigation }) {
   const signUp = () => {
     navigation.navigate('SignUp');
   };
