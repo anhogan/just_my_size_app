@@ -1,4 +1,3 @@
-import * as React from 'react';
 import * as firebase from 'firebase';
 
 export default function useLogOut() {

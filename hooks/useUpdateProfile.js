@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 import { Alert } from 'react-native';
 
 export default function useUpdateProfile({ emailAddress, user, name, database, setSuccessMessage, setFailureMessage, setTimeOutMessage }) {

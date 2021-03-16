@@ -1,4 +1,3 @@
-import * as React from 'react';
 import * as firebase from 'firebase';
 
 import { Alert } from 'react-native';

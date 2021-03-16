@@ -1,5 +1,4 @@
 import * as React from 'react';
-import * as firebase from 'firebase';
 
 import { createStackNavigator } from '@react-navigation/stack';
 
