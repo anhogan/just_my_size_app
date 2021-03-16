@@ -17,6 +17,8 @@ import NameCloset from './screens/Register/NameClosetScreen';
 import AddFirstItem from './screens/Register/AddFirstItemScreen';
 import GettingStarted from './screens/Register/GettingStartedScreen';
 
+import { API_KEY, AUTH_DOMAIN, DATABASE_URL, PROJECT_ID, STORAGE_BUCKET, MESSAGING_SENDER_ID, APP_ID, MEASUREMENT_ID } from 'react-native-dotenv'
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -27,14 +29,14 @@ const styles = StyleSheet.create({
 const Stack = createStackNavigator();
 
 const firebaseConfig = {
-  apiKey: "AIzaSyB1nTykFeaLQKcNzKmcHAjbC481aFFQQsw",
-  authDomain: "just-my-size.firebaseapp.com",
-  databaseURL: "https://just-my-size.firebaseio.com",
-  projectId: "just-my-size",
-  storageBucket: "just-my-size.appspot.com",
-  messagingSenderId: "302956079339",
-  appId: "1:302956079339:web:443698bf1a0095d87336ae",
-  measurementId: "G-56PSNW1J1Q"
+  apiKey: API_KEY,
+  authDomain: AUTH_DOMAIN,
+  databaseURL: DATABASE_URL,
+  projectId: PROJECT_ID,
+  storageBucket: STORAGE_BUCKET,
+  messagingSenderId: MESSAGING_SENDER_ID,
+  appId: APP_ID,
+  measurementId: MEASUREMENT_ID
 };
 
 if (!firebase.apps.length) {
