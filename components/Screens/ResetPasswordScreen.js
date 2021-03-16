@@ -1,10 +1,11 @@
 import * as React from 'react';
-import * as firebase from 'firebase';
 
-import { View, Text, TouchableOpacity, TextInput, Alert } from 'react-native';
+import { View, Text, TouchableOpacity, TextInput } from 'react-native';
 
 import { styles } from '../../assets/styles/ResetPasswordStyles';
 import { NanumText } from '../StyledText';
+
+import useResetPassword from '../../hooks/useResetPassword';
 
 export default function ResetPassword({ navigation }) {
   const [email, setEmail] = React.useState('');
@@ -15,31 +16,7 @@ export default function ResetPassword({ navigation }) {
     navigation.navigate('Login');
   };
 
-  const resetPassword = () => {
-    if (email === '') {
-      Alert.alert(
-        'Invalid Email',
-        'Please enter the email address associated with your account',
-        [
-          { text: 'Return to Reset Password' }
-        ]
-      );
-    } else {
-      firebase.auth().sendPasswordResetEmail(email)
-      .then(() => {
-        setSuccessEmailMessage(true);
-        setTimeout(() => {
-          setSuccessEmailMessage(false);
-        }, 2000);
-      })
-      .catch(() => {
-        setFailureEmailMessage(true);
-        setTimeout(() => {
-          setFailureEmailMessage(false);
-        }, 5000);
-      })
-    }
-  };
+  const resetPassword = useResetPassword(email, setSuccessEmailMessage, setFailureEmailMessage);
 
   return (
     <View style={styles.container}>

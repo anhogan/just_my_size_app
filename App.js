@@ -9,7 +9,8 @@ import useCachedResources from './hooks/useCachedResources';
 import BottomTabNavigator from './components/Navigation/BottomTabNavigator';
 import LinkingConfiguration from './components/Navigation/LinkingConfiguration';
 
-import NewUserRegistrationStack from './components/screens/Register/NewUserRegistrationStack';
+import SignInStack from './components/Navigation/Stacks/SignInStack';
+import NewUserRegistrationStack from './components/Navigation/Stacks/NewUserRegistrationStack';
 
 import { API_KEY, AUTH_DOMAIN, DATABASE_URL, PROJECT_ID, STORAGE_BUCKET, MESSAGING_SENDER_ID, APP_ID, MEASUREMENT_ID } from 'react-native-dotenv'
 import SignInStack from './components/screens/Setup/SignInStack';

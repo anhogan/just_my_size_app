@@ -1,39 +1,16 @@
 import * as React from 'react';
-import { View, Text, TouchableOpacity, TextInput, Alert } from 'react-native';
+import { View, Text, TouchableOpacity, TextInput } from 'react-native';
 
 import { styles } from '../../assets/styles/LoginScreenStyles';
 import { NanumText } from '../StyledText';
 
-import * as firebase from 'firebase';
+import useLogIn from '../../hooks/useLogIn';
 
 export default function Login({ navigation }) {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
 
-  const logIn = () => {
-    firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
-      .then(() => {
-        setEmail('');
-        setPassword('');
-
-        return firebase.auth().signInWithEmailAndPassword(email, password).catch(err => {
-          Alert.alert(
-            'Invalid Credentials',
-            'The email and / or password entered do not match a current account',
-            [
-              { text: 'Return to Login' }
-            ]
-          );
-        });
-      })
-      .catch(err => {
-        console.log(err.code, err.message)
-      });
-  };
-
-  const createAccount = () => {
-    navigation.navigate('SignUp');
-  };
+  const logIn = useLogIn(email, setEmail, password, setPassword);
 
   const resetPassword = () => {
     navigation.navigate('ResetPassword');
