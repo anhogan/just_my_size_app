@@ -9,15 +9,10 @@ import useCachedResources from './hooks/useCachedResources';
 import BottomTabNavigator from './navigation/BottomTabNavigator';
 import LinkingConfiguration from './navigation/LinkingConfiguration';
 
-import FirstOpen from './screens/Setup/FirstOpenScreen';
-import SignUp from './screens/Setup/SignUpScreen';
-import Login from './screens/Setup/LoginScreen';
-import ResetPassword from './screens/Setup/ResetPasswordScreen';
-import NameCloset from './screens/Register/NameClosetScreen';
-import AddFirstItem from './screens/Register/AddFirstItemScreen';
-import GettingStarted from './screens/Register/GettingStartedScreen';
+import NewUserRegistrationStack from './screens/Register/NewUserRegistrationStack';
 
 import { API_KEY, AUTH_DOMAIN, DATABASE_URL, PROJECT_ID, STORAGE_BUCKET, MESSAGING_SENDER_ID, APP_ID, MEASUREMENT_ID } from 'react-native-dotenv'
+import SignInStack from './screens/Setup/SignInStack';
 
 const styles = StyleSheet.create({
   container: {
@@ -43,30 +38,9 @@ if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 };
 
-// const analytics = firebase.analytics();
+const analytics = firebase.analytics();
 const database = firebase.database();
 const auth = firebase.auth();
-
-function SignInStack() {
-  return (
-    <Stack.Navigator initialRouteName="Initial" headerMode='none'>
-      <Stack.Screen name="Initial" component={FirstOpen} options={{ headerTitle: ' ' }} />
-      <Stack.Screen name="SignUp" component={SignUp} options={{ headerTitle: ' ' }} />
-      <Stack.Screen name="Login" component={Login} options={{ headerTitle: ' ' }} />
-      <Stack.Screen name="ResetPassword" component={ResetPassword} options={{ headerTitle: ' ' }} />
-    </Stack.Navigator>
-  );
-};
-
-function SetupStack() {
-  return (
-    <Stack.Navigator initialRouteName="NameCloset" headerMode='none'>
-      <Stack.Screen name="NameCloset" component={NameCloset} options={{ headerTitle: ' ' }} />
-      <Stack.Screen name="AddFirstItem" component={AddFirstItem} options={{ headerTitle: ' ' }} />
-      <Stack.Screen name="GettingStarted" component={GettingStarted} options={{ headerTitle: ' ' }} />
-    </Stack.Navigator>
-  );
-};
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
@@ -78,23 +52,11 @@ export default function App() {
     if (user) {
       setUserToken(true);
       setUserId(user.uid);
-      // database.ref('users/' + user.uid + '/newUser').once('value', function(snapshot) {
-      //   if (snapshot.val()) {
-      //     setNewUser(snapshot.val())
-      //   }
-      // });
     } else {
       setUserToken(null);
       setUserId(null);
     }
   });
-
-  // database.ref('users/' + userId + '/newUser').on('value', function(snapshot) {
-  //   console.log('Changed status', snapshot.val())
-  //   if (snapshot.val()) {
-  //     setNewUser(snapshot.val())
-  //   }
-  // });
 
   if (!isLoadingComplete) {
     return null;
@@ -113,7 +75,7 @@ export default function App() {
               <>
                 <Stack.Screen 
                   name="SetupStack" 
-                  component={SetupStack} 
+                  component={NewUserRegistrationStack} 
                   options={{ headerTitle: ' ', headerStyle: { height: 0 } }} />
               </>
             ) : (
