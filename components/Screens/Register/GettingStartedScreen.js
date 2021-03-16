@@ -27,10 +27,6 @@ export default function GettingStarted() {
       <Text style={styles.closetTips}>Closet Management Tips</Text>
       <View style={styles.tipContainer}>
         <MaterialCommunityIcons name="hanger" size={24} color='white' />
-        <NanumText style={styles.tipText}>Scan a barcode to quickly add an item</NanumText>
-      </View>
-      <View style={styles.tipContainer}>
-        <MaterialCommunityIcons name="hanger" size={24} color='white' />
         <NanumText style={styles.tipText}>Edit items for up-tp-date sizing</NanumText>
       </View>
       <View style={styles.tipContainer}>

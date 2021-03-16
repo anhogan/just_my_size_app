@@ -18,10 +18,6 @@ export default {
               path: 'newitem',
               exact: true
             },
-            ScanBarcode: {
-              path: 'scanitem',
-              exact: true
-            },
             UpdateItem: {
               path: 'update/:itemid',
               exxact: true

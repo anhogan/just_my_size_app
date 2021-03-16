@@ -111,12 +111,8 @@ function getHeaderTitle(route) {
           return `SEARCH CLOSET`;
         case 'AddItem':
           return `ADD ITEM TO ${userName.toUpperCase()}'S CLOSET`;
-        case 'ScanBarcode':
-          return `ADD ITEM TO ${userName.toUpperCase()}'S CLOSET`;
         case 'UpdateItem':
           return `UPDATE ITEM IN ${userName.toUpperCase()}'S CLOSET`;
-        case 'AddCloset':
-          return `ADD A CLOSET`;
         case 'UpdateCloset':
           return `UPDATE ${userName.toUpperCase()}'S CLOSET`;
       }
@@ -130,12 +126,8 @@ function getHeaderTitle(route) {
           return `SEARCH CLOSET`;
         case 'AddItem':
           return `ADD ITEM TO ${data.name.toUpperCase()}'S CLOSET`;
-        case 'ScanBarcode':
-          return `ADD ITEM TO ${data.name.toUpperCase()}'S CLOSET`;
         case 'UpdateItem':
           return `UPDATE ITEM IN ${data.name.toUpperCase()}'S CLOSET`;
-        case 'AddCloset':
-          return `ADD A CLOSET`;
         case 'UpdateCloset':
           return `UPDATE ${data.name.toUpperCase()}'S CLOSET`;
       };
@@ -150,12 +142,8 @@ function getHeaderTitle(route) {
         return `SEARCH CLOSET`;
       case 'AddItem':
         return `ADD ITEM TO CLOSET`;
-      case 'ScanBarcode':
-        return `ADD ITEM TO CLOSET`;
       case 'UpdateItem':
         return `UPDATE ITEM IN CLOSET`;
-      case 'AddCloset':
-        return `ADD A CLOSET`;
       case 'UpdateCloset':
         return `UPDATE CLOSET`;
     };
