@@ -1,14 +1,11 @@
 import * as React from 'react'
-
 import { View, Text, TouchableOpacity, TextInput } from 'react-native'
-
 import { styles } from '../../assets/styles/ResetPasswordStyles'
 import { NanumText } from '../StyledText'
-
 import useResetPassword from '../../hooks/useResetPassword'
 
 export default function ResetPassword({ navigation }) {
-	const [email, setEmail] = React.useState('')
+	const [email, setEmail] = React.useState(null)
 	const [successEmailMessage, setSuccessEmailMessage] = React.useState(false)
 	const [failureEmailMessage, setFailureEmailMessage] = React.useState(false)
 

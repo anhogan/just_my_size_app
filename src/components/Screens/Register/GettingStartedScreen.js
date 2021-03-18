@@ -1,8 +1,6 @@
 import * as React from 'react'
 import * as firebase from 'firebase'
-
 import { View, Text, TouchableOpacity } from 'react-native'
-
 import { styles } from '../../../assets/styles/GettingStartedScreenStyles'
 import { NanumText } from '../../StyledText'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
@@ -41,11 +39,11 @@ export default function GettingStarted() {
 				<MaterialCommunityIcons name='hanger' size={24} color='white' />
 				<NanumText style={styles.tipText}>Search to easily find closet items</NanumText>
 			</View>
-			<View style={styles.spacer}></View>
+			<View style={styles.spacer} />
 			<TouchableOpacity onPress={finish} style={styles.closetBtn}>
 				<NanumText style={styles.closetText}>To My Closet</NanumText>
 			</TouchableOpacity>
-			<View style={styles.spacer}></View>
+			<View style={styles.spacer} />
 			<View style={styles.progressContainer}>
 				<FontAwesome name='circle' size={20} color='#F0895F' />
 				<FontAwesome name='circle' size={20} color='#F0895F' />

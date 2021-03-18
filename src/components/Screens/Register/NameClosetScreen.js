@@ -1,8 +1,6 @@
 import * as React from 'react'
 import * as firebase from 'firebase'
-
 import { View, Text, TouchableOpacity, TextInput } from 'react-native'
-
 import { styles } from '../../../assets/styles/NameClosetScreenStyles'
 import { NanumText } from '../../StyledText'
 import { FontAwesome } from '@expo/vector-icons'
@@ -60,15 +58,15 @@ export default function NameCloset({ navigation }) {
 				<Text style={styles.endText}> ' s</Text>
 			</View>
 			<Text style={styles.closetText}>Closet</Text>
-			<View style={styles.spacer}></View>
+			<View style={styles.spacer} />
 			<TouchableOpacity onPress={next} style={styles.btn}>
 				<NanumText style={styles.btnText}>Next</NanumText>
 			</TouchableOpacity>
-			<View style={styles.spacer}></View>
+			<View style={styles.spacer} />
 			<TouchableOpacity onPress={skip} style={styles.skipBtn}>
 				<NanumText style={styles.skipBtnText}>Skip</NanumText>
 			</TouchableOpacity>
-			<View style={styles.spacer}></View>
+			<View style={styles.spacer} />
 			<View style={styles.progressContainer}>
 				<FontAwesome name='circle' size={20} color='white' />
 				<FontAwesome name='circle' size={20} color='#F0895F' />

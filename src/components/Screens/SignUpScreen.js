@@ -1,19 +1,13 @@
 import * as React from 'react'
-import * as firebase from 'firebase'
-
 import { View, Text, TextInput, TouchableOpacity } from 'react-native'
-
 import { styles } from '../../assets/styles/SignUpScreenStyles'
 import { NanumText } from '../StyledText'
-
 import useSignUp from '../../hooks/useSignUp'
 
 export default function SignUp({ navigation }) {
-	const database = firebase.database()
-
-	const [email, setEmail] = React.useState('')
-	const [password, setPassword] = React.useState('')
-	const [confirmPassword, setConfirmPassword] = React.useState('')
+	const [email, setEmail] = React.useState(null)
+	const [password, setPassword] = React.useState(null)
+	const [confirmPassword, setConfirmPassword] = React.useState(null)
 
 	const signUp = useSignUp(
 		email,

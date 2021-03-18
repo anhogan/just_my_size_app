@@ -1,9 +1,8 @@
 import * as firebase from 'firebase'
-
 import { Alert } from 'react-native'
 
 export default function useLogIn(email, setEmail, password, setPassword) {
-	return firebase
+	firebase
 		.auth()
 		.setPersistence(firebase.auth.Auth.Persistence.LOCAL)
 		.then(() => {

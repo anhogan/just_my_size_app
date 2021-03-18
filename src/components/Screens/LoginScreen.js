@@ -7,8 +7,8 @@ import { NanumText } from '../StyledText'
 import useLogIn from '../../hooks/useLogIn'
 
 export default function Login({ navigation }) {
-	const [email, setEmail] = React.useState('')
-	const [password, setPassword] = React.useState('')
+	const [email, setEmail] = React.useState(null)
+	const [password, setPassword] = React.useState(null)
 
 	const logIn = useLogIn(email, setEmail, password, setPassword)
 

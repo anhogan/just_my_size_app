@@ -1,8 +1,6 @@
 import * as React from 'react'
 import * as firebase from 'firebase'
-
 import { TextInput, TouchableOpacity, View, Alert } from 'react-native'
-
 import { styles } from '../../assets/styles/ProfileScreenStyles'
 import { NanumText } from '../StyledText'
 import useResetPassword from '../../hooks/useResetPassword'
@@ -21,7 +19,11 @@ export default function Profile() {
 	const [failureEmailMessage, setFailureEmailMessage] = React.useState(false)
 	const [timeoutMessage, setTimeOutMessage] = React.useState(false)
 
-	const resetPassword = useResetPassword(email, setSuccessEmailMessage, setFailureEmailMessage)
+	const resetPassword = useResetPassword(
+		emailAddress,
+		setSuccessEmailMessage,
+		setFailureEmailMessage
+	)
 
 	const updateProfile = useUpdateProfile(
 		emailAddress,
@@ -61,7 +63,7 @@ export default function Profile() {
 					value={emailAddress}
 				/>
 			</View>
-			<View style={styles.spacer}></View>
+			<View style={styles.spacer} />
 			<TouchableOpacity onPress={resetPassword} style={styles.resetBtn}>
 				<NanumText style={styles.btnText}>Change Your Password</NanumText>
 			</TouchableOpacity>
@@ -70,11 +72,11 @@ export default function Profile() {
 				<NanumText style={styles.inputPlan}>PLAN</NanumText>
 				<NanumText style={styles.planType}>Free</NanumText>
 			</View>
-			<View style={styles.spacer}></View>
+			<View style={styles.spacer} />
 			<TouchableOpacity onPress={updateProfile} style={styles.updateBtn}>
 				<NanumText style={styles.btnText}>Update Profile</NanumText>
 			</TouchableOpacity>
-			<View style={styles.spacer}></View>
+			<View style={styles.spacer} />
 			<TouchableOpacity onPress={logout} style={styles.logoutBtn}>
 				<NanumText style={styles.btnText}>Logout</NanumText>
 			</TouchableOpacity>

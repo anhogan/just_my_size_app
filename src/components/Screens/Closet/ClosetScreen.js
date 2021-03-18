@@ -1,11 +1,9 @@
 import * as React from 'react'
 import * as firebase from 'firebase'
-
 import { Image, Platform, Text, TouchableOpacity, View } from 'react-native'
 import { FontAwesome5 } from '@expo/vector-icons'
 import ActionButton from 'react-native-action-button'
 import { ScrollView } from 'react-native-gesture-handler'
-
 import { styles } from '../../../assets/styles/ClosetScreenStyles'
 import { NanumText } from '../../StyledText'
 

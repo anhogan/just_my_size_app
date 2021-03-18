@@ -1,8 +1,6 @@
 import * as React from 'react'
 import * as firebase from 'firebase'
-
 import { Image, Platform, Text, TouchableOpacity, View } from 'react-native'
-
 import { styles } from '../../../assets/styles/UpdateClosetScreenStyles'
 import { NanumText } from '../../StyledText'
 

@@ -1,5 +1,4 @@
 import * as firebase from 'firebase'
-
 import { Alert } from 'react-native'
 
 export default function useResetPassword(email, setSuccessEmailMessage, setFailureEmailMessage) {
