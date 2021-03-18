@@ -19,56 +19,26 @@ const useGetHeaderTitle = (route, initialRouteName) => {
 			})
 	}
 
-	if (data !== null) {
-		let nameLen = data.name.split(' ')
+	let nameLen = data ? data?.name.split(' ') : 0
+	let userName = nameLen.length > 1 ? nameLen[0] + ' ' + nameLen[1] : data ? data?.name : null
 
-		if (nameLen.length > 1) {
-			let userName = nameLen[0] + ' ' + nameLen[1]
-			switch (routeName) {
-				case 'Profile':
-					return `${userName.toUpperCase()}'S PROFILE`
-				case 'Closet':
-					return `${userName.toUpperCase()}'S CLOSET`
-				case 'Search':
-					return `SEARCH CLOSET`
-				case 'AddItem':
-					return `ADD ITEM TO ${userName.toUpperCase()}'S CLOSET`
-				case 'UpdateItem':
-					return `UPDATE ITEM IN ${userName.toUpperCase()}'S CLOSET`
-				case 'UpdateCloset':
-					return `UPDATE ${userName.toUpperCase()}'S CLOSET`
-			}
-		} else {
-			switch (routeName) {
-				case 'Profile':
-					return `${data.name.toUpperCase()}'S PROFILE`
-				case 'Closet':
-					return `${data.name.toUpperCase()}'S CLOSET`
-				case 'Search':
-					return `SEARCH CLOSET`
-				case 'AddItem':
-					return `ADD ITEM TO ${data.name.toUpperCase()}'S CLOSET`
-				case 'UpdateItem':
-					return `UPDATE ITEM IN ${data.name.toUpperCase()}'S CLOSET`
-				case 'UpdateCloset':
-					return `UPDATE ${data.name.toUpperCase()}'S CLOSET`
-			}
-		}
-	} else {
-		switch (routeName) {
-			case 'Profile':
-				return `PROFILE`
-			case 'Closet':
-				return `CLOSET`
-			case 'Search':
-				return `SEARCH CLOSET`
-			case 'AddItem':
-				return `ADD ITEM TO CLOSET`
-			case 'UpdateItem':
-				return `UPDATE ITEM IN CLOSET`
-			case 'UpdateCloset':
-				return `UPDATE CLOSET`
-		}
+	switch (routeName) {
+		case 'Profile':
+			return userName ? `${userName.toUpperCase()}'S PROFILE` : `PROFILE`
+		case 'Closet':
+			return userName ? `${userName.toUpperCase()}'S CLOSET` : `CLOSET`
+		case 'Search':
+			return `SEARCH CLOSET`
+		case 'AddItem':
+			return userName
+				? `ADD ITEM TO ${userName.toUpperCase()}'S CLOSET`
+				: `ADD ITEM TO CLOSET`
+		case 'UpdateItem':
+			return userName
+				? `UPDATE ITEM IN ${userName.toUpperCase()}'S CLOSET`
+				: `UPDATE ITEM IN CLOSET`
+		case 'UpdateCloset':
+			return userName ? `UPDATE ${userName.toUpperCase()}'S CLOSET` : `UPDATE CLOSET`
 	}
 }
 

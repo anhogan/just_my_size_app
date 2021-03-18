@@ -11,31 +11,29 @@ export default function Profile() {
 	const database = firebase.database()
 	const user = firebase.auth().currentUser
 
-	const [name, setName] = React.useState(user.displayName)
-	const [emailAddress, setEmailAddress] = React.useState(user.email)
+	const [name, setName] = React.useState(user?.displayName)
+	const [emailAddress, setEmailAddress] = React.useState(user?.email)
 	const [successMessage, setSuccessMessage] = React.useState(false)
 	const [failureMessage, setFailureMessage] = React.useState(false)
 	const [successEmailMessage, setSuccessEmailMessage] = React.useState(false)
 	const [failureEmailMessage, setFailureEmailMessage] = React.useState(false)
 	const [timeoutMessage, setTimeOutMessage] = React.useState(false)
 
-	const resetPassword = useResetPassword(
-		emailAddress,
-		setSuccessEmailMessage,
-		setFailureEmailMessage
-	)
+	const resetPassword = () =>
+		useResetPassword(emailAddress, setSuccessEmailMessage, setFailureEmailMessage)
 
-	const updateProfile = useUpdateProfile(
-		emailAddress,
-		user,
-		name,
-		database,
-		setSuccessMessage,
-		setFailureMessage,
-		setTimeOutMessage
-	)
+	const updateProfile = () =>
+		useUpdateProfile(
+			emailAddress,
+			user,
+			name,
+			database,
+			setSuccessMessage,
+			setFailureMessage,
+			setTimeOutMessage
+		)
 
-	const logout = useLogOut()
+	const logout = () => useLogOut()
 
 	return (
 		<View style={styles.container}>

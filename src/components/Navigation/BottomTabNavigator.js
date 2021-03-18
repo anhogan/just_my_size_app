@@ -12,7 +12,7 @@ const BottomTab = createBottomTabNavigator()
 const INITIAL_ROUTE_NAME = 'Closet'
 
 export default function BottomTabNavigator({ navigation, route }) {
-	const getHeaderTitle = useGetHeaderTitle(route, INITIAL_ROUTE_NAME)
+	const getHeaderTitle = () => useGetHeaderTitle(route, INITIAL_ROUTE_NAME)
 
 	navigation.setOptions({
 		headerTitle: getHeaderTitle(route),
