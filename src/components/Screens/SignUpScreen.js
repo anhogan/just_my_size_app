@@ -70,11 +70,11 @@ export default function SignUp({ navigation }) {
 					value={confirmPassword}
 				/>
 			</View>
-			<View style={styles.spacer}></View>
+			<View style={styles.spacer} />
 			<TouchableOpacity onPress={signUp} style={styles.btn}>
 				<NanumText style={styles.btnText}>Sign Up</NanumText>
 			</TouchableOpacity>
-			<View style={styles.spacer}></View>
+			<View style={styles.spacer} />
 			<TouchableOpacity onPress={login} style={styles.loginBtn}>
 				<NanumText style={styles.loginText}>Login</NanumText>
 			</TouchableOpacity>
