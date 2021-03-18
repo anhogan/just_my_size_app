@@ -1,6 +1,6 @@
 import { Alert } from 'react-native'
 
-export default function useUpdateProfile(
+const useUpdateProfile = (
 	emailAddress,
 	user,
 	name,
@@ -8,7 +8,7 @@ export default function useUpdateProfile(
 	setSuccessMessage,
 	setFailureMessage,
 	setTimeOutMessage
-) {
+) => {
 	const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
 	if (emailAddress !== user.email) {
@@ -82,3 +82,5 @@ const updateUserProfile = (
 			}, 2000)
 		})
 }
+
+export default useUpdateProfile

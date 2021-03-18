@@ -1,14 +1,8 @@
 import * as firebase from 'firebase'
 import { Alert } from 'react-native'
 
-export default function useResetPassword(email, setSuccessEmailMessage, setFailureEmailMessage) {
-	if (email === '') {
-		Alert.alert(
-			'Invalid Email',
-			'Please enter the email address associated with your account',
-			[{ text: 'Return to Reset Password' }]
-		)
-	} else {
+const useResetPassword = (email, setSuccessEmailMessage, setFailureEmailMessage) => {
+	if (!!email && email !== '') {
 		firebase
 			.auth()
 			.sendPasswordResetEmail(email)
@@ -24,5 +18,15 @@ export default function useResetPassword(email, setSuccessEmailMessage, setFailu
 					setFailureEmailMessage(false)
 				}, 5000)
 			})
+	} else {
+		!!email
+			? Alert.alert(
+					'Invalid Email',
+					'Please enter the email address associated with your account',
+					[{ text: 'Return to Reset Password' }]
+			  )
+			: null
 	}
 }
+
+export default useResetPassword

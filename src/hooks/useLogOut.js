@@ -1,6 +1,6 @@
 import * as firebase from 'firebase'
 
-export default function useLogOut() {
+const useLogOut = () => {
 	firebase
 		.auth()
 		.signOut()
@@ -11,3 +11,5 @@ export default function useLogOut() {
 			console.log(err.code, err.message)
 		})
 }
+
+export default useLogOut

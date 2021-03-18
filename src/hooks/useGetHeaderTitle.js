@@ -1,7 +1,7 @@
 import * as firebase from 'firebase'
 import * as React from 'react'
 
-export default function getHeaderTitle(route, initialRouteName) {
+const useGetHeaderTitle = (route, initialRouteName) => {
 	const routeName = route.state
 		? route.state.routes[route.state.index].name
 		: route.params?.screen || initialRouteName
@@ -71,3 +71,5 @@ export default function getHeaderTitle(route, initialRouteName) {
 		}
 	}
 }
+
+export default useGetHeaderTitle

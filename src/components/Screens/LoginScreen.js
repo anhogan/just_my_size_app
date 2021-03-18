@@ -1,16 +1,14 @@
 import * as React from 'react'
 import { View, Text, TouchableOpacity, TextInput } from 'react-native'
-
 import { styles } from '../../assets/styles/LoginScreenStyles'
 import { NanumText } from '../StyledText'
-
 import useLogIn from '../../hooks/useLogIn'
 
 export default function Login({ navigation }) {
 	const [email, setEmail] = React.useState(null)
 	const [password, setPassword] = React.useState(null)
 
-	const logIn = useLogIn(email, setEmail, password, setPassword)
+	const logIn = () => useLogIn(email, setEmail, password, setPassword)
 
 	const createAccount = () => {
 		navigation.navigate('SignUp')

@@ -13,7 +13,8 @@ export default function ResetPassword({ navigation }) {
 		navigation.navigate('Login')
 	}
 
-	const resetPassword = useResetPassword(email, setSuccessEmailMessage, setFailureEmailMessage)
+	const resetPassword = () =>
+		useResetPassword(email, setSuccessEmailMessage, setFailureEmailMessage)
 
 	return (
 		<View style={styles.container}>
@@ -33,11 +34,11 @@ export default function ResetPassword({ navigation }) {
 					value={email}
 				/>
 			</View>
-			<View style={styles.spacer}></View>
+			<View style={styles.spacer} />
 			<TouchableOpacity onPress={resetPassword} style={styles.btn}>
 				<NanumText style={styles.btnText}>Reset Password</NanumText>
 			</TouchableOpacity>
-			<View style={styles.spacer}></View>
+			<View style={styles.spacer} />
 			<TouchableOpacity onPress={logIn} style={styles.resetBtn}>
 				<NanumText style={styles.resetText}>Back to Login</NanumText>
 			</TouchableOpacity>

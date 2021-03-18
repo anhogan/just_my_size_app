@@ -1,17 +1,10 @@
 import * as firebase from 'firebase'
 import { Alert } from 'react-native'
 
-export default function useSignUp(
-	email,
-	setEmail,
-	password,
-	setPassword,
-	confirmPassword,
-	setConfirmPassword
-) {
+const useSignUp = (email, setEmail, password, setPassword, confirmPassword, setConfirmPassword) => {
 	const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
-	if (emailRegex.test(email) && password === confirmPassword) {
+	if (!!email && emailRegex.test(email) && password === confirmPassword) {
 		firebase
 			.auth()
 			.setPersistence(firebase.auth.Auth.Persistence.LOCAL)
@@ -61,10 +54,14 @@ export default function useSignUp(
 				console.log(err.code, err.message)
 			})
 	} else {
-		Alert.alert(
-			'Invalid Credentials',
-			'Please enter a valid email address and confirm that both passwords match exactly',
-			[{ text: 'Return to Sign Up' }]
-		)
+		!!email
+			? Alert.alert(
+					'Invalid Credentials',
+					'Please enter a valid email address and confirm that both passwords match exactly',
+					[{ text: 'Return to Sign Up' }]
+			  )
+			: null
 	}
 }
+
+export default useSignUp

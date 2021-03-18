@@ -9,14 +9,8 @@ export default function SignUp({ navigation }) {
 	const [password, setPassword] = React.useState(null)
 	const [confirmPassword, setConfirmPassword] = React.useState(null)
 
-	const signUp = useSignUp(
-		email,
-		setEmail,
-		password,
-		setPassword,
-		confirmPassword,
-		setConfirmPassword
-	)
+	const signUp = () =>
+		useSignUp(email, setEmail, password, setPassword, confirmPassword, setConfirmPassword)
 
 	const login = () => {
 		navigation.navigate('Login')
