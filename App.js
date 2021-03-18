@@ -1,17 +1,13 @@
 import * as React from 'react'
 import * as firebase from 'firebase'
-
 import { Platform, StatusBar, StyleSheet, View } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
-
 import useCachedResources from './src/hooks/useCachedResources'
 import BottomTabNavigator from './src/components/Navigation/BottomTabNavigator'
 import LinkingConfiguration from './src/components/Navigation/LinkingConfiguration'
-
 import SignInStack from './src/components/Navigation/Stacks/SignInStack'
 import NewUserRegistrationStack from './src/components/Navigation/Stacks/NewUserRegistrationStack'
-
 import Constants from 'expo-constants'
 
 const styles = StyleSheet.create({
@@ -22,8 +18,6 @@ const styles = StyleSheet.create({
 })
 
 const Stack = createStackNavigator()
-
-console.log(Constants.manifest.extra.databaseURL)
 
 const firebaseConfig = {
 	apiKey: Constants.manifest.extra.apiKey,
@@ -40,7 +34,6 @@ if (!firebase.apps.length) {
 	firebase.initializeApp(firebaseConfig)
 }
 
-// const analytics = firebase.analytics();
 const database = firebase.database()
 const auth = firebase.auth()
 
@@ -70,14 +63,14 @@ export default function App() {
 					<Stack.Navigator>
 						{userToken == null ? (
 							<Stack.Screen
-								name='SetupStack'
+								name='SignInStack'
 								component={SignInStack}
 								options={{ headerTitle: ' ', headerStyle: { height: 0 } }}
 							/>
 						) : newUser ? (
 							<>
 								<Stack.Screen
-									name='SetupStack'
+									name='NewUserRegistrationStack'
 									component={NewUserRegistrationStack}
 									options={{ headerTitle: ' ', headerStyle: { height: 0 } }}
 								/>
