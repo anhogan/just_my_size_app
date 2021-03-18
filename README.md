@@ -1,6 +1,8 @@
 # Just My Size
 The perfect fit every time
 
+[![Maintainability](https://api.codeclimate.com/v1/badges/0d01cd5210ccdabcb057/maintainability)](https://codeclimate.com/github/anhogan/just_my_size_app/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/0d01cd5210ccdabcb057/test_coverage)](https://codeclimate.com/github/anhogan/just_my_size_app/test_coverage)
+
 ## Google Chrome Extension
 The Google Chrome extension can be added to your browser using this link: https://chrome.google.com/webstore/detail/just-my-size/ombggmodmhplhgdjkcgieelflokgnbfp
 

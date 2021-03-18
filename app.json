@@ -9,10 +9,10 @@
     ],
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/jms_icon.png",
+    "icon": "./src/assets/images/jms_icon.png",
     "scheme": "justmysize",
     "splash": {
-      "image": "./assets/images/jms_icon.png",
+      "image": "./src/assets/images/jms_icon.png",
       "resizeMode": "contain",
       "backgroundColor": "#6674DE"
     },

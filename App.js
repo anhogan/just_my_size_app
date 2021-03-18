@@ -1,125 +1,86 @@
-import * as React from 'react';
-import * as firebase from 'firebase';
-
-import { Platform, StatusBar, StyleSheet, View } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-
-import useCachedResources from './hooks/useCachedResources';
-import BottomTabNavigator from './navigation/BottomTabNavigator';
-import LinkingConfiguration from './navigation/LinkingConfiguration';
-
-import FirstOpen from './screens/Setup/FirstOpenScreen';
-import SignUp from './screens/Setup/SignUpScreen';
-import Login from './screens/Setup/LoginScreen';
-import ResetPassword from './screens/Setup/ResetPasswordScreen';
-import NameCloset from './screens/Register/NameClosetScreen';
-import AddFirstItem from './screens/Register/AddFirstItemScreen';
-import GettingStarted from './screens/Register/GettingStartedScreen';
+import * as React from 'react'
+import * as firebase from 'firebase'
+import { Platform, StatusBar, StyleSheet, View } from 'react-native'
+import { NavigationContainer } from '@react-navigation/native'
+import { createStackNavigator } from '@react-navigation/stack'
+import useCachedResources from './src/hooks/useCachedResources'
+import BottomTabNavigator from './src/components/Navigation/BottomTabNavigator'
+import LinkingConfiguration from './src/components/Navigation/LinkingConfiguration'
+import SignInStack from './src/components/Navigation/Stacks/SignInStack'
+import NewUserRegistrationStack from './src/components/Navigation/Stacks/NewUserRegistrationStack'
+import Constants from 'expo-constants'
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-});
+	container: {
+		flex: 1,
+		backgroundColor: '#fff',
+	},
+})
 
-const Stack = createStackNavigator();
+const Stack = createStackNavigator()
 
 const firebaseConfig = {
-  apiKey: "AIzaSyB1nTykFeaLQKcNzKmcHAjbC481aFFQQsw",
-  authDomain: "just-my-size.firebaseapp.com",
-  databaseURL: "https://just-my-size.firebaseio.com",
-  projectId: "just-my-size",
-  storageBucket: "just-my-size.appspot.com",
-  messagingSenderId: "302956079339",
-  appId: "1:302956079339:web:443698bf1a0095d87336ae",
-  measurementId: "G-56PSNW1J1Q"
-};
+	apiKey: Constants.manifest.extra.apiKey,
+	authDomain: Constants.manifest.extra.authDomain,
+	databaseURL: Constants.manifest.extra.databaseURL,
+	projectId: Constants.manifest.extra.projectId,
+	storageBucket: Constants.manifest.extra.storageBucket,
+	messagingSenderId: Constants.manifest.extra.messagingSenderId,
+	appId: Constants.manifest.extra.appId,
+	measurementId: Constants.manifest.extra.measurementId,
+}
 
 if (!firebase.apps.length) {
-  firebase.initializeApp(firebaseConfig);
-};
+	firebase.initializeApp(firebaseConfig)
+}
 
-// const analytics = firebase.analytics();
-const database = firebase.database();
-const auth = firebase.auth();
-
-function SignInStack() {
-  return (
-    <Stack.Navigator initialRouteName="Initial" headerMode='none'>
-      <Stack.Screen name="Initial" component={FirstOpen} options={{ headerTitle: ' ' }} />
-      <Stack.Screen name="SignUp" component={SignUp} options={{ headerTitle: ' ' }} />
-      <Stack.Screen name="Login" component={Login} options={{ headerTitle: ' ' }} />
-      <Stack.Screen name="ResetPassword" component={ResetPassword} options={{ headerTitle: ' ' }} />
-    </Stack.Navigator>
-  );
-};
-
-function SetupStack() {
-  return (
-    <Stack.Navigator initialRouteName="NameCloset" headerMode='none'>
-      <Stack.Screen name="NameCloset" component={NameCloset} options={{ headerTitle: ' ' }} />
-      <Stack.Screen name="AddFirstItem" component={AddFirstItem} options={{ headerTitle: ' ' }} />
-      <Stack.Screen name="GettingStarted" component={GettingStarted} options={{ headerTitle: ' ' }} />
-    </Stack.Navigator>
-  );
-};
+const database = firebase.database()
+const auth = firebase.auth()
 
 export default function App() {
-  const isLoadingComplete = useCachedResources();
-  const [userToken, setUserToken] = React.useState(null);
-  const [userId, setUserId] = React.useState(null);
-  const [newUser, setNewUser] = React.useState(false);
+	const isLoadingComplete = useCachedResources()
+	const [userToken, setUserToken] = React.useState(null)
+	const [userId, setUserId] = React.useState(null)
+	const [newUser, setNewUser] = React.useState(false)
 
-  auth.onAuthStateChanged(function(user) {
-    if (user) {
-      setUserToken(true);
-      setUserId(user.uid);
-      // database.ref('users/' + user.uid + '/newUser').once('value', function(snapshot) {
-      //   if (snapshot.val()) {
-      //     setNewUser(snapshot.val())
-      //   }
-      // });
-    } else {
-      setUserToken(null);
-      setUserId(null);
-    }
-  });
+	auth.onAuthStateChanged(function (user) {
+		if (user) {
+			setUserToken(true)
+			setUserId(user.uid)
+		} else {
+			setUserToken(null)
+			setUserId(null)
+		}
+	})
 
-  // database.ref('users/' + userId + '/newUser').on('value', function(snapshot) {
-  //   console.log('Changed status', snapshot.val())
-  //   if (snapshot.val()) {
-  //     setNewUser(snapshot.val())
-  //   }
-  // });
-
-  if (!isLoadingComplete) {
-    return null;
-  } else {
-    return (
-      <View style={styles.container}>
-        {Platform.OS === 'ios' && <StatusBar barStyle="dark-content" />}
-        <NavigationContainer linking={LinkingConfiguration}>
-          <Stack.Navigator>
-            {userToken == null ? (
-              <Stack.Screen 
-                name="SetupStack" 
-                component={SignInStack} 
-                options={{ headerTitle: ' ', headerStyle: { height: 0 } }} />
-            ) : newUser ? (
-              <>
-                <Stack.Screen 
-                  name="SetupStack" 
-                  component={SetupStack} 
-                  options={{ headerTitle: ' ', headerStyle: { height: 0 } }} />
-              </>
-            ) : (
-              <Stack.Screen name="Root" component={BottomTabNavigator} />
-            )}
-          </Stack.Navigator>
-        </NavigationContainer>
-      </View>
-    );
-  }
-};
+	if (!isLoadingComplete) {
+		return null
+	} else {
+		return (
+			<View style={styles.container}>
+				{Platform.OS === 'ios' && <StatusBar barStyle='dark-content' />}
+				<NavigationContainer linking={LinkingConfiguration}>
+					<Stack.Navigator>
+						{userToken == null ? (
+							<Stack.Screen
+								name='SignInStack'
+								component={SignInStack}
+								options={{ headerTitle: ' ', headerStyle: { height: 0 } }}
+							/>
+						) : newUser ? (
+							<>
+								<Stack.Screen
+									name='NewUserRegistrationStack'
+									component={NewUserRegistrationStack}
+									options={{ headerTitle: ' ', headerStyle: { height: 0 } }}
+								/>
+							</>
+						) : (
+							<Stack.Screen name='Root' component={BottomTabNavigator} />
+						)}
+					</Stack.Navigator>
+				</NavigationContainer>
+			</View>
+		)
+	}
+}
